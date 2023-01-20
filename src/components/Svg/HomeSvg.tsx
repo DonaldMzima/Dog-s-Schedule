@@ -1,6 +1,8 @@
-import * as React from "react"
+import * as React from 'react'
 
-const SvgComponent = (props) => (
+const SvgComponent = (
+  props: JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>,
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 400 300"
