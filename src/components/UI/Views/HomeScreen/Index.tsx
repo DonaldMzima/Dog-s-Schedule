@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-page-custom-font */
 import React from 'react'
 
@@ -34,9 +35,9 @@ export default function HomePage() {
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
           >
-            Make money from <br />
+            Dog's <br />
             <Text as={'span'} color={'green.400'}>
-              your audience
+              Schedule
             </Text>
           </Heading>
           <Text color={'gray.500'}>
