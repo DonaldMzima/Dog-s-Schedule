@@ -17,7 +17,7 @@ const NavBar = () => {
         <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
           <Flex alignItems={'center'}>
             <Stack direction={'row'}>
-              <Center textAlign={'center'} width="1900px">
+              <Center width="1690px">
                 <Link href="/">
                   <Box height="14px" width="400px">
                     <Button
