@@ -11,6 +11,23 @@ import { useMediaQuery } from '@chakra-ui/react'
 import { FaCalendar, FaHome } from 'react-icons/fa'
 
 const NavBar = () => {
+  const [isLargerThanHD, isDisplayingInBrowser] = useMediaQuery([
+    '(min-width: 360px)',
+    '(display-mode: browser)',
+  ])
+
+  function determineText() {
+    if (isLargerThanHD) {
+      return `high resolution you got there ${
+        isDisplayingInBrowser ? 'in your browser' : 'on your screen'
+      }`
+    }
+
+    return isDisplayingInBrowser
+      ? 'rendering in a browser'
+      : 'rendering on something else, e.g. PWA'
+  }
+
   return (
     <>
       <Box bg={'#f8f9eb'} height={90} pos="fixed" width="100%" px={4}>
