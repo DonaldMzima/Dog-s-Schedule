@@ -17,22 +17,10 @@ import SvgComponent from '@/components/Svg/HomeSvg'
 export default function HomePage() {
   return (
     <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-
       <Container
         maxW={'9xl'}
         height="999px"
-        bgGradient={[
-          'linear(to-tr, white, white)',
-          'linear(to-t, white, white)',
-
-          'linear(to-b, white, yellow)',
-        ]}
+        bgGradient={['linear(to-b, white, yellow)']}
       >
         <Stack
           as={Box}
