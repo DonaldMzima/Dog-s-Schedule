@@ -63,7 +63,7 @@ const NavBar = () => {
                     </Button>
                   </Box>
                 </Link>
-                <Link href="/calender">
+                <Link href="/settings">
                   <Box height="14px" width="400px">
                     <Button
                       size="md"
