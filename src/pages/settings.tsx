@@ -1,6 +1,7 @@
 import React from 'react'
 import { Center, Text, Container, Stack, Box } from '@chakra-ui/react'
 import SvgComponent from '@/components/Svg/SettingsSvg/Index'
+import Nav from '@/components/UI/NavBar/Index'
 
 const settings = () => {
   return (
@@ -14,6 +15,7 @@ const settings = () => {
         'linear(to-b, white, yellow)',
       ]}
     >
+      <Nav />
       <Stack
         as={Box}
         textAlign={'center'}
