@@ -1,5 +1,8 @@
 import {
+  Box,
+  Container,
   Button,
+  FormLabel,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -7,6 +10,9 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  Flex,
+  useDisclosure,
+  Input,
   Text,
 } from '@chakra-ui/react'
 import React from 'react'
@@ -25,14 +31,36 @@ const AddModal = (props: any) => {
           <ModalHeader>Submitted</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
+            <FormLabel>
+              <p>Person Walking the dog:</p>
+              <Input type="text" placeholder="Person Walking the dog..." />
+            </FormLabel>
+            <FormLabel>
+              <p>Dog's Name:</p>
+              <Input type="text" placeholder="Dog's Name..." />
+            </FormLabel>
+            <FormLabel>
+              <p>Date:</p>
+              <Input
+                placeholder="Select Date and Time"
+                size="md"
+                type="datetime-local"
+              />
+            </FormLabel>
             <Text>{props.data}</Text>
             <Text>{props.data}</Text>
             <Text>{props.data}</Text>
             <Text>{props.data}</Text>
           </ModalBody>
+
           <ModalFooter>
-            <Button colorScheme="blue" mr={3} onClick={props.onClose}>
-              Close
+            <Button
+              colorScheme="blue"
+              mr={2}
+              onClick={props.onClose}
+              type="submit"
+            >
+              Add
             </Button>
           </ModalFooter>
         </ModalContent>

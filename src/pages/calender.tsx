@@ -1,8 +1,9 @@
 import React from 'react'
 import { Stack, Box, Container, Button, Text, Center } from '@chakra-ui/react'
 import AddButton from '@/components/Modals/AddButton/Index'
-import SvgComponent from '@/components/Svg/CalenderSvg/Index'
+
 import Nav from '@/components/UI/NavBar/Index'
+import SvgComponent from '@/components/Svg/CalenderSvg/Index'
 
 const calender = () => {
   return (
@@ -12,8 +13,9 @@ const calender = () => {
       bgGradient={['linear(to-b, white, yellow)']}
     >
       <Nav />
+
       <Center width="2520px" height="250px">
-        <Button boxSize="70px" colorScheme="blue" pos="fixed">
+        <Button boxSize="70px" bg="BLACK" pos="fixed">
           <AddButton />
         </Button>
       </Center>
