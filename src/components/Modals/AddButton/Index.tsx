@@ -29,38 +29,41 @@ const schema = Yup.object({
 
 export const AddButton = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [modal, setModal] = useState<any>(true)
+  const [dogSchedules, setDogSchedules] = useState<any>([])
 
   const {
     register,
     handleSubmit,
-
     formState: { errors },
-  } = useForm()
+  } = useForm(schema)
 
   const onSubmit = (data: any) => {
-    onOpen()
-    setModal(data)
-    console.log('check this', data)
-  }
+    onClose()
+    // dogSchedules.push(data)
 
+    //was updating data using useState
+    //previousState it is a data coming from our initial state,using spread operator was
+    //taking all the data from the initial state and update it with the new data
+    setDogSchedules((previousState: any) => [...previousState, data])
+  }
+  console.log('checking dogSchedule data', dogSchedules)
   return (
     <>
-      <form>
-        <Container rounded="md">
-          <Box color="white" onClick={onOpen}>
-            <AddIcon />
-          </Box>
+      <Container rounded="md">
+        <Box color="white" onClick={onOpen}>
+          <AddIcon />
+        </Box>
 
-          <Modal isOpen={isOpen} onClose={onClose} data={modal}>
-            <ModalOverlay />
-            <ModalContent>
-              <ModalHeader>
-                <AddIcon />
-                Add Schedule
-              </ModalHeader>
-              <ModalCloseButton />
-              <ModalBody>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>
+              <AddIcon />
+              Add Schedule
+            </ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              <form onSubmit={handleSubmit(onSubmit)}>
                 <FormLabel>
                   <p>Person Walking the dog:</p>
                   <Input
@@ -86,23 +89,16 @@ export const AddButton = () => {
                     {...register('date')}
                   />
                 </FormLabel>
-              </ModalBody>
-
-              <ModalFooter>
-                <Button
-                  colorScheme="blue"
-                  mr={2}
-                  onClick={onClose}
-                  onSubmit={handleSubmit(onSubmit)}
-                  type="submit"
-                >
+                <Button colorScheme="blue" mr={2} type="submit">
                   Add
                 </Button>
-              </ModalFooter>
-            </ModalContent>
-          </Modal>
-        </Container>
-      </form>
+              </form>
+            </ModalBody>
+
+            <ModalFooter></ModalFooter>
+          </ModalContent>
+        </Modal>
+      </Container>
     </>
   )
 }
