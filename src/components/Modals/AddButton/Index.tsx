@@ -13,13 +13,14 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Flex,
   useDisclosure,
   Input,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
-import Nav from '@/components/UI/NavBar/Index'
+
+import { useRecoilState } from 'recoil'
+import { schedulesState } from '@/store/atoms'
 
 const schema = Yup.object({
   person: Yup.string().required(' name of a person '),
@@ -29,24 +30,20 @@ const schema = Yup.object({
 
 export const AddButton = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [dogSchedules, setDogSchedules] = useState<any>([])
+  const [dogSchedules, setDogSchedules] = useRecoilState<any>(schedulesState)
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm(schema)
+  } = useForm()
 
   const onSubmit = (data: any) => {
     onClose()
-    // dogSchedules.push(data)
 
-    //was updating data using useState
-    //previousState it is a data coming from our initial state,using spread operator was
-    //taking all the data from the initial state and update it with the new data
+    // initial state and update it with the new data
     setDogSchedules((previousState: any) => [...previousState, data])
   }
-  console.log('checking dogSchedule data', dogSchedules)
   return (
     <>
       <Container rounded="md">
