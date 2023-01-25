@@ -1,20 +1,17 @@
-import Image from 'next/image'
-import { Inter } from '@next/font/google'
-import styles from '@/styles/Home.module.css'
 import HomePage from '@/components/UI/Views/HomeScreen/Index'
+import { useMediaQuery } from '@chakra-ui/react'
 import Nav from '@/components/UI/NavBar/Index'
-
-import { Box } from '@chakra-ui/react'
+import NavigationBar from '@/components/UI/2ndNavBar/Index'
 
 export default function Home() {
+  const [isMobile] = useMediaQuery('(max-width: 768px)')
   return (
     <>
-      <div>
-        <Nav />
-      </div>
+      <div>{!isMobile && <Nav />}</div>
       <div>
         <HomePage />
       </div>
+      <div>{isMobile && <NavigationBar />}</div>
     </>
   )
 }

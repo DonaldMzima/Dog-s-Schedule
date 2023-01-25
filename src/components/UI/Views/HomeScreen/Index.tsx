@@ -18,8 +18,8 @@ export default function HomePage() {
   return (
     <>
       <Container
-        maxW={'9xl'}
-        height="999px"
+        maxW={'100%'}
+        minHeight="100vh"
         bgGradient={['linear(to-b, white, yellow)']}
       >
         <Stack

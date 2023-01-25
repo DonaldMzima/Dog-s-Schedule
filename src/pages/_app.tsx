@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ChakraProvider>
       <RecoilRoot>
-        <Component {...pageProps} />
+        <Component {...pageProps} minHeight="100vh" />
       </RecoilRoot>
     </ChakraProvider>
   )

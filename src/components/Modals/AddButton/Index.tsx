@@ -15,6 +15,7 @@ import {
   ModalOverlay,
   useDisclosure,
   Input,
+  Square,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
@@ -47,9 +48,9 @@ export const AddButton = () => {
   return (
     <>
       <Container rounded="md">
-        <Box color="white" onClick={onOpen}>
+        <Square size="65px" bg="#1f1f1a" color="white" onClick={onOpen}>
           <AddIcon />
-        </Box>
+        </Square>
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
