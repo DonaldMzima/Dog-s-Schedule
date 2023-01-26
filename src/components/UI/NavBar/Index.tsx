@@ -16,8 +16,12 @@ const NavBar = () => {
   return (
     <>
       <Box bg={'#f8f9eb'} height={90} pos="fixed" width="100%" px={4}>
-        <Flex h={16} alignItems={'center'} justifyContent={'space-between'}>
-          >
+        <Flex
+          h={16}
+          alignItems={'center'}
+          justifyContent={'space-between'}
+          marginRight={100}
+        >
           <Stack direction={'row'}>
             <Center width="1690px">
               <Link href="/">
