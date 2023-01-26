@@ -1,21 +1,25 @@
 import React from 'react'
-import { Center, Text, Container, Stack, Box } from '@chakra-ui/react'
+import {
+  Center,
+  Text,
+  Container,
+  Stack,
+  Box,
+  useMediaQuery,
+} from '@chakra-ui/react'
 import SvgComponent from '@/components/Svg/SettingsSvg/Index'
 import Nav from '@/components/UI/NavBar/Index'
+import NavigationBar from '@/components/UI/2ndNavBar/Index'
 
 const settings = () => {
+  const [isMobile] = useMediaQuery('(max-width: 768px)')
   return (
     <>
-      <Nav />
+      {!isMobile && <Nav />}
       <Container
-        maxW={'9xl'}
-        height="999px"
-        bgGradient={[
-          'linear(to-tr, white, white)',
-          'linear(to-t, white, white)',
-
-          'linear(to-b, white, yellow)',
-        ]}
+        maxW={'100%'}
+        minHeight="100vh"
+        bgGradient={['linear(to-b, white, yellow)']}
       >
         <Stack
           as={Box}
@@ -32,6 +36,7 @@ const settings = () => {
           </Center>
         </Stack>
       </Container>
+      {isMobile && <NavigationBar />}
     </>
   )
 }

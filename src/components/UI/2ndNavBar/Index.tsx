@@ -16,22 +16,27 @@ import { MdSettings } from 'react-icons/Md'
 const NavigationBar = () => {
   return (
     <>
-      <Flex h={16} bg={'#FFFFE5'} height={90} pos="fixed" w="100%">
-        <Center mb={4}>
-          <Stack direction={'row'} spacing={{ base: 8, md: 10 }}>
+      <Flex h={9} bg="yellow" height={90} pos="fixed">
+        <Center>
+          <Stack
+            direction={'row'}
+            spacing={20}
+            marginBottom={240}
+            marginLeft={25}
+          >
             <Link href="/">
-              <Box>
-                <RiHome4Fill />
+              <Box mb={4}>
+                <RiHome4Fill size={'3em'} />
               </Box>
             </Link>
             <Link href="/calender">
-              <Box>
-                <BsCalendarPlus />
+              <Box mb={4}>
+                <BsCalendarPlus size={'3em'} />
               </Box>
             </Link>
             <Link href="/settings">
-              <Box>
-                <MdSettings />
+              <Box mb={4}>
+                <MdSettings size={'3em'} />
               </Box>
             </Link>
           </Stack>

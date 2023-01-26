@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useState } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
 import * as Yup from 'yup'
 import {
   Box,
@@ -26,10 +27,9 @@ import { schedulesState } from '@/store/atoms'
 const schema = Yup.object({
   person: Yup.string().required(' name of a person '),
   dog: Yup.string().required('dogs name'),
-  date: Yup.number().positive().integer().required('enter your age'),
 })
 
-export const AddButton = () => {
+export const AddModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [dogSchedules, setDogSchedules] = useRecoilState<any>(schedulesState)
 
@@ -68,6 +68,7 @@ export const AddButton = () => {
                     type="text"
                     placeholder="Person Walking the dog..."
                     {...register('person')}
+                    required
                   />
                 </FormLabel>
                 <FormLabel>
@@ -76,6 +77,7 @@ export const AddButton = () => {
                     type="text"
                     placeholder="Dog's Name..."
                     {...register('dog')}
+                    required
                   />
                 </FormLabel>
                 <FormLabel>
@@ -84,7 +86,7 @@ export const AddButton = () => {
                     placeholder="Select Date and Time"
                     size="md"
                     type="datetime-local"
-                    {...register('date')}
+                    requred
                   />
                 </FormLabel>
                 <Button colorScheme="blue" mr={2} type="submit">
@@ -101,4 +103,4 @@ export const AddButton = () => {
   )
 }
 
-export default AddButton
+export default AddModal
