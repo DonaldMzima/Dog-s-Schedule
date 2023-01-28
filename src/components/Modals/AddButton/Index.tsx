@@ -1,9 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
-import { useState } from 'react'
-import { yupResolver } from '@hookform/resolvers/yup'
+
 import * as Yup from 'yup'
 import {
-  Box,
   Container,
   Button,
   FormLabel,
@@ -16,7 +14,7 @@ import {
   ModalOverlay,
   useDisclosure,
   Input,
-  Square,
+  Circle,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
@@ -39,18 +37,21 @@ export const AddModal = () => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: string | number | Date | any) => {
     onClose()
 
     // initial state and update it with the new data
-    setDogSchedules((previousState: any) => [...previousState, data])
+    setDogSchedules((previousState: String | number | Date | any) => [
+      ...previousState,
+      data,
+    ])
   }
   return (
     <>
       <Container rounded="md">
-        <Square size="65px" bg="#1f1f1a" color="white" onClick={onOpen}>
+        <Circle size="65px" bg="grey" color="white" onClick={onOpen}>
           <AddIcon />
-        </Square>
+        </Circle>
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -86,7 +87,8 @@ export const AddModal = () => {
                     placeholder="Select Date and Time"
                     size="md"
                     type="datetime-local"
-                    requred
+                    {...register('date')}
+                    required
                   />
                 </FormLabel>
                 <Button colorScheme="blue" mr={2} type="submit">

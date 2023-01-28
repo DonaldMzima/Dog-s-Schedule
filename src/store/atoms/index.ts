@@ -5,4 +5,9 @@ const schedulesState = atom({
   default: [], // default value (aka initial value)
 })
 
-export { schedulesState }
+const StorageState = atom({
+  key: 'storage',
+  default: [],
+})
+
+export { StorageState, schedulesState }
