@@ -1,6 +1,5 @@
 import {
-  Box,
-  Container,
+  
   Button,
   FormLabel,
   Modal,
@@ -10,8 +9,8 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Flex,
-  useDisclosure,
+
+  Center,
   Input,
   Text,
 } from '@chakra-ui/react'
@@ -54,6 +53,7 @@ const AddModal = (props: any) => {
           </ModalBody>
 
           <ModalFooter>
+            <Center>
             <Button
               colorScheme="blue"
               mr={2}
@@ -62,6 +62,7 @@ const AddModal = (props: any) => {
             >
               Add
             </Button>
+            </Center>
           </ModalFooter>
         </ModalContent>
       </Modal>
