@@ -2,6 +2,7 @@
 
 import * as Yup from 'yup'
 import {
+  Center,
   Container,
   Button,
   FormLabel,
@@ -91,9 +92,11 @@ export const AddModal = () => {
                     required
                   />
                 </FormLabel>
-                <Button colorScheme="blue" mr={2} type="submit">
-                  Add
-                </Button>
+                <Center>
+                  <Button colorScheme="gray" mr={2} type="submit">
+                    Add
+                  </Button>
+                </Center>
               </form>
             </ModalBody>
 
