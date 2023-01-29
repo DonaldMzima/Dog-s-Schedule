@@ -2,6 +2,7 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect } from 'react'
 import {
+  SimpleGrid,
   Stack,
   Box,
   Container,
@@ -52,69 +53,70 @@ const calender = () => {
 
         <div>
           <Center>
-            {dogSchedules?.length > 0 ? (
-              dogSchedules?.map((walkSchedules: any) => {
-                return (
-                  <Center key={walkSchedules.Schedule}>
-                    <Box
-                      bg=" #434343 "
-                      borderTopRadius="md"
-                      borderColor="gray.200"
-                      h={127}
-                      maxW={680}
-                      w={650}
-                      boxShadow="0 0 6px 6px grey"
-                    >
-                      <Center>
-                        <Avatar
-                          size="md"
-                          src="https://www.thedrakecenter.com/cdn-cgi/mirage/00ce58fde158f2328addee1b2c1357c828913618b5914efa4c344929b818cb9a/1280/https://www.thedrakecenter.com//cdn-cgi/image/q=80,f=auto,metadata=none/sites/default/files/u44/4D912606-4FB8-4A1C-B431-2F753DD0CE42.jpeg"
-                        />
-                      </Center>
-
-                      <Stack
-                        textAlign={'center'}
-                        color="#1f1f1a"
-                        // spacing={{ base: 0, md: 0 }}
-                        // py={{ base: 0, md: 0 }}
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
+              {dogSchedules?.length > 0 ? (
+                dogSchedules?.map((walkSchedules: any) => {
+                  return (
+                    <Center key={walkSchedules.Schedule}>
+                      <Box
+                        bg=" #434343 "
+                        borderTopRadius="md"
+                        borderColor="gray.200"
+                        h={127}
+                        maxW={680}
+                        w={650}
+                        boxShadow="0 0 6px 6px grey"
                       >
-                        <List>
-                          <p>
-                            <ListIcon
-                              as={CheckIcon}
-                              color="green.400"
-                              textAlign={'left'}
-                            />
-                            Person Responsible: {walkSchedules.person}
-                          </p>
-                          <p>
-                            <ListIcon
-                              as={CheckIcon}
-                              color="green.400"
-                              textAlign={'left'}
-                            />
-                            Dogs's Name: {walkSchedules.dog}
-                          </p>
-                          <p>
-                            <ListIcon
-                              as={CheckIcon}
-                              color="green.400"
-                              textAlign={'left'}
-                            />
-                            Date: {walkSchedules.date}
-                          </p>
-                        </List>
-                      </Stack>
-                    </Box>
-                    <Spacer />
-                  </Center>
-                )
-              })
-            ) : (
-              <>
-                <CalenderBody />
-              </>
-            )}
+                        <Center>
+                          <Avatar
+                            size="md"
+                            src="https://www.thedrakecenter.com/cdn-cgi/mirage/00ce58fde158f2328addee1b2c1357c828913618b5914efa4c344929b818cb9a/1280/https://www.thedrakecenter.com//cdn-cgi/image/q=80,f=auto,metadata=none/sites/default/files/u44/4D912606-4FB8-4A1C-B431-2F753DD0CE42.jpeg"
+                          />
+                        </Center>
+
+                        <Stack
+                          textAlign={'center'}
+                          color="#1f1f1a"
+                          // spacing={{ base: 0, md: 0 }}
+                          // py={{ base: 0, md: 0 }}
+                        >
+                          <List>
+                            <p>
+                              <ListIcon
+                                as={CheckIcon}
+                                color="green.400"
+                                textAlign={'left'}
+                              />
+                              Person Responsible: {walkSchedules.person}
+                            </p>
+                            <p>
+                              <ListIcon
+                                as={CheckIcon}
+                                color="green.400"
+                                textAlign={'left'}
+                              />
+                              Dogs's Name: {walkSchedules.dog}
+                            </p>
+                            <p>
+                              <ListIcon
+                                as={CheckIcon}
+                                color="green.400"
+                                textAlign={'left'}
+                              />
+                              Date: {walkSchedules.date}
+                            </p>
+                          </List>
+                        </Stack>
+                      </Box>
+                    </Center>
+                  )
+                })
+              ) : (
+                <>
+                  <CalenderBody />
+                </>
+              )}
+            </SimpleGrid>
           </Center>
         </div>
       </Container>
