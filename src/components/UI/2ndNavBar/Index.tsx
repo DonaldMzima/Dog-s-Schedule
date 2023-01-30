@@ -21,7 +21,7 @@ const NavigationBar = () => {
           <Stack
             direction={'row'}
             spacing={20}
-            marginBottom={300}
+            marginBottom={290}
             marginLeft={25}
           >
             <Link href="/">
