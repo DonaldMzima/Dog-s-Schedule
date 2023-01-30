@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useEffect } from 'react'
@@ -11,7 +12,6 @@ import {
   Img,
   ListIcon,
   List,
-  Avatar,
   Spacer,
 } from '@chakra-ui/react'
 import { useRecoilState, useRecoilValue } from 'recoil'
@@ -53,11 +53,11 @@ const calender = () => {
 
         <div>
           <Center>
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
-              {dogSchedules?.length > 0 ? (
-                dogSchedules?.map((walkSchedules: any) => {
-                  return (
-                    <Center key={walkSchedules.Schedule}>
+            {dogSchedules?.length > 0 ? (
+              dogSchedules?.map((walkSchedules: any) => {
+                return (
+                  <Center key={walkSchedules.Schedule}>
+                    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
                       <Box
                         bg=" #434343 "
                         borderTopRadius="md"
@@ -108,19 +108,19 @@ const calender = () => {
                           </List>
                         </Stack>
                       </Box>
-                    </Center>
-                  )
-                })
-              ) : (
-                <>
-                  <CalenderBody />
-                </>
-              )}
-            </SimpleGrid>
+                    </SimpleGrid>
+                  </Center>
+                )
+              })
+            ) : (
+              <>
+                <CalenderBody />
+              </>
+            )}
           </Center>
         </div>
       </Container>
-      <div>{isMobile && <NavigationBar />}</div>
+      {isMobile && <NavigationBar />}
     </>
   )
 }
