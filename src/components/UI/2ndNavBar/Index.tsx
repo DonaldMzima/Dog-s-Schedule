@@ -9,7 +9,7 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react'
 
-import { RiHome4Fill } from 'react-icons/Ri'
+import { RiHome4Fill } from 'react-icons/ri'
 import { BsCalendarPlus } from 'react-icons/Bs'
 import { MdSettings } from 'react-icons/Md'
 
@@ -21,7 +21,7 @@ const NavigationBar = () => {
           <Stack
             direction={'row'}
             spacing={20}
-            marginBottom={300}
+            marginBottom={180}
             marginLeft={25}
           >
             <Link href="/">

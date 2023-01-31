@@ -9,7 +9,7 @@ import {
   useMediaQuery,
 } from '@chakra-ui/react'
 
-import { RiHome4Fill } from 'react-icons/Ri'
+import { RiHome4Fill } from 'react-icons/ri'
 
 const NavBar = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)')
