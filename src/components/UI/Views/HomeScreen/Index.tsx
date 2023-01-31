@@ -8,21 +8,16 @@ import {
   Container,
   Text,
   Stack,
-  createIcon,
   Box,
   Center,
   useMediaQuery,
 } from '@chakra-ui/react'
-import Nav from '@/components/UI/NavBar/Index'
-import NavigationBar from '@/components/UI/2ndNavBar/Index'
+
 import SvgComponent from '@/components/Svg/HomeSvg'
 
 export default function HomePage() {
-  const [isMobile] = useMediaQuery('(max-width: 768px)')
   return (
     <>
-      {/* {!isMobile ?   <Nav /> : null } */}
-      {!isMobile && <Nav />}
       <Container
         maxW={'100%'}
         minHeight="100vh"
@@ -58,7 +53,6 @@ export default function HomePage() {
             <SvgComponent />
           </Center>
         </Stack>
-        <Box>{isMobile && <NavigationBar />}</Box>
       </Container>
     </>
   )
