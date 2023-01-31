@@ -17,9 +17,11 @@ import { useRecoilState, useRecoilValue } from 'recoil'
 import { StorageState } from '@/store/atoms'
 import Nav from '@/components/UI/NavBar/Index'
 
-import NavigationBar from '@/components/UI/2ndNavBar/Index'
+
 import FloatingButtons from '@/components/UI/FloatingButtons/Index'
 import { schedulesState } from '@/store/atoms'
+import NavigationBar from '@/components/UI/2ndNavBar/Index'
+
 
 import { CheckIcon } from '@chakra-ui/icons'
 import CalenderBody from '@/components/CalenderSection/Calender'
@@ -95,7 +97,7 @@ const Calender = () => {
                                 color="green.400"
                                 textAlign={'left'}
                               />
-                              Dogs's Name: {walkSchedules.dog}
+                              Dogs Name: {walkSchedules.dog}
                             </p>
                             <p>
                               <ListIcon

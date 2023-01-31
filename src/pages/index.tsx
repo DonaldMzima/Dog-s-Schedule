@@ -13,14 +13,9 @@ export default function Home() {
           <HomePage />
         </div>
       </Container>
-      {isMobile && (
-        <NavigationBar
-          direction={'row'}
-          spacing={20}
-          marginTop={90}
-          marginLeft={25}
-        />
-      )}
+
+      {isMobile && <NavigationBar />}
+
     </>
   )
 }
