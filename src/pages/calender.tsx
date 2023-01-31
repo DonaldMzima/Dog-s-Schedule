@@ -1,6 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   SimpleGrid,
   Stack,
@@ -27,18 +28,18 @@ import { CheckIcon } from '@chakra-ui/icons'
 const calender = () => {
   const [storage, setStorage] = useRecoilState<any>(StorageState)
   const dogSchedules = useRecoilValue(schedulesState)
+  const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
 
-  // useEffect(() => {
-  //   localStorage.setItem('storage', JSON.stringify(storage))
-  // }, [storage])
+  useEffect(() => {
+    localStorage.setItem('dogWalking', JSON.stringify(dogSchedules))
+  }, [dogSchedules])
 
-  // useEffect(() => {
-  //   const storage = JSON.parse(localStorage.getItem('storage'))
-  //   if (storage) {
-  //     setStorage(storage)
-  //   }
-  // }, [storage])
+  useEffect(() => {
+    const starage = JSON.parse(localStorage.getItem('dogWalking') || '')
+    console.log('JJJ', starage)
+    setWalkSchedule(starage)
+  }, [walkSchedule])
 
   return (
     <>
@@ -59,9 +60,9 @@ const calender = () => {
                   return (
                     <Center key={walkSchedules.Schedule}>
                       <Box
-                        bg=" #434343 "
+                        bg=" gray.200 "
                         borderTopRadius="md"
-                        borderColor="gray.200"
+                        borderColor="black.900"
                         h={127}
                         maxW={680}
                         w={650}
