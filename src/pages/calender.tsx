@@ -17,14 +17,14 @@ import {
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { StorageState } from '@/store/atoms'
 import Nav from '@/components/UI/NavBar/Index'
-import CalenderBody from '@/components/CalenderSection/Calender/Index'
-import NavigationBar from '@/components/UI/2ndNavBar/Index'
+
 import FloatingButtons from '@/components/UI/FloatingButtons/Index'
 import { schedulesState } from '@/store/atoms'
-import SvgComponent from '@/components/Svg/HomeSvg'
+import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import { CheckIcon } from '@chakra-ui/icons'
+import CalenderBody from '@/components/CalenderSection/Calender'
 
-const calender = () => {
+const Calender = () => {
   const [storage, setStorage] = useRecoilState<any>(StorageState)
   const dogSchedules = useRecoilValue(schedulesState)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
@@ -95,7 +95,7 @@ const calender = () => {
                                 color="green.400"
                                 textAlign={'left'}
                               />
-                              Dogs's Name: {walkSchedules.dog}
+                              Dogs Name: {walkSchedules.dog}
                             </p>
                             <p>
                               <ListIcon
@@ -125,4 +125,4 @@ const calender = () => {
   )
 }
 
-export default calender
+export default Calender
