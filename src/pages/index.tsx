@@ -13,7 +13,9 @@ export default function Home() {
           <HomePage />
         </div>
       </Container>
+
       {isMobile && <NavigationBar />}
+
     </>
   )
 }

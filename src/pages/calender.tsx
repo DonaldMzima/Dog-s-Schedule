@@ -1,6 +1,7 @@
+/* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/rules-of-hooks */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   SimpleGrid,
   Stack,
@@ -8,37 +9,38 @@ import {
   Container,
   Center,
   useMediaQuery,
-  Img,
   ListIcon,
   List,
   Avatar,
-  Spacer,
 } from '@chakra-ui/react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { StorageState } from '@/store/atoms'
 import Nav from '@/components/UI/NavBar/Index'
 
+
 import FloatingButtons from '@/components/UI/FloatingButtons/Index'
 import { schedulesState } from '@/store/atoms'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
+
+
 import { CheckIcon } from '@chakra-ui/icons'
 import CalenderBody from '@/components/CalenderSection/Calender'
 
 const Calender = () => {
   const [storage, setStorage] = useRecoilState<any>(StorageState)
   const dogSchedules = useRecoilValue(schedulesState)
+  const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
 
-  // useEffect(() => {
-  //   localStorage.setItem('storage', JSON.stringify(storage))
-  // }, [storage])
+  useEffect(() => {
+    localStorage.setItem('dogWalking', JSON.stringify(dogSchedules))
+  }, [dogSchedules])
 
-  // useEffect(() => {
-  //   const storage = JSON.parse(localStorage.getItem('storage'))
-  //   if (storage) {
-  //     setStorage(storage)
-  //   }
-  // }, [storage])
+  useEffect(() => {
+    const starage = JSON.parse(localStorage.getItem('dogWalking') || '')
+    console.log('JJJ', starage)
+    setWalkSchedule(starage)
+  }, [walkSchedule])
 
   return (
     <>
@@ -53,15 +55,15 @@ const Calender = () => {
 
         <div>
           <Center>
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
-              {dogSchedules?.length > 0 ? (
-                dogSchedules?.map((walkSchedules: any) => {
-                  return (
-                    <Center key={walkSchedules.Schedule}>
+            {dogSchedules?.length > 0 ? (
+              dogSchedules?.map((walkSchedules: any) => {
+                return (
+                  <Center key={walkSchedules.Schedule}>
+                    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
                       <Box
-                        bg=" #434343 "
+                        bg=" gray.200 "
                         borderTopRadius="md"
-                        borderColor="gray.200"
+                        borderColor="black.900"
                         h={127}
                         maxW={680}
                         w={650}
@@ -108,19 +110,19 @@ const Calender = () => {
                           </List>
                         </Stack>
                       </Box>
-                    </Center>
-                  )
-                })
-              ) : (
-                <>
-                  <CalenderBody />
-                </>
-              )}
-            </SimpleGrid>
+                    </SimpleGrid>
+                  </Center>
+                )
+              })
+            ) : (
+              <>
+                <CalenderBody />
+              </>
+            )}
           </Center>
         </div>
       </Container>
-      <div>{isMobile && <NavigationBar />}</div>
+      {isMobile && <NavigationBar />}
     </>
   )
 }
