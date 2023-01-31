@@ -53,11 +53,11 @@ const Calender = () => {
 
         <div>
           <Center>
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
-              {dogSchedules?.length > 0 ? (
-                dogSchedules?.map((walkSchedules: any) => {
-                  return (
-                    <Center key={walkSchedules.Schedule}>
+            {dogSchedules?.length > 0 ? (
+              dogSchedules?.map((walkSchedules: any) => {
+                return (
+                  <Center key={walkSchedules.Schedule}>
+                    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
                       <Box
                         bg=" gray.200 "
                         borderTopRadius="md"
@@ -108,19 +108,19 @@ const Calender = () => {
                           </List>
                         </Stack>
                       </Box>
-                    </Center>
-                  )
-                })
-              ) : (
-                <>
-                  <CalenderBody />
-                </>
-              )}
-            </SimpleGrid>
+                    </SimpleGrid>
+                  </Center>
+                )
+              })
+            ) : (
+              <>
+                <CalenderBody />
+              </>
+            )}
           </Center>
         </div>
       </Container>
-      <div>{isMobile && <NavigationBar />}</div>
+      {isMobile && <NavigationBar />}
     </>
   )
 }
