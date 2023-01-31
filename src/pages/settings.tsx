@@ -11,7 +11,7 @@ import SvgComponent from '@/components/Svg/SettingsSvg/Index'
 import Nav from '@/components/UI/NavBar/Index'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
 
-const settings = () => {
+const Settings = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)')
   return (
     <>
@@ -40,4 +40,4 @@ const settings = () => {
     </>
   )
 }
-export default settings
+export default Settings

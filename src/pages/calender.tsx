@@ -9,22 +9,22 @@ import {
   Container,
   Center,
   useMediaQuery,
-  Img,
   ListIcon,
   List,
-  Spacer,
+  Avatar,
 } from '@chakra-ui/react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { StorageState } from '@/store/atoms'
 import Nav from '@/components/UI/NavBar/Index'
-import CalenderBody from '@/components/CalenderSection/Calender/Index'
+
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import FloatingButtons from '@/components/UI/FloatingButtons/Index'
 import { schedulesState } from '@/store/atoms'
-import SvgComponent from '@/components/Svg/HomeSvg'
-import { CheckIcon } from '@chakra-ui/icons'
 
-const calender = () => {
+import { CheckIcon } from '@chakra-ui/icons'
+import CalenderBody from '@/components/CalenderSection/Calender'
+
+const Calender = () => {
   const [storage, setStorage] = useRecoilState<any>(StorageState)
   const dogSchedules = useRecoilValue(schedulesState)
   const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
@@ -125,4 +125,4 @@ const calender = () => {
   )
 }
 
-export default calender
+export default Calender
