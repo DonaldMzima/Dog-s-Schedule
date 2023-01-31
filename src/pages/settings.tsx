@@ -36,7 +36,7 @@ const Settings = () => {
           </Center>
         </Stack>
       </Container>
-      {isMobile && <NavigationBar marginBottom={60} />}
+      {isMobile && <NavigationBar />}
     </>
   )
 }
