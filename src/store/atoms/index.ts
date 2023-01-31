@@ -6,7 +6,7 @@ const schedulesState = atom({
 })
 
 const StorageState = atom({
-  key: 'storage',
+  key: 'myStorage',
   default: [],
 })
 
