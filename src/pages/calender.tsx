@@ -16,21 +16,25 @@ import {
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { StorageState } from '@/store/atoms'
 import Nav from '@/components/UI/NavBar/Index'
-
-
+import Search from '@/components/CalenderSection/SearchFilter/Index'
 import FloatingButtons from '@/components/UI/FloatingButtons/Index'
 import { schedulesState } from '@/store/atoms'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
-
+import Fuse from 'fuse.js'
 
 import { CheckIcon } from '@chakra-ui/icons'
 import CalenderBody from '@/components/CalenderSection/Calender'
 
 const Calender = () => {
   const [storage, setStorage] = useRecoilState<any>(StorageState)
+  const [query, setQuery] = useState<string>('')
   const dogSchedules = useRecoilValue(schedulesState)
   const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
+
+  useEffect(() => {
+    localStorage.setItem('dogWalking', JSON.stringify(dogSchedules))
+  }, [dogSchedules])
 
   useEffect(() => {
     localStorage.setItem('dogWalking', JSON.stringify(dogSchedules))
@@ -42,6 +46,11 @@ const Calender = () => {
     setWalkSchedule(starage)
   }, [walkSchedule])
 
+  const fuse = new Fuse(dogSchedules)
+
+  const results = fuse.search(query)
+
+  const todosResults = query ? results.map((todo) => todo.item) : dogSchedules
   return (
     <>
       {/* {!isMobile ?   <Nav /> : null } */}
@@ -52,7 +61,7 @@ const Calender = () => {
         bgGradient={['linear(to-b, white, yellow)']}
       >
         <FloatingButtons />
-
+        <Box></Box>
         <div>
           <Center>
             {dogSchedules?.length > 0 ? (
