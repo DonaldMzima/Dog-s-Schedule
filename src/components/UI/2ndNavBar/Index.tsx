@@ -10,8 +10,8 @@ import {
 } from '@chakra-ui/react'
 
 import { RiHome4Fill } from 'react-icons/ri'
-import { BsCalendarPlus } from 'react-icons/Bs'
-import { MdSettings } from 'react-icons/Md'
+import { BsCalendarPlus } from 'react-icons/bs'
+import { MdSettings } from 'react-icons/md'
 
 const NavigationBar = () => {
   return (
@@ -21,12 +21,7 @@ const NavigationBar = () => {
           <Stack
             direction={'row'}
             spacing={20}
-
             marginBottom={180}
-
-           
-
-
             marginLeft={25}
           >
             <Link href="/">
