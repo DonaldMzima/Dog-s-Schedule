@@ -30,6 +30,8 @@ import Fuse from 'fuse.js'
 
 import { CheckIcon } from '@chakra-ui/icons'
 import CalenderBody from '@/components/CalenderSection/Calender'
+import { useQuery } from 'react-query'
+import { WalkSchedules } from 'utilis/https'
 
 const Calender = () => {
   const [storage, setStorage] = useRecoilState<any>(StorageState)
@@ -38,6 +40,10 @@ const Calender = () => {
   const dogSchedules = useRecoilValue(schedulesState)
   const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
+
+  const { data, isLoading } = useQuery(['WalkSchedules '], () =>
+    WalkSchedules(),
+  )
 
   // useEffect(() => {
   //   localStorage.setItem('dogWalking', JSON.stringify(dogSchedules))
@@ -53,7 +59,11 @@ const Calender = () => {
   //   setWalkSchedule(starage)
   // }, [walkSchedule])
 
-  const fuse = new Fuse(dogSchedules, {
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
+
+  const fuse = new Fuse(data?.data.data, {
     keys: ['person', 'dog', 'date'],
     includeScore: true,
   })
@@ -63,8 +73,8 @@ const Calender = () => {
   console.log('Item ', results)
 
   const dogSchedulesResults = query
-    ? results.map((dogSchedules) => dogSchedules.item)
-    : dogSchedules
+    ? results.map((data) => data.item)
+    : data?.data.data
   console.log('check dogschedules', dogSchedulesResults)
 
   function onSearch({ currentTarget }: any) {
@@ -100,11 +110,12 @@ const Calender = () => {
 
         <div>
           <Center>
-            {dogSchedules?.length > 0 ? (
-              dogSchedulesResults?.map((walkSchedules: any) => {
-                return (
-                  <Center key={walkSchedules.Schedule}>
-                    <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
+            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
+              {!isLoading && data?.data.data?.length > 0 ? (
+                dogSchedulesResults?.map((walkSchedules: any) => {
+                  console.log('mydaattaa', dogSchedules)
+                  return (
+                    <Center key={walkSchedules}>
                       <Box
                         bg=" gray.200 "
                         borderTopRadius="md"
@@ -134,7 +145,8 @@ const Calender = () => {
                                 color="green.400"
                                 textAlign={'left'}
                               />
-                              Person Responsible: {walkSchedules.person}
+                              Person Responsible:{' '}
+                              {walkSchedules.attributes.person}
                             </p>
                             <p>
                               <ListIcon
@@ -142,7 +154,7 @@ const Calender = () => {
                                 color="green.400"
                                 textAlign={'left'}
                               />
-                              Dogs Name: {walkSchedules.dog}
+                              Dogs Name: {walkSchedules.attributes.dog}
                             </p>
                             <p>
                               <ListIcon
@@ -150,20 +162,20 @@ const Calender = () => {
                                 color="green.400"
                                 textAlign={'left'}
                               />
-                              Date: {walkSchedules.date}
+                              Date: {walkSchedules.attributes.date}
                             </p>
                           </List>
                         </Stack>
                       </Box>
-                    </SimpleGrid>
-                  </Center>
-                )
-              })
-            ) : (
-              <>
-                <CalenderBody />
-              </>
-            )}
+                    </Center>
+                  )
+                })
+              ) : (
+                <>
+                  <CalenderBody />
+                </>
+              )}
+            </SimpleGrid>
           </Center>
         </div>
       </Container>
