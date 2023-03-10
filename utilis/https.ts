@@ -11,14 +11,22 @@ const WalkSchedules = async () => {
   }
 }
 
-const CreateWalkSchedules = async (data: any) => {
+const CreateWalkSchedules = async (userData: string | number | Date | any) => {
+  console.log('getdata', userData)
   try {
-    const Schedules = await axios.post(
-      `${'http://localhost:1337/api/schedules'}`,
+    const { data }: any = await axios.post(
+      'http://localhost:1337/api/schedules',
+      {
+        data: {
+          person: userData.person,
+          dog: userData.dog,
+          date: userData.date,
+        },
+      },
     )
-    return Schedules
+    return data
   } catch (error) {
-    error
+    console.log('TRY ERROR:', error)
   }
 }
 
