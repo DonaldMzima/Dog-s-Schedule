@@ -39,15 +39,13 @@ export const AddModal = () => {
     formState: { errors },
   } = useForm()
 
-  const onSubmit = (data: string | number | Date | any) => {
+  const onSubmit = (data: { person: string; dog: string; date: string }) => {
     onClose()
     CreateWalkSchedules(data)
 
     // initial state and update it with the new data
-    setDogSchedules((previousState: String | number | Date | any) => [
-      ...previousState,
-      data,
-    ])
+    setDogSchedules((previousState: any[]) => [...previousState, data])
+    console.log('this one here', dogSchedules)
   }
   return (
     <>
@@ -58,7 +56,7 @@ export const AddModal = () => {
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent>
+          <ModalContent bg="grey" color="white">
             <ModalHeader>
               <AddIcon />
               Add Schedule
@@ -95,7 +93,12 @@ export const AddModal = () => {
                   />
                 </FormLabel>
                 <Center>
-                  <Button colorScheme="gray" mr={2} type="submit">
+                  <Button
+                    colorScheme="gray"
+                    color="blackAlpha.900"
+                    mr={2}
+                    type="submit"
+                  >
                     Add
                   </Button>
                 </Center>
