@@ -1,5 +1,4 @@
 import {
-  Text,
   Box,
   Button,
   Flex,
