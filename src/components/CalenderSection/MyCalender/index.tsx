@@ -98,13 +98,7 @@ const MyCalender = () => {
       >
         <FloatingButtons />
 
-        <Box
-          pos="fixed"
-          width="100%"
-          height="115px"
-          marginTop="-100px"
-          marginLeft="622px"
-        >
+        <Box width="100%" height="115px" marginTop="-30px" marginLeft="90px">
           <InputGroup>
             <InputLeftElement children={<GrSearchAdvanced size={'1em'} />} />
             <Input
@@ -144,7 +138,7 @@ const MyCalender = () => {
                             borderColor="black.900"
                             h={127}
                             maxW={680}
-                            w={650}
+                            w={290}
                             boxShadow="0 0 6px 6px grey"
                           >
                             <Center>
