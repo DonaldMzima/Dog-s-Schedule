@@ -4,19 +4,7 @@ import MyCalender from '@/components/CalenderSection/MyCalender'
 
 const Calender = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)')
-  return (
-    <Box>
-      {isMobile ? (
-        <>
-          <MyCalender />
-        </>
-      ) : (
-        <>
-          <SecondMyCalender />
-        </>
-      )}
-    </Box>
-  )
+  return <Box>{!isMobile ? <SecondMyCalender /> : <MyCalender />}</Box>
 }
 
 export default Calender
