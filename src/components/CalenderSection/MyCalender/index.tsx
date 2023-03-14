@@ -148,7 +148,7 @@ const MyCalender = () => {
                               />
                             </Center>
                             <Box>
-                              <DeleteButton />
+                              <DeleteButton id={walkSchedules.id} />
                             </Box>
 
                             <Stack
