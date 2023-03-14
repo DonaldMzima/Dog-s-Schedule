@@ -34,23 +34,14 @@ const CreateWalkSchedules = async (userData: {
   }
 }
 
-const DeleteSchedules = async (userData: {
-  person: string
-  dog: string
-  date: string
-}) => {
+const DeleteSchedules = async (id: number) => {
+  console.log('this this daaaaataa', id)
   try {
-    const { data }: any = await axios.delete(
-      'http://localhost:1337/api/schedules',
-      {
-        data: {
-          person: userData.person,
-          dog: userData.dog,
-          date: userData.date,
-        },
-      },
+    const Schedules = await axios.delete(
+      `http://localhost:1337/api/schedules/${id}`,
     )
-    return data
+
+    return Schedules
   } catch (error) {
     error
   }

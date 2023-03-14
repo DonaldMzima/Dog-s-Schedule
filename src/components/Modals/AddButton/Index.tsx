@@ -44,7 +44,12 @@ export const AddModal = () => {
     CreateWalkSchedules(data)
 
     // initial state and update it with the new data
-    setDogSchedules((previousState: any[]) => [...previousState, data])
+    setDogSchedules(
+      (previousState: { person: string; dog: string; date: string }[]) => [
+        ...previousState,
+        data,
+      ],
+    )
     console.log('this one here', dogSchedules)
   }
   return (

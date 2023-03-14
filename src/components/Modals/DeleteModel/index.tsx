@@ -13,8 +13,13 @@ import {
 } from '@chakra-ui/react'
 
 import React from 'react'
+import { DeleteSchedules } from 'utilis/https'
 
-const DeleteButton = () => {
+type DeleteButtonType = {
+  id: number
+}
+
+const DeleteButton = (props: DeleteButtonType) => {
   const [isMobile] = useMediaQuery('(max-width: 768px)')
   const { isOpen, onOpen, onClose } = useDisclosure()
 
@@ -36,9 +41,15 @@ const DeleteButton = () => {
               <ModalBody pb={6}>Are you Sure?</ModalBody>
 
               <ModalFooter>
-                <Button colorScheme="blue" mr={3}>
+                <Button
+                  type="submit"
+                  colorScheme="blue"
+                  mr={3}
+                  onClick={() => DeleteSchedules(props.id)}
+                >
                   Yes
                 </Button>
+
                 <Button onClick={onClose}>NO</Button>
               </ModalFooter>
             </ModalContent>
@@ -60,7 +71,11 @@ const DeleteButton = () => {
               <ModalBody pb={6}>Are you Sure?</ModalBody>
 
               <ModalFooter>
-                <Button colorScheme="blue" mr={3}>
+                <Button
+                  colorScheme="blue"
+                  mr={3}
+                  onClick={() => DeleteSchedules(props.id)}
+                >
                   Yes
                 </Button>
                 <Button onClick={onClose}>NO</Button>
