@@ -3,8 +3,8 @@ import { Box, useMediaQuery } from '@chakra-ui/react'
 import MyCalender from '@/components/CalenderSection/MyCalender'
 
 const Calender = () => {
-  const [isMobile] = useMediaQuery('(max-width: 768px)')
-  return <Box>{!isMobile ? <SecondMyCalender /> : <MyCalender />}</Box>
+  
+  return <Box> <SecondMyCalender /></Box>
 }
 
 export default Calender

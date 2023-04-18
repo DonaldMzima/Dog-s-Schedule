@@ -26,7 +26,7 @@ const DeleteButton = (props: DeleteButtonType) => {
   return (
     <>
       {!isMobile ? (
-        <Box marginTop="-45px" marginLeft="568px">
+        <Box mt={{ base: '-45', sm: '-45', md: '-45' }} marginLeft="214px">
           <Button onClick={onOpen} bg="grey" color="white">
             delete
           </Button>
@@ -56,7 +56,7 @@ const DeleteButton = (props: DeleteButtonType) => {
           </Modal>
         </Box>
       ) : (
-        <Box marginTop="-45px" marginLeft="236px">
+        <Box marginTop="-45px" marginLeft="196px">
           <Button onClick={onOpen} bg="grey" color="white" size="xs">
             delete
           </Button>

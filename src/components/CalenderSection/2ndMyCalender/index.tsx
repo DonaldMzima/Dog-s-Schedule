@@ -32,7 +32,7 @@ import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
 import CustomSpinner from '@/components/CalenderSection/spinner'
 
-import { CheckIcon } from '@chakra-ui/icons'
+import { CheckIcon, InfoIcon } from '@chakra-ui/icons'
 import CalenderBody from '@/components/CalenderSection/Calender'
 import { useQuery } from 'react-query'
 
@@ -76,12 +76,9 @@ const SecondMyCalender = () => {
 
   const results = fuse.search(query)
 
-  // console.log('Item ', results)
-
   const dogSchedulesResults = query
     ? results.map((data) => data.item)
     : data?.data.data
-  // console.log('check dogschedules', dogSchedulesResults)
 
   function onSearch({ currentTarget }: any) {
     updateQuery(currentTarget.value)
@@ -102,8 +99,8 @@ const SecondMyCalender = () => {
           pos="fixed"
           width="100%"
           height="115px"
-          marginTop="-100px"
-          marginLeft="622px"
+          mt={{ base: -70, sm: -70, md: -80, lg: -100 }}
+          ml={{ base: 65, sm: 250, md: -80, lg: 622 }}
         >
           <InputGroup>
             <InputLeftElement children={<GrSearchAdvanced size={'1em'} />} />
@@ -122,87 +119,69 @@ const SecondMyCalender = () => {
 
         <div>
           <Center>
-            <SimpleGrid columns={{ base: 1, md: 2 }} spacing={5}>
-              {!isLoading && data?.data.data?.length > 0 ? (
-                dogSchedulesResults?.map(
-                  (walkSchedules: {
-                    id: number
-                    attributes: {
-                      person: string
-                      dog: string
-                      date: string
-                      createdAt: Date
-                      publishedAt: Date
-                      updatedAt: Date
-                    }
-                  }) => {
-                    return (
-                      <Flex>
-                        <Center key={walkSchedules.id}>
-                          <Box
-                            borderTopRadius="md"
-                            borderColor="black.900"
-                            h={127}
-                            maxW={680}
-                            w={650}
-                            boxShadow="0 0 6px 6px grey"
-                          >
-                            <Center>
-                              <Avatar
-                                size="md"
-                                src="https://images.squarespace-cdn.com/content/v1/521e1d22e4b007ddd23fa56e/1378084877559-GB036YBRTCMVO13OWJH4/dog-walk.jpg?format=1000w"
-                              />
-                            </Center>
-                            <Box>
-                              <DeleteButton />
-                            </Box>
-
-                            <Stack
-                              textAlign={'center'}
-                              color="#1f1f1a"
-                              // spacing={{ base: 0, md: 0 }}
-                              // py={{ base: 0, md: 0 }}
+            <Box>
+              <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
+                {!isLoading && data?.data.data?.length > 0 ? (
+                  dogSchedulesResults?.map(
+                    (walkSchedules: {
+                      id: number
+                      attributes: {
+                        person: string
+                        dog: string
+                        date: string
+                        createdAt: Date
+                        publishedAt: Date
+                        updatedAt: Date
+                      }
+                    }) => {
+                      return (
+                        <Flex>
+                          <Center key={walkSchedules.id}>
+                            <Box
+                              borderTopRadius="md"
+                              borderColor="black.900"
+                              h={140}
+                              maxW={{ base: 680, sm: '200%', md: 300 }}
+                              w={{ base: 250, sm: '200%', md: 650 }}
+                              boxShadow="0 0 6px 6px grey"
                             >
-                              <List>
+                              <Center>
+                                <Avatar
+                                  size="md"
+                                  src="https://images.squarespace-cdn.com/content/v1/521e1d22e4b007ddd23fa56e/1378084877559-GB036YBRTCMVO13OWJH4/dog-walk.jpg?format=1000w"
+                                />
+                              </Center>
+                              <Box>
+                                <DeleteButton />
+                              </Box>
+
+                              <Stack
+                                // mt={{ base: 5, sm: 5, md: 2 }}
+                                textAlign={'center'}
+                                color="#1f1f1a"
+                                spacing={{ base: 2, md: 2 }}
+                                py={{ base: 5, md: 1 }}
+                              >
                                 <p>
-                                  <ListIcon
-                                    as={CheckIcon}
-                                    color="green.400"
-                                    textAlign={'left'}
-                                  />
                                   Person Responsible:{' '}
                                   {walkSchedules.attributes.person}
                                 </p>
-                                <p>
-                                  <ListIcon
-                                    as={CheckIcon}
-                                    color="green.400"
-                                    textAlign={'left'}
-                                  />
-                                  Dogs Name: {walkSchedules.attributes.dog}
-                                </p>
-                                <p>
-                                  <ListIcon
-                                    as={CheckIcon}
-                                    color="green.400"
-                                    textAlign={'left'}
-                                  />
-                                  Date: {walkSchedules.attributes.date}
-                                </p>
-                              </List>
-                            </Stack>
-                          </Box>
-                        </Center>
-                      </Flex>
-                    )
-                  },
-                )
-              ) : (
-                <>
-                  <CalenderBody />
-                </>
-              )}
-            </SimpleGrid>
+                                <p>Dogs Name: {walkSchedules.attributes.dog}</p>
+                                <p>Date: {walkSchedules.attributes.date}</p>
+                              </Stack>
+                            </Box>
+                          </Center>
+                        </Flex>
+                      )
+                    },
+                  )
+                ) : (
+                  <>
+                    <CalenderBody />
+                  </>
+                )}
+              </SimpleGrid>
+            </Box>
           </Center>
         </div>
       </Container>

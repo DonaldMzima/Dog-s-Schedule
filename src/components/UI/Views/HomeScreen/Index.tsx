@@ -10,8 +10,11 @@ import {
   Stack,
   Box,
   Center,
-  useMediaQuery,
+  Link,
 } from '@chakra-ui/react'
+import { RiHome4Fill } from 'react-icons/ri'
+import { BsCalendarPlus } from 'react-icons/bs'
+import { MdSettings } from 'react-icons/md'
 
 import SvgComponent from '@/components/Svg/HomeSvg'
 
@@ -28,6 +31,7 @@ export default function HomePage() {
           textAlign={'center'}
           spacing={{ base: 8, md: 14 }}
           py={{ base: 20, md: 36 }}
+          color={'#1f2b3a'}
         >
           <Heading
             fontWeight={600}
@@ -53,6 +57,31 @@ export default function HomePage() {
             <SvgComponent />
           </Center>
         </Stack>
+        <Center>
+          <Stack
+            direction={'row'}
+            color="black"
+            spacing={{ base: 20, sm: 155 }}
+            ml={{ base: 25, sm: 50 }}
+            mt={{ base: -150, sm: -120 }}
+          >
+            <Link href="/">
+              <Box mb={4}>
+                <RiHome4Fill size={'3em'} />
+              </Box>
+            </Link>
+            <Link href="/calender">
+              <Box mb={4}>
+                <BsCalendarPlus size={'3em'} />
+              </Box>
+            </Link>
+            <Link href="/settings">
+              <Box mb={4}>
+                <MdSettings size={'3em'} />
+              </Box>
+            </Link>
+          </Stack>
+        </Center>
       </Container>
     </>
   )
