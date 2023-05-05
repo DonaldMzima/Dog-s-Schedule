@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dogblogs",
+  "info": {
+    "singularName": "dogblog",
+    "pluralName": "dogblogs",
+    "displayName": "dogblog"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "body": {
+      "type": "string"
+    },
+    "article": {
+      "type": "text"
+    },
+    "date": {
+      "type": "datetime"
+    }
+  }
+}

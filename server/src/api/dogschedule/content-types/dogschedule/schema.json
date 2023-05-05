@@ -1,0 +1,25 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dogschedules",
+  "info": {
+    "singularName": "dogschedule",
+    "pluralName": "dogschedules",
+    "displayName": "dogschedule",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "person": {
+      "type": "string"
+    },
+    "dog": {
+      "type": "string"
+    },
+    "date": {
+      "type": "datetime"
+    }
+  }
+}
