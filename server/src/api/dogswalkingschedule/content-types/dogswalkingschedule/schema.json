@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "dogswalkingschedules",
+  "info": {
+    "singularName": "dogswalkingschedule",
+    "pluralName": "dogswalkingschedules",
+    "displayName": "dogswalkingschedule"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "person": {
+      "type": "string"
+    },
+    "dog": {
+      "type": "string"
+    },
+    "date": {
+      "type": "datetime"
+    }
+  }
+}
