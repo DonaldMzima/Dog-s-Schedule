@@ -1,10 +1,3 @@
-/* eslint-disable react/no-children-prop */
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable react-hooks/rules-of-hooks */
-
-import React, { useEffect, useState } from 'react'
-
 import {
   SimpleGrid,
   Button,
@@ -31,14 +24,22 @@ import { schedulesState } from '@/store/atoms'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
 import CustomSpinner from '@/components/CalenderSection/spinner'
-
 import { CheckIcon, InfoIcon } from '@chakra-ui/icons'
 import CalenderBody from '@/components/CalenderSection/Calender'
 import { useQuery } from 'react-query'
-
 import DeleteButton from '@/components/Modals/DeleteModel'
 import { WalkSchedules } from 'utilis/https'
 import EditButton from '@/components/Modals/EditButton'
+import { UpdateButton } from '@/components/Modals/UpdateButton'
+import { useState, useEffect } from 'react'
+import axios from 'axios'
+
+interface Schedule {
+  id: number
+  person: string
+  dog: string
+  date: string
+}
 
 const SecondMyCalender = () => {
   const [storage, setStorage] = useRecoilState<any>(StorageState)
@@ -47,24 +48,37 @@ const SecondMyCalender = () => {
   const dogSchedules = useRecoilValue(schedulesState)
   const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
+  const [schedules, setSchedules] = useState<Schedule[]>([])
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get('http://localhost:1337/api/schedules')
+      setSchedules(result.data)
+    }
+
+    fetchData()
+  }, [])
+
+  const handleEdit = async (id: number, data: Schedule) => {
+    try {
+      const response = await axios.put(
+        `http://localhost:1337/api/schedules/${id}`,
+        data,
+      )
+      const updatedSchedule = response.data
+      setSchedules((prevSchedules) =>
+        prevSchedules.map((schedule) =>
+          schedule.id === updatedSchedule.id ? updatedSchedule : schedule,
+        ),
+      )
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   const { data, isLoading } = useQuery(['WalkSchedules '], () =>
     WalkSchedules(),
   )
-
-  // useEffect(() => {
-  //   localStorage.setItem('dogWalking', JSON.stringify(dogSchedules))
-  // }, [dogSchedules])
-
-  // useEffect(() => {
-  //   localStorage.setItem('dogWalking', JSON.stringify(dogSchedules))
-  // }, [dogSchedules])
-
-  // useEffect(() => {
-  //   const starage = JSON.parse(localStorage.getItem('dogWalking') || '')
-  //   console.log('JJJ', starage)
-  //   setWalkSchedule(starage)
-  // }, [walkSchedule])
 
   if (isLoading) {
     return <CustomSpinner text={'Loading ...'} />
@@ -156,7 +170,9 @@ const SecondMyCalender = () => {
                               </Center>
                               <Box>
                                 <DeleteButton id={walkSchedules.id} />
-                                <EditButton userData={walkSchedules.userData} />
+                                <UpdateButton
+                                  userData={walkSchedules.userData}
+                                />
                               </Box>
 
                               <Stack
@@ -172,6 +188,13 @@ const SecondMyCalender = () => {
                                 </p>
                                 <p>Dogs Name: {walkSchedules.attributes.dog}</p>
                                 <p>Date: {walkSchedules.attributes.date}</p>
+                                <Button
+                                  onClick={() =>
+                                    handleEdit(schedule.id, schedule)
+                                  }
+                                >
+                                  Edit
+                                </Button>
                               </Stack>
                             </Box>
                           </Center>
