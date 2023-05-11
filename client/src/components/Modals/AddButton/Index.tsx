@@ -61,7 +61,7 @@ export const AddModal = () => {
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent bg="grey" color="white">
+          <ModalContent color="white">
             <ModalHeader>
               <AddIcon />
               Add Schedule
