@@ -16,20 +16,25 @@ import {
   useDisclosure,
   Input,
   Circle,
+  Box,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
 
 import { useRecoilState } from 'recoil'
 import { schedulesState } from '@/store/atoms'
-import { CreateWalkSchedules } from 'utilis/https'
+import { CreateWalkSchedules, EditSchedules } from 'utilis/https'
 
 const schema = Yup.object({
   person: Yup.string().required(' name of a person '),
   dog: Yup.string().required('dogs name'),
 })
 
-export const AddModal = () => {
+type EditButtonType = {
+  userData: any
+}
+
+export const UpdateButton = (props: EditButtonType) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [dogSchedules, setDogSchedules] = useRecoilState<any>(schedulesState)
 
@@ -54,10 +59,10 @@ export const AddModal = () => {
   }
   return (
     <>
-      <Container rounded="md">
-        <Circle size="65px" bg="grey" color="white" onClick={onOpen}>
-          <AddIcon />
-        </Circle>
+      <Box mt={{ base: '-26px', sm: '-26px', md: '-26px' }} marginLeft="208px">
+        <Button onClick={onOpen} bg="grey" color="white" size="xs">
+          Edit
+        </Button>
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
@@ -103,8 +108,9 @@ export const AddModal = () => {
                     color="blackAlpha.900"
                     mr={2}
                     type="submit"
+                    onClick={() => EditSchedules(props.userData)}
                   >
-                    Add
+                    Submit
                   </Button>
                 </Center>
               </form>
@@ -113,9 +119,9 @@ export const AddModal = () => {
             <ModalFooter></ModalFooter>
           </ModalContent>
         </Modal>
-      </Container>
+      </Box>
     </>
   )
 }
 
-export default AddModal
+export default UpdateButton
