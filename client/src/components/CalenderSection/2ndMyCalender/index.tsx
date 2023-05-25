@@ -1,3 +1,6 @@
+/* eslint-disable react/jsx-key */
+/* eslint-disable react-hooks/rules-of-hooks */
+import { useState } from 'react'
 import {
   SimpleGrid,
   Button,
@@ -23,7 +26,6 @@ import FloatingButtons from '@/components/UI/FloatingButtons/Index'
 import { schedulesState } from '@/store/atoms'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
-import CustomSpinner from '@/components/CalenderSection/spinner'
 import { CheckIcon, InfoIcon } from '@chakra-ui/icons'
 import CalenderBody from '@/components/CalenderSection/Calender'
 import { useQuery } from 'react-query'
@@ -31,8 +33,8 @@ import DeleteButton from '@/components/Modals/DeleteModel'
 import { WalkSchedules } from 'utilis/https'
 import EditButton from '@/components/Modals/EditButton'
 import { UpdateButton } from '@/components/Modals/UpdateButton'
-import { useState, useEffect } from 'react'
 import axios from 'axios'
+import CustomSpinner from '../Spinner'
 
 interface Schedule {
   id: number
@@ -48,33 +50,6 @@ const SecondMyCalender = () => {
   const dogSchedules = useRecoilValue(schedulesState)
   const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
-  const [schedules, setSchedules] = useState<Schedule[]>([])
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios.get('http://localhost:1337/api/schedules')
-      setSchedules(result.data)
-    }
-
-    fetchData()
-  }, [])
-
-  const handleEdit = async (id: number, data: Schedule) => {
-    try {
-      const response = await axios.put(
-        `http://localhost:1337/api/schedules/${id}`,
-        data,
-      )
-      const updatedSchedule = response.data
-      setSchedules((prevSchedules) =>
-        prevSchedules.map((schedule) =>
-          schedule.id === updatedSchedule.id ? updatedSchedule : schedule,
-        ),
-      )
-    } catch (error) {
-      console.error(error)
-    }
-  }
 
   const { data, isLoading } = useQuery(['WalkSchedules '], () =>
     WalkSchedules(),
@@ -118,7 +93,8 @@ const SecondMyCalender = () => {
           ml={{ base: 65, sm: 250, md: -80, lg: 622 }}
         >
           <InputGroup>
-            <InputLeftElement children={<GrSearchAdvanced size={'1em'} />} />
+            <InputLeftElement />
+            <GrSearchAdvanced size={'1em'} />
             <Input
               type="text"
               placeholder="search"
@@ -150,6 +126,7 @@ const SecondMyCalender = () => {
                         updatedAt: Date
                       }
                     }) => {
+                      console.log('duserData', walkSchedules)
                       return (
                         <Flex>
                           <Center key={walkSchedules.id}>
@@ -172,6 +149,11 @@ const SecondMyCalender = () => {
                                 <DeleteButton id={walkSchedules.id} />
                                 <UpdateButton
                                   userData={walkSchedules.userData}
+                                  attribute={{
+                                    person: '',
+                                    dog: '',
+                                    date: '',
+                                  }}
                                 />
                               </Box>
 
@@ -188,13 +170,6 @@ const SecondMyCalender = () => {
                                 </p>
                                 <p>Dogs Name: {walkSchedules.attributes.dog}</p>
                                 <p>Date: {walkSchedules.attributes.date}</p>
-                                <Button
-                                  onClick={() =>
-                                    handleEdit(schedule.id, schedule)
-                                  }
-                                >
-                                  Edit
-                                </Button>
                               </Stack>
                             </Box>
                           </Center>
