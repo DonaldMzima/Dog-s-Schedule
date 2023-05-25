@@ -24,6 +24,7 @@ import { AddIcon } from '@chakra-ui/icons'
 import { useRecoilState } from 'recoil'
 import { schedulesState } from '@/store/atoms'
 import { CreateWalkSchedules, EditSchedules } from 'utilis/https'
+import { useState } from 'react'
 
 const schema = Yup.object({
   person: Yup.string().required(' name of a person '),
@@ -32,17 +33,34 @@ const schema = Yup.object({
 
 type EditButtonType = {
   userData: any
+  id?: string
+  attribute: {
+    person: string
+    dog: string
+    date: string
+  }
 }
 
 export const UpdateButton = (props: EditButtonType) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [dogSchedules, setDogSchedules] = useRecoilState<any>(schedulesState)
+  const [formData, setFormData] = useState({
+    person: props.attribute?.person,
+    dog: props.attribute?.dog,
+    date: props.attribute?.date,
+  })
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      person: '',
+      dog: '',
+      date: '',
+    },
+  })
 
   const onSubmit = (data: { person: string; dog: string; date: string }) => {
     onClose()
@@ -69,7 +87,7 @@ export const UpdateButton = (props: EditButtonType) => {
           <ModalContent color="white">
             <ModalHeader>
               <AddIcon />
-              Add Schedule
+              Edit Schedule
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>
@@ -80,8 +98,12 @@ export const UpdateButton = (props: EditButtonType) => {
                     type="text"
                     placeholder="Person Walking the dog..."
                     {...register('person')}
-                    required
+                    value={formData.person}
+                    onChange={(e) =>
+                      setFormData({ ...formData, person: e.target.value })
+                    }
                   />
+                  {errors.person && <p>This field is required</p>}
                 </FormLabel>
                 <FormLabel>
                   <p>Dog's Name:</p>
@@ -89,8 +111,12 @@ export const UpdateButton = (props: EditButtonType) => {
                     type="text"
                     placeholder="Dog's Name..."
                     {...register('dog')}
-                    required
+                    value={formData.dog}
+                    onChange={(e) =>
+                      setFormData({ ...formData, dog: e.target.value })
+                    }
                   />
+                  {errors.dog && <p>This field is required</p>}
                 </FormLabel>
                 <FormLabel>
                   <p>Date:</p>
@@ -101,6 +127,7 @@ export const UpdateButton = (props: EditButtonType) => {
                     {...register('date')}
                     required
                   />
+                  {errors.date && <p>This field is required</p>}
                 </FormLabel>
                 <Center>
                   <Button
@@ -108,9 +135,9 @@ export const UpdateButton = (props: EditButtonType) => {
                     color="blackAlpha.900"
                     mr={2}
                     type="submit"
-                    onClick={() => EditSchedules(props.userData)}
+                    onClick={() => EditSchedules(props.attribute)}
                   >
-                    Submit
+                    Save Changes
                   </Button>
                 </Center>
               </form>

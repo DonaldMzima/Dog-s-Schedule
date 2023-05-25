@@ -37,7 +37,13 @@ export const AddModal = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm()
+  } = useForm({
+    defaultValues: {
+      person: '',
+      dog: '',
+      date: '',
+    },
+  })
 
   const onSubmit = (data: { person: string; dog: string; date: string }) => {
     onClose()
