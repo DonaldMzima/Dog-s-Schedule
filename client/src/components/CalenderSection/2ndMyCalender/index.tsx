@@ -126,7 +126,7 @@ const SecondMyCalender = () => {
                         updatedAt: Date
                       }
                     }) => {
-                      console.log('duserData', walkSchedules)
+                      // console.log('duserData', walkSchedules)
                       return (
                         <Flex>
                           <Center key={walkSchedules.id}>

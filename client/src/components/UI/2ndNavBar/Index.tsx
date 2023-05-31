@@ -1,13 +1,4 @@
-import {
-  Text,
-  Box,
-  Button,
-  Flex,
-  Link,
-  Stack,
-  Center,
-  useMediaQuery,
-} from '@chakra-ui/react'
+import { Box, Flex, Link, Stack, Center } from '@chakra-ui/react'
 
 import { RiHome4Fill } from 'react-icons/ri'
 import { BsCalendarPlus } from 'react-icons/bs'

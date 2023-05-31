@@ -49,6 +49,7 @@ export const UpdateButton = (props: EditButtonType) => {
     dog: props.attribute?.dog,
     date: props.attribute?.date,
   })
+  console.log('this one here', formData)
 
   const {
     register,
@@ -73,7 +74,6 @@ export const UpdateButton = (props: EditButtonType) => {
         data,
       ],
     )
-    console.log('this one here', dogSchedules)
   }
   return (
     <>
