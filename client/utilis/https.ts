@@ -64,15 +64,18 @@ const DeleteSchedules = async (id: number) => {
   }
 }
 
-const EditSchedules = async (userData: {
-  person: string
-  dog: string
-  date: string
-}) => {
+const EditSchedules = async (
+  userData: {
+    person: string
+    dog: string
+    date: string
+  },
+  id: number,
+) => {
   console.log('edit data', userData)
   try {
     const { data }: any = await axios.put(
-      `http://localhost:1337/api/schedules`,
+      `http://localhost:1337/api/schedules/${id}`,
       {
         data: {
           person: userData.person,
