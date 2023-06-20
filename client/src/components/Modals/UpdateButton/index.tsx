@@ -33,7 +33,7 @@ const schema = Yup.object({
 
 type EditButtonType = {
   userData: any
-  id?: string
+  id: number
   attribute: {
     person: string
     dog: string
@@ -43,13 +43,6 @@ type EditButtonType = {
 
 export const UpdateButton = (props: EditButtonType) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const [dogSchedules, setDogSchedules] = useRecoilState<any>(schedulesState)
-  const [formData, setFormData] = useState({
-    person: props.attribute?.person,
-    dog: props.attribute?.dog,
-    date: props.attribute?.date,
-  })
-  console.log('this one here', formData)
 
   const {
     register,
@@ -57,24 +50,19 @@ export const UpdateButton = (props: EditButtonType) => {
     formState: { errors },
   } = useForm({
     defaultValues: {
-      person: '',
-      dog: '',
-      date: '',
+      person: props.attribute.person,
+      dog: props.attribute.dog,
+      date: props.attribute.date,
     },
   })
 
   const onSubmit = (data: { person: string; dog: string; date: string }) => {
     onClose()
-    CreateWalkSchedules(data)
+    EditSchedules(data, props.id)
 
     // initial state and update it with the new data
-    setDogSchedules(
-      (previousState: { person: string; dog: string; date: string }[]) => [
-        ...previousState,
-        data,
-      ],
-    )
   }
+  // console.log(CreateWalkSchedules)
   return (
     <>
       <Box mt={{ base: '-26px', sm: '-26px', md: '-26px' }} marginLeft="208px">
@@ -84,7 +72,7 @@ export const UpdateButton = (props: EditButtonType) => {
 
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent color="white">
+          <ModalContent>
             <ModalHeader>
               <AddIcon />
               Edit Schedule
@@ -98,10 +86,6 @@ export const UpdateButton = (props: EditButtonType) => {
                     type="text"
                     placeholder="Person Walking the dog..."
                     {...register('person')}
-                    value={formData.person}
-                    onChange={(e) =>
-                      setFormData({ ...formData, person: e.target.value })
-                    }
                   />
                   {errors.person && <p>This field is required</p>}
                 </FormLabel>
@@ -111,10 +95,6 @@ export const UpdateButton = (props: EditButtonType) => {
                     type="text"
                     placeholder="Dog's Name..."
                     {...register('dog')}
-                    value={formData.dog}
-                    onChange={(e) =>
-                      setFormData({ ...formData, dog: e.target.value })
-                    }
                   />
                   {errors.dog && <p>This field is required</p>}
                 </FormLabel>
@@ -135,7 +115,6 @@ export const UpdateButton = (props: EditButtonType) => {
                     color="blackAlpha.900"
                     mr={2}
                     type="submit"
-                    onClick={() => EditSchedules(props.attribute)}
                   >
                     Save Changes
                   </Button>
