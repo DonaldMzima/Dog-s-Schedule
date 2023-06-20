@@ -150,10 +150,11 @@ const SecondMyCalender = () => {
                                 <UpdateButton
                                   userData={walkSchedules.userData}
                                   attribute={{
-                                    person: '',
-                                    dog: '',
-                                    date: '',
+                                    person: walkSchedules.attributes.person,
+                                    dog: walkSchedules.attributes.dog,
+                                    date: walkSchedules.attributes.date,
                                   }}
+                                  id={walkSchedules.id}
                                 />
                               </Box>
 
