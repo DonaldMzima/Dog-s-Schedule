@@ -3,37 +3,29 @@
 import { useState } from 'react'
 import {
   SimpleGrid,
-  Button,
   Stack,
   Box,
   Flex,
   Container,
   Center,
   useMediaQuery,
-  ListIcon,
-  List,
   Avatar,
   Input,
   InputGroup,
   InputLeftElement,
 } from '@chakra-ui/react'
 import { GrSearchAdvanced } from 'react-icons/gr'
-import { useRecoilState, useRecoilValue } from 'recoil'
-import { StorageState } from '@/store/atoms'
+import { useRecoilValue } from 'recoil'
 import Nav from '@/components/UI/NavBar/Index'
-import Search from '@/components/CalenderSection/SearchFilter/Index'
 import FloatingButtons from '@/components/UI/FloatingButtons/Index'
 import { schedulesState } from '@/store/atoms'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
-import { CheckIcon, InfoIcon } from '@chakra-ui/icons'
 import CalenderBody from '@/components/CalenderSection/Calender'
 import { useQuery } from 'react-query'
 import DeleteButton from '@/components/Modals/DeleteModel'
 import { WalkSchedules } from 'utilis/https'
-import EditButton from '@/components/Modals/EditButton'
 import { UpdateButton } from '@/components/Modals/UpdateButton'
-import axios from 'axios'
 import CustomSpinner from '../Spinner'
 
 interface Schedule {
@@ -44,15 +36,18 @@ interface Schedule {
 }
 
 const SecondMyCalender = () => {
-  const [storage, setStorage] = useRecoilState<any>(StorageState)
   const [query, updateQuery] = useState('')
 
   const dogSchedules = useRecoilValue(schedulesState)
   const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
 
-  const { data, isLoading } = useQuery(['WalkSchedules '], () =>
-    WalkSchedules(),
+  const { data, isLoading } = useQuery(
+    ['WalkSchedules'],
+    () => WalkSchedules(),
+    {
+      refetchInterval: 1000, // Refetch data every 1 seconds
+    },
   )
 
   if (isLoading) {
@@ -126,7 +121,6 @@ const SecondMyCalender = () => {
                         updatedAt: Date
                       }
                     }) => {
-                      // console.log('duserData', walkSchedules)
                       return (
                         <Flex>
                           <Center key={walkSchedules.id}>

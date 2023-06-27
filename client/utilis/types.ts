@@ -12,3 +12,9 @@ export type SchedulesTypes = {
   id: number
   attributes: attributesType
 }
+
+export type UserDataTypes = {
+  person: string
+  dog: string
+  date: string
+}

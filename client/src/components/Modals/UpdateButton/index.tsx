@@ -3,7 +3,6 @@
 import * as Yup from 'yup'
 import {
   Center,
-  Container,
   Button,
   FormLabel,
   Modal,
@@ -15,16 +14,11 @@ import {
   ModalOverlay,
   useDisclosure,
   Input,
-  Circle,
   Box,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
-
-import { useRecoilState } from 'recoil'
-import { schedulesState } from '@/store/atoms'
-import { CreateWalkSchedules, EditSchedules } from 'utilis/https'
-import { useState } from 'react'
+import { EditSchedules } from 'utilis/https'
 
 const schema = Yup.object({
   person: Yup.string().required(' name of a person '),
@@ -62,7 +56,7 @@ export const UpdateButton = (props: EditButtonType) => {
 
     // initial state and update it with the new data
   }
-  // console.log(CreateWalkSchedules)
+
   return (
     <>
       <Box mt={{ base: '-26px', sm: '-26px', md: '-26px' }} marginLeft="208px">
