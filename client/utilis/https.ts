@@ -1,4 +1,5 @@
 import axios from 'axios'
+import { UserDataTypes } from './types'
 
 const WalkSchedules = async () => {
   try {
@@ -11,12 +12,7 @@ const WalkSchedules = async () => {
   }
 }
 
-const CreateWalkSchedules = async (userData: {
-  person: string
-  dog: string
-  date: string
-}) => {
-  console.log('getdata', userData)
+const CreateWalkSchedules = async (userData: UserDataTypes) => {
   try {
     const { data }: any = await axios.post(
       'http://localhost:1337/api/schedules',
@@ -34,21 +30,7 @@ const CreateWalkSchedules = async (userData: {
   }
 }
 
-// const DeleteSchedules = async (id: number) => {
-//   console.log('this this daaaaataa', id)
-//   try {
-//     const Schedules = await axios.delete(
-//       `http://localhost:1337/api/schedules/${id}`,
-//     )
-
-//     return Schedules
-//   } catch (error) {
-//     error
-//   }
-// }
-
 const DeleteSchedules = async (id: number) => {
-  console.log('this this daaaaataa', id)
   try {
     const Schedules = await axios.delete(
       `http://localhost:1337/api/schedules/${id}`,
@@ -72,7 +54,6 @@ const EditSchedules = async (
   },
   id: number,
 ) => {
-  console.log('edit data', userData)
   try {
     const { data }: any = await axios.put(
       `http://localhost:1337/api/schedules/${id}`,
