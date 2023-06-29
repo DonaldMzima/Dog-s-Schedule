@@ -23,6 +23,7 @@ import { AddIcon } from '@chakra-ui/icons'
 import { useRecoilState } from 'recoil'
 import { schedulesState } from '@/store/atoms'
 import { CreateWalkSchedules } from 'utilis/https'
+import { UserDataTypes } from 'utilis/types'
 
 const schema = Yup.object({
   person: Yup.string().required(' name of a person '),
@@ -45,17 +46,15 @@ export const AddModal = () => {
     },
   })
 
-  const onSubmit = (data: { person: string; dog: string; date: string }) => {
+  const onSubmit = (data: UserDataTypes) => {
     onClose()
     CreateWalkSchedules(data)
 
     // initial state and update it with the new data
-    setDogSchedules(
-      (previousState: { person: string; dog: string; date: string }[]) => [
-        ...previousState,
-        data,
-      ],
-    )
+    setDogSchedules((previousState: UserDataTypes[]) => [
+      ...previousState,
+      data,
+    ])
     console.log('this one here', dogSchedules)
   }
   return (

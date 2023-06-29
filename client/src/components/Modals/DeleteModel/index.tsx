@@ -13,12 +13,9 @@ import {
 
 import React from 'react'
 import { DeleteSchedules } from 'utilis/https'
+import { MyIdType } from 'utilis/types'
 
-type DeleteButtonType = {
-  id: number
-}
-
-const DeleteButton = (props: DeleteButtonType) => {
+const DeleteButton = (props: MyIdType) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
 
   return (
