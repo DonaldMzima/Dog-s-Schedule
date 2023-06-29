@@ -2,9 +2,11 @@ import { Box, Button } from '@chakra-ui/react'
 
 import React from 'react'
 import { EditSchedules } from 'utilis/https'
+import { MyIdType, UserDataTypes } from 'utilis/types'
 
 type EditButtonType = {
-  userData: any
+  userData: UserDataTypes
+  id: MyIdType
 }
 
 const EditButton = (props: EditButtonType) => {
@@ -15,7 +17,7 @@ const EditButton = (props: EditButtonType) => {
           bg="grey"
           color="white"
           size="xs"
-          onClick={() => EditSchedules(props.userData)}
+          onClick={() => EditSchedules(props.userData, props.id)}
         >
           Edit
         </Button>
