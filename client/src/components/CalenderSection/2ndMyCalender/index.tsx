@@ -27,6 +27,7 @@ import DeleteButton from '@/components/Modals/DeleteModel'
 import { WalkSchedules } from 'utilis/https'
 import { UpdateButton } from '@/components/Modals/UpdateButton'
 import CustomSpinner from '../Spinner'
+import { MyIdType, UserDataTypes, attributesType } from 'utilis/types'
 
 interface Schedule {
   id: number
@@ -110,16 +111,9 @@ const SecondMyCalender = () => {
                 {!isLoading && data?.data.data?.length > 0 ? (
                   dogSchedulesResults?.map(
                     (walkSchedules: {
-                      userData: any
+                      userData: UserDataTypes
                       id: number
-                      attributes: {
-                        person: string
-                        dog: string
-                        date: string
-                        createdAt: Date
-                        publishedAt: Date
-                        updatedAt: Date
-                      }
+                      attributes: attributesType
                     }) => {
                       return (
                         <Flex>
