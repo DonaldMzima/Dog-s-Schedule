@@ -1,9 +1,6 @@
 import { Spinner, Stack, Text } from '@chakra-ui/react'
 import React from 'react'
-
-type CustomSpinnerType = {
-  text: string
-}
+import { CustomSpinnerType } from 'utilis/types'
 
 const CustomSpinner = ({ text }: CustomSpinnerType) => {
   return (
