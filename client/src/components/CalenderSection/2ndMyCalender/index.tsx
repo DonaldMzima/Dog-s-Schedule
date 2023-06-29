@@ -1,15 +1,10 @@
-/* eslint-disable react/jsx-key */
-/* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from 'react'
 import {
   SimpleGrid,
-  Stack,
   Box,
-  Flex,
-  Container,
   Center,
+  Container,
   useMediaQuery,
-  Avatar,
   Input,
   InputGroup,
   InputLeftElement,
@@ -23,20 +18,12 @@ import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
 import CalenderBody from '@/components/CalenderSection/Calender'
 import { useQuery } from 'react-query'
-import DeleteButton from '@/components/Modals/DeleteModel'
 import { WalkSchedules } from 'utilis/https'
-import { UpdateButton } from '@/components/Modals/UpdateButton'
 import CustomSpinner from '../Spinner'
-import { MyIdType, UserDataTypes, attributesType } from 'utilis/types'
+import WalkScheduleCard from '../Cards'
+import { MyIdType } from 'utilis/types'
 
-interface Schedule {
-  id: number
-  person: string
-  dog: string
-  date: string
-}
-
-const SecondMyCalender = () => {
+const MyCalender = () => {
   const [query, updateQuery] = useState('')
 
   const dogSchedules = useRecoilValue(schedulesState)
@@ -47,7 +34,7 @@ const SecondMyCalender = () => {
     ['WalkSchedules'],
     () => WalkSchedules(),
     {
-      refetchInterval: 1000, // Refetch data every 1 seconds
+      refetchInterval: 1000, // Refetch data every 1 second
     },
   )
 
@@ -72,7 +59,6 @@ const SecondMyCalender = () => {
 
   return (
     <>
-      {/* {!isMobile ?   <Nav /> : null } */}
       {!isMobile && <Nav />}
       <Container
         maxW={'100%'}
@@ -104,81 +90,28 @@ const SecondMyCalender = () => {
           </InputGroup>
         </Box>
 
-        <div>
-          <Center>
-            <Box>
-              <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
-                {!isLoading && data?.data.data?.length > 0 ? (
-                  dogSchedulesResults?.map(
-                    (walkSchedules: {
-                      userData: UserDataTypes
-                      id: number
-                      attributes: attributesType
-                    }) => {
-                      return (
-                        <Flex>
-                          <Center key={walkSchedules.id}>
-                            <Box
-                              borderTopRadius="md"
-                              borderColor="black.900"
-                              bg="#D5FF95"
-                              h={140}
-                              maxW={{ base: 680, sm: '200%', md: 300 }}
-                              w={{ base: 250, sm: '200%', md: 650 }}
-                              boxShadow="0 0 6px 6px grey"
-                            >
-                              <Center>
-                                <Avatar
-                                  size="md"
-                                  src="https://images.squarespace-cdn.com/content/v1/521e1d22e4b007ddd23fa56e/1378084877559-GB036YBRTCMVO13OWJH4/dog-walk.jpg?format=1000w"
-                                />
-                              </Center>
-                              <Box>
-                                <DeleteButton id={walkSchedules.id} />
-                                <UpdateButton
-                                  userData={walkSchedules.userData}
-                                  attribute={{
-                                    person: walkSchedules.attributes.person,
-                                    dog: walkSchedules.attributes.dog,
-                                    date: walkSchedules.attributes.date,
-                                  }}
-                                  id={walkSchedules.id}
-                                />
-                              </Box>
-
-                              <Stack
-                                // mt={{ base: 5, sm: 5, md: 2 }}
-                                textAlign={'center'}
-                                color="#1f1f1a"
-                                spacing={{ base: 2, md: 2 }}
-                                py={{ base: 5, md: 1 }}
-                              >
-                                <p>
-                                  Person Responsible:{' '}
-                                  {walkSchedules.attributes.person}
-                                </p>
-                                <p>Dogs Name: {walkSchedules.attributes.dog}</p>
-                                <p>Date: {walkSchedules.attributes.date}</p>
-                              </Stack>
-                            </Box>
-                          </Center>
-                        </Flex>
-                      )
-                    },
-                  )
-                ) : (
-                  <>
-                    <CalenderBody />
-                  </>
-                )}
-              </SimpleGrid>
-            </Box>
-          </Center>
-        </div>
+        <Center>
+          <Box>
+            <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
+              {!isLoading && data?.data.data?.length > 0 ? (
+                dogSchedulesResults?.map((walkSchedules: { id: MyIdType }) => (
+                  <WalkScheduleCard
+                    key={walkSchedules.id}
+                    walkSchedules={walkSchedules}
+                  />
+                ))
+              ) : (
+                <>
+                  <CalenderBody />
+                </>
+              )}
+            </SimpleGrid>
+          </Box>
+        </Center>
       </Container>
       {isMobile && <NavigationBar />}
     </>
   )
 }
 
-export default SecondMyCalender
+export default MyCalender
