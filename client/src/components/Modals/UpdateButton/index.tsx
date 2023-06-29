@@ -19,21 +19,12 @@ import {
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
 import { EditSchedules } from 'utilis/https'
+import { EditButtonType, UserDataTypes } from 'utilis/types'
 
 const schema = Yup.object({
   person: Yup.string().required(' name of a person '),
   dog: Yup.string().required('dogs name'),
 })
-
-type EditButtonType = {
-  userData: any
-  id: number
-  attribute: {
-    person: string
-    dog: string
-    date: string
-  }
-}
 
 export const UpdateButton = (props: EditButtonType) => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -50,7 +41,7 @@ export const UpdateButton = (props: EditButtonType) => {
     },
   })
 
-  const onSubmit = (data: { person: string; dog: string; date: string }) => {
+  const onSubmit = (data: UserDataTypes) => {
     onClose()
     EditSchedules(data, props.id)
 
