@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { UserDataTypes } from './types'
+import { MyIdType, UserDataTypes } from './types'
 
 const WalkSchedules = async () => {
   try {
@@ -46,17 +46,11 @@ const DeleteSchedules = async (id: number) => {
   }
 }
 
-const EditSchedules = async (
-  userData: {
-    person: string
-    dog: string
-    date: string
-  },
-  id: number,
-) => {
+const EditSchedules = async (userData: UserDataTypes, id: MyIdType) => {
   try {
     const { data }: any = await axios.put(
       `http://localhost:1337/api/schedules/${id}`,
+
       {
         data: {
           person: userData.person,
