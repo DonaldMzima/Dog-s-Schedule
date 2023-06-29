@@ -1,11 +1,18 @@
 //walkSchedules types in the contact page
-type attributesType = {
+export type attributesType = {
   person: string
   dog: string
   date: string
   createdAt: Date
   publishedAt: Date
   updatedAt: Date
+}
+
+export type EditButtonType = {
+  userData: UserDataTypes
+  id: MyIdType
+
+  attribute: attributesType
 }
 
 export type SchedulesTypes = {
@@ -17,4 +24,12 @@ export type UserDataTypes = {
   person: string
   dog: string
   date: string
+}
+
+export type MyIdType = {
+  id: number
+}
+
+export type CustomSpinnerType = {
+  text: string
 }
