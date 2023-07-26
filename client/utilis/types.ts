@@ -33,3 +33,5 @@ export type MyIdType = {
 export type CustomSpinnerType = {
   text: string
 }
+
+export type FormType = { person: string; dog: string; date: string }
