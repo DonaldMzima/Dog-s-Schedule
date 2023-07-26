@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import * as Yup from 'yup'
+import { yupResolver } from '@hookform/resolvers/yup'
 import {
   Center,
   Container,
@@ -23,28 +24,21 @@ import { AddIcon } from '@chakra-ui/icons'
 import { useRecoilState } from 'recoil'
 import { schedulesState } from '@/store/atoms'
 import { CreateWalkSchedules } from 'utilis/https'
-import { UserDataTypes } from 'utilis/types'
+import { FormType, UserDataTypes } from 'utilis/types'
 
-const schema = Yup.object({
-  person: Yup.string().required(' name of a person '),
-  dog: Yup.string().required('dogs name'),
-})
+// const schema = Yup.object().shape({
+//   person: Yup.string().required('Person Walking the dog is required'),
+//   dog: Yup.string().required("Dog's Name is required"),
+//   date: Yup.string().required('Date is required'),
+// })
 
 export const AddModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [dogSchedules, setDogSchedules] = useRecoilState<any>(schedulesState)
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    defaultValues: {
-      person: '',
-      dog: '',
-      date: '',
-    },
-  })
+  const form = useForm<FormType>()
+  const { register, control, handleSubmit, formState } = form
+  const { errors } = formState
 
   const onSubmit = (data: UserDataTypes) => {
     onClose()
@@ -79,18 +73,22 @@ export const AddModal = () => {
                   <Input
                     type="text"
                     placeholder="Person Walking the dog..."
-                    {...register('person')}
-                    required
+                    {...register('person', {
+                      required: 'required ',
+                    })}
                   />
+                  <p>{errors.person?.message}</p>
                 </FormLabel>
                 <FormLabel>
                   <p>Dog's Name:</p>
                   <Input
                     type="text"
                     placeholder="Dog's Name..."
-                    {...register('dog')}
-                    required
+                    {...register('dog', {
+                      required: 'Dog Name is required ',
+                    })}
                   />
+                  <p>{errors.dog?.message}</p>
                 </FormLabel>
                 <FormLabel>
                   <p>Date:</p>
@@ -98,9 +96,11 @@ export const AddModal = () => {
                     placeholder="Select Date and Time"
                     size="md"
                     type="datetime-local"
-                    {...register('date')}
-                    required
+                    {...register('date', {
+                      required: 'date is required ',
+                    })}
                   />
+                  <p>{errors.date?.message}</p>
                 </FormLabel>
                 <Center>
                   <Button
