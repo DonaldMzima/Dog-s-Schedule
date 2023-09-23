@@ -2,11 +2,12 @@ import '@/styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { UserProvider } from '../UserProvider'
+
 // highlight-start
 import { NhostProvider, NhostClient } from '@nhost/nextjs'
 // highlight-end
 import { RecoilRoot } from 'recoil'
+import { UserProvider } from 'utilis/hooks/UserProvider'
 
 const queryClient = new QueryClient()
 
