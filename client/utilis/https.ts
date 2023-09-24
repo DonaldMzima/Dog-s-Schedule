@@ -1,66 +1,134 @@
-import axios from 'axios'
-import { MyIdType, UserDataTypes } from './types'
+import { gql, ApolloQueryResult } from '@apollo/client'
+import client from 'apolloClient'
 
-const WalkSchedules = async () => {
-  try {
-    const Schedules = await axios.get(
-      `${'http://localhost:1337/api/schedules'}`,
-    )
-    return Schedules
-  } catch (error) {
-    throw new Error(error as string)
-  }
+// Define types for your data
+export interface Schedule {
+  id: string
+  person: string
+  dog: string
+  date: string
 }
 
-const CreateWalkSchedules = async (userData: UserDataTypes) => {
-  try {
-    const { data }: any = await axios.post(
-      'http://localhost:1337/api/schedules',
-      {
-        data: {
-          person: userData.person,
-          dog: userData.dog,
-          date: userData.date,
-        },
-      },
-    )
-    return data
-  } catch (error) {
-    throw new Error(error as string)
-  }
+interface UserDataTypes {
+  person: string
+  dog: string
+  date: string
 }
 
-const DeleteSchedules = async (id: number) => {
-  try {
-    const Schedules = await axios.delete(
-      `http://localhost:1337/api/schedules/${id}`,
-    )
+interface DeleteResult {
+  id: string
+}
 
-    if (!Schedules.data) {
-      throw new Error('No data found in response.')
+const GET_WALK_SCHEDULES = gql`
+  query GET_WALK_SCHEDULES {
+    schedules {
+      person
+      dog
+      date
     }
+  }
+`
 
-    return Schedules
+const CREATE_WALK_SCHEDULE = gql`
+  mutation CreateWalkSchedule($person: String!, $dog: String!, $date: String!) {
+    insert_schedules_one(object: { person: $person, dog: $dog, date: $date }) {
+      id
+      person
+      dog
+      date
+    }
+  }
+`
+
+const DELETE_SCHEDULE = gql`
+  mutation DeleteSchedule($id: uuid!) {
+    delete_schedules_by_pk(id: $id) {
+      id
+    }
+  }
+`
+
+const EDIT_SCHEDULE = gql`
+  mutation EditSchedule(
+    $id: uuid!
+    $person: String!
+    $dog: String!
+    $date: String!
+  ) {
+    update_schedules_by_pk(
+      pk_columns: { id: $id }
+      _set: { person: $person, dog: $dog, date: $date }
+    ) {
+      id
+      person
+      dog
+      date
+    }
+  }
+`
+
+const WalkSchedules = async (): Promise<Schedule[]> => {
+  try {
+    const {
+      data,
+    }: ApolloQueryResult<{ schedules: Schedule[] }> = await client.query({
+      query: GET_WALK_SCHEDULES,
+    })
+    return data.schedules
   } catch (error) {
     throw new Error(error as string)
   }
 }
 
-const EditSchedules = async (userData: UserDataTypes, id: MyIdType) => {
+const CreateWalkSchedules = async (
+  userData: UserDataTypes,
+): Promise<Schedule> => {
   try {
-    const { data }: any = await axios.put(
-      `http://localhost:1337/api/schedules/${id}`,
-
-      {
-        data: {
-          person: userData.person,
-          dog: userData.dog,
-          date: userData.date,
-        },
+    const { data }: any = await client.mutate({
+      mutation: CREATE_WALK_SCHEDULE,
+      variables: {
+        person: userData.person,
+        dog: userData.dog,
+        date: userData.date,
       },
-    )
+    })
+    return data.insert_schedules_one
+  } catch (error) {
+    throw new Error(error as string)
+  }
+}
 
-    return data
+const DeleteSchedules = async (id: string): Promise<DeleteResult> => {
+  try {
+    const { data }: any = await client.mutate({
+      mutation: DELETE_SCHEDULE,
+      variables: {
+        id,
+      },
+    })
+
+    return data.delete_schedules_by_pk
+  } catch (error) {
+    throw new Error(error as string)
+  }
+}
+
+const EditSchedules = async (
+  userData: UserDataTypes,
+  id: string,
+): Promise<Schedule> => {
+  try {
+    const { data }: any = await client.mutate({
+      mutation: EDIT_SCHEDULE,
+      variables: {
+        id,
+        person: userData.person,
+        dog: userData.dog,
+        date: userData.date,
+      },
+    })
+
+    return data.update_schedules_by_pk
   } catch (error) {
     throw new Error(error as string)
   }
