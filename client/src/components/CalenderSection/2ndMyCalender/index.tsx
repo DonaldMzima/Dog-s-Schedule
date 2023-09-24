@@ -18,7 +18,7 @@ import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
 import CalenderBody from '@/components/CalenderSection/Calender'
 import { useQuery } from 'react-query'
-import { WalkSchedules } from 'utilis/https'
+import { Schedule, WalkSchedules } from 'utilis/https'
 import CustomSpinner from '../Spinner'
 import WalkScheduleCard from '../Cards'
 import { MyIdType } from 'utilis/types'
@@ -30,10 +30,11 @@ const MyCalender = () => {
   const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
 
-  const { data, isLoading } = useQuery(
+  const { data, isLoading } = useQuery<Schedule[]|undefined>(
     ['WalkSchedules'],
     () => WalkSchedules(),
     {
+     retry: 3, 
       refetchInterval: 1000, // Refetch data every 1 second
     },
   )
@@ -42,16 +43,17 @@ const MyCalender = () => {
     return <CustomSpinner text={'Loading ...'} />
   }
 
-  const fuse = new Fuse(data?.data.data, {
+  const fuse = new Fuse(data as  Schedule[] , {
     keys: ['person', 'dog', 'date'],
     includeScore: true,
   })
+  console.log('data', data)
 
   const results = fuse.search(query)
 
   const dogSchedulesResults = query
     ? results.map((data) => data.item)
-    : data?.data.data
+    : data?
 
   function onSearch({ currentTarget }: any) {
     updateQuery(currentTarget.value)
@@ -93,7 +95,7 @@ const MyCalender = () => {
         <Center>
           <Box>
             <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
-              {!isLoading && data?.data.data?.length > 0 ? (
+              {!isLoading && data?.length > 0 ? (
                 dogSchedulesResults?.map((walkSchedules: { id: MyIdType }) => (
                   <WalkScheduleCard
                     key={walkSchedules.id}
