@@ -1,21 +1,26 @@
-/* eslint-disable react/no-unescaped-entities */
-import React from 'react'
+import React, { FC } from 'react'
 import { Flex, Center, Box, Avatar, Stack } from '@chakra-ui/react'
 import DeleteButton from '@/components/Modals/DeleteModel'
 import { UpdateButton } from '@/components/Modals/UpdateButton'
-import { SchedulesTypes } from 'utilis/types'
+import { Schedule } from 'utilis/https'
 
-const WalkScheduleCard = ({ walkSchedules }: SchedulesTypes | any) => {
-  if (!walkSchedules || !walkSchedules.attributes) {
+type WalkScheduleCardProps = {
+  /**
+   *  walkSchedules is collection of a scheule
+   */
+  walkSchedules: Schedule
+}
+const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
+  if (!walkSchedules) {
     // Handle the case where walkSchedules or attributes are undefined
     return null // or you can render an error message
   }
 
-  const { userData, id, attributes } = walkSchedules
+  const { date, dog, id, person } = walkSchedules
 
   return (
     <Flex>
-      <Center key={id}>
+      <Center>
         <Box
           borderTopRadius="md"
           borderColor="black.900"
@@ -34,14 +39,14 @@ const WalkScheduleCard = ({ walkSchedules }: SchedulesTypes | any) => {
           <Box>
             <DeleteButton id={id} />
             <UpdateButton
-              userData={userData}
+              // userData={userData}
               attribute={{
-                person: attributes.person,
-                dog: attributes.dog,
-                date: attributes.date,
-                createdAt: attributes.createdAt,
-                publishedAt: attributes.publishedAt,
-                updatedAt: attributes.updatedAt,
+                person: person,
+                dog: dog,
+                date: date,
+                // createdAt: createdAt,
+                // publishedAt: publishedAt,
+                // updatedAt: updatedAt,
               }}
               id={id}
             />
@@ -53,9 +58,9 @@ const WalkScheduleCard = ({ walkSchedules }: SchedulesTypes | any) => {
             spacing={{ base: 2, md: 2 }}
             py={{ base: 5, md: 1 }}
           >
-            <p>Person Responsible: {attributes.person}</p>
-            <p>Dog's Name: {attributes.dog}</p>
-            <p>Date: {attributes.date}</p>
+            <p>Person Responsible: {person}</p>
+            <p>Dog's Name: {dog}</p>
+            <p>Date: {date}</p>
           </Stack>
         </Box>
       </Center>
