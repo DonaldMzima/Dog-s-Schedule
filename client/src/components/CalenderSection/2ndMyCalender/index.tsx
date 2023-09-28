@@ -30,11 +30,11 @@ const MyCalender = () => {
   const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
 
-  const { data, isLoading } = useQuery<Schedule[]|undefined>(
+  const { data, isLoading } = useQuery<Schedule[] | undefined>(
     ['WalkSchedules'],
     () => WalkSchedules(),
     {
-     retry: 3, 
+      retry: 3,
       refetchInterval: 1000, // Refetch data every 1 second
     },
   )
@@ -43,7 +43,7 @@ const MyCalender = () => {
     return <CustomSpinner text={'Loading ...'} />
   }
 
-  const fuse = new Fuse(data as  Schedule[] , {
+  const fuse = new Fuse(data as Schedule[], {
     keys: ['person', 'dog', 'date'],
     includeScore: true,
   })
@@ -51,9 +51,7 @@ const MyCalender = () => {
 
   const results = fuse.search(query)
 
-  const dogSchedulesResults = query
-    ? results.map((data) => data.item)
-    : data?
+  const dogSchedulesResults = query ? results.map((data) => data.item) : data
 
   function onSearch({ currentTarget }: any) {
     updateQuery(currentTarget.value)
@@ -95,12 +93,12 @@ const MyCalender = () => {
         <Center>
           <Box>
             <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
-              {!isLoading && data?.length > 0 ? (
-                dogSchedulesResults?.map((walkSchedules: { id: MyIdType }) => (
-                  <WalkScheduleCard
-                    key={walkSchedules.id}
-                    walkSchedules={walkSchedules}
-                  />
+              {!isLoading && data && data?.length > 0 ? (
+                dogSchedulesResults?.map((walkSchedules) => (
+                  // <WalkScheduleCard
+                  //   key={walkSchedules.id}
+                  //   walkSchedules={walkSchedules}
+                  // />
                 ))
               ) : (
                 <>

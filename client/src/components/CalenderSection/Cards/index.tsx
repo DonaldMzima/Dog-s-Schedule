@@ -6,6 +6,11 @@ import { UpdateButton } from '@/components/Modals/UpdateButton'
 import { SchedulesTypes } from 'utilis/types'
 
 const WalkScheduleCard = ({ walkSchedules }: SchedulesTypes | any) => {
+  if (!walkSchedules || !walkSchedules.attributes) {
+    // Handle the case where walkSchedules or attributes are undefined
+    return null // or you can render an error message
+  }
+
   const { userData, id, attributes } = walkSchedules
 
   return (
