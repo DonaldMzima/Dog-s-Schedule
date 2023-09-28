@@ -95,10 +95,10 @@ const MyCalender = () => {
             <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
               {!isLoading && data && data?.length > 0 ? (
                 dogSchedulesResults?.map((walkSchedules) => (
-                  // <WalkScheduleCard
-                  //   key={walkSchedules.id}
-                  //   walkSchedules={walkSchedules}
-                  // />
+                  <WalkScheduleCard
+                    key={walkSchedules.id}
+                    walkSchedules={walkSchedules}
+                  />
                 ))
               ) : (
                 <>
