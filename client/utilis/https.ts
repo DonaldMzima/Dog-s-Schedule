@@ -30,7 +30,7 @@ const GET_WALK_SCHEDULES = gql`
 `
 
 const CREATE_WALK_SCHEDULE = gql`
-  mutation CreateWalkSchedule($person: String!, $dog: String!, $date: String!) {
+  mutation CreateWalkSchedule($person: String!, $dog: String!, $date: date!) {
     insert_schedules_one(object: { person: $person, dog: $dog, date: $date }) {
       person
       dog
@@ -52,7 +52,7 @@ const EDIT_SCHEDULE = gql`
     $id: uuid!
     $person: String!
     $dog: String!
-    $date: String!
+    $date: date!
   ) {
     update_schedules_by_pk(
       pk_columns: { id: $id }
