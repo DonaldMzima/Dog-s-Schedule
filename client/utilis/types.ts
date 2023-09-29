@@ -10,7 +10,7 @@ export type attributesType = {
 
 export type EditButtonType = {
   userData: UserDataTypes
-  id: MyIdType
+  id: any
 
   attribute: attributesType
 }
