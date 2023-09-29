@@ -6,7 +6,7 @@ import { MyIdType, UserDataTypes } from 'utilis/types'
 
 type EditButtonType = {
   userData: UserDataTypes
-  id: MyIdType
+  id: string
 }
 
 const EditButton = (props: EditButtonType) => {

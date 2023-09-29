@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import React, { FC } from 'react'
 import { Flex, Center, Box, Avatar, Stack } from '@chakra-ui/react'
 import DeleteButton from '@/components/Modals/DeleteModel'
