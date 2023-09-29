@@ -27,7 +27,7 @@ export type UserDataTypes = {
 }
 
 export type MyIdType = {
-  id: number
+  id: number | string
 }
 
 export type CustomSpinnerType = {
