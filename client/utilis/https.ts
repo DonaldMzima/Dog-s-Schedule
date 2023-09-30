@@ -99,7 +99,7 @@ const CreateWalkSchedules = async (
 
 const DeleteSchedules = async (id: string): Promise<DeleteResult> => {
   try {
-    const { data }: any = await client.mutate({
+    const { data }: Record<string, any> = await client.mutate({
       mutation: DELETE_SCHEDULE,
       variables: {
         id,
@@ -117,7 +117,7 @@ const EditSchedules = async (
   id: string,
 ): Promise<Schedule> => {
   try {
-    const { data }: any = await client.mutate({
+    const { data }: Record<string, any> = await client.mutate({
       mutation: EDIT_SCHEDULE,
       variables: {
         id,
