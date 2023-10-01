@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import { InputGroup, InputLeftElement, Input } from '@chakra-ui/react'
+import { InputGroup, InputRightElement, Input } from '@chakra-ui/react'
 import { GrSearchAdvanced } from 'react-icons/gr'
 
-const SearchBar = ({ onSearch }) => {
+const SearchBar = ({ onSearch }: any) => {
   const [query, setQuery] = useState('')
 
-  const handleSearch = (e) => {
+  const handleSearch = (e: { target: { value: any } }) => {
     const value = e.target.value
     setQuery(value)
     onSearch(value)
@@ -13,9 +13,6 @@ const SearchBar = ({ onSearch }) => {
 
   return (
     <InputGroup>
-      <InputLeftElement>
-        <GrSearchAdvanced size={'1em'} />
-      </InputLeftElement>
       <Input
         type="text"
         placeholder="search"
@@ -26,6 +23,9 @@ const SearchBar = ({ onSearch }) => {
         width="auto"
         boxShadow="0 0 6px grey"
       />
+      <InputRightElement>
+        <GrSearchAdvanced size={'1em'} />
+      </InputRightElement>
     </InputGroup>
   )
 }
