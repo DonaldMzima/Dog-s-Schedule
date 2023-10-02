@@ -25,6 +25,7 @@ const GET_WALK_SCHEDULES = gql`
       person
       dog
       date
+      id
     }
   }
 `
@@ -97,7 +98,7 @@ const CreateWalkSchedules = async (
   }
 }
 
-const DeleteSchedules = async (id: string): Promise<DeleteResult> => {
+const DeleteSchedules = async (id: any): Promise<DeleteResult> => {
   try {
     const { data }: Record<string, any> = await client.mutate({
       mutation: DELETE_SCHEDULE,

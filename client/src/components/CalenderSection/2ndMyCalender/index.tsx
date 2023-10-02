@@ -26,16 +26,14 @@ import { MyIdType } from 'utilis/types'
 const MyCalender = () => {
   const [query, updateQuery] = useState('')
 
-  const dogSchedules = useRecoilValue(schedulesState)
-  const [walkSchedule, setWalkSchedule] = useState(dogSchedules)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
 
   const { data, isLoading } = useQuery<Schedule[] | undefined>(
     ['WalkSchedules'],
     () => WalkSchedules(),
     {
-      retry: 3,
-      refetchInterval: 1000, // Refetch data every 1 second
+      // retry: 3,
+      // refetchInterval: 1000, // Refetch data every 1 second
     },
   )
 

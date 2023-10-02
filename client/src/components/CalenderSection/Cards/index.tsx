@@ -1,24 +1,35 @@
 /* eslint-disable react/no-unescaped-entities */
-import React, { FC } from 'react'
-import { Flex, Center, Box, Avatar, Stack } from '@chakra-ui/react'
-import DeleteButton from '@/components/Modals/DeleteModel'
+import React, { FC, useState } from 'react'
+import { Flex, Center, Box, Avatar, Stack, Button } from '@chakra-ui/react'
+import DeleteModal from '@/components/Modals/DeleteModel'
 import { UpdateButton } from '@/components/Modals/UpdateButton'
 import { Schedule } from 'utilis/https'
-
+import { deleteScheduleModal, scheduleData } from '@/store/atoms'
+import { useRecoilState } from 'recoil'
 type WalkScheduleCardProps = {
   /**
-   *  walkSchedules is collection of a scheule
+   *  walkSchedules is collection of a schedule
    */
   walkSchedules: Schedule
 }
 const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
+  const [schedulePayload, setSchedulePayload] = useRecoilState<null | Schedule>(
+    scheduleData,
+  )
+
+  const [_, setIsOpen] = useRecoilState(deleteScheduleModal)
   if (!walkSchedules) {
     // Handle the case where walkSchedules or attributes are undefined
     return null // or you can render an error message
   }
 
   const { date, dog, id, person } = walkSchedules
+  console.log('id', id)
 
+  const openDelModal = () => {
+    setSchedulePayload(walkSchedules)
+    setIsOpen(true)
+  }
   return (
     <Flex>
       <Center>
@@ -38,7 +49,10 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             />
           </Center>
           <Box>
-            <DeleteButton id={id} />
+            <DeleteModal schedulePayload={schedulePayload} />
+            <Button onClick={openDelModal} bg="grey" color="white" size="xs">
+              Delete
+            </Button>
             <UpdateButton
               // userData={userData}
               attribute={{

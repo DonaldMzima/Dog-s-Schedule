@@ -10,27 +10,30 @@ import {
   Box,
   useDisclosure,
 } from '@chakra-ui/react'
-
 import React from 'react'
-import { DeleteSchedules } from 'utilis/https'
-import { MyIdType } from 'utilis/types'
-
-const DeleteButton = (props: MyIdType) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
-
+import { DeleteSchedules, Schedule } from 'utilis/https'
+import { deleteScheduleModal, scheduleData } from '@/store/atoms'
+import { useRecoilState, useRecoilValue } from 'recoil'
+const DeleteModal = ({ schedulePayload }: any) => {
+  const [isOpen, setIsOpen] = useRecoilState(deleteScheduleModal)
+  const scheduleDataUse = useRecoilValue(scheduleData)
+  const onClose = () => {
+    setIsOpen(false)
+  }
+  console.log('schedulePayload ', schedulePayload)
   return (
     <>
       <Box mt={{ base: '-45', sm: '-45', md: '-45' }} marginLeft="248px">
-        <Button onClick={onOpen} bg="grey" color="white" size="xs">
-          delete
-        </Button>
         <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
           <ModalOverlay
             bg="blackAlpha.300"
             backdropFilter="blur(10px) hue-rotate(90deg)"
           />
           <ModalContent bg="grey" color="white">
-            <ModalHeader>delete</ModalHeader>
+            <ModalHeader>
+              Delete {scheduleDataUse?.person}
+              {scheduleDataUse?.date}
+            </ModalHeader>
             <ModalCloseButton />
             <ModalBody pb={6}>Are you Sure?</ModalBody>
 
@@ -40,7 +43,7 @@ const DeleteButton = (props: MyIdType) => {
                 colorScheme="blue"
                 mr={3}
                 onClick={() => {
-                  DeleteSchedules(props.id)
+                  DeleteSchedules(scheduleDataUse.id as any)
                   onClose()
                 }}
               >
@@ -56,4 +59,4 @@ const DeleteButton = (props: MyIdType) => {
   )
 }
 
-export default DeleteButton
+export default DeleteModal
