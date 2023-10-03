@@ -11,6 +11,11 @@ const deleteScheduleModal = atom<boolean>({
   default: false,
 })
 
+const updateScheduleModal = atom<boolean>({
+  key: 'updateScheduleModal',
+  default: false,
+})
+
 const scheduleData = atom<null | Schedule>({
   key: 'scheduleData',
   default: null,
@@ -21,4 +26,10 @@ const StorageState = atom<Array<unknown>>({
   default: [],
 })
 
-export { StorageState, schedulesState, deleteScheduleModal, scheduleData }
+export {
+  StorageState,
+  schedulesState,
+  deleteScheduleModal,
+  scheduleData,
+  updateScheduleModal,
+}

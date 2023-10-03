@@ -20,6 +20,8 @@ import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
 import { EditSchedules } from 'utilis/https'
 import { EditButtonType, UserDataTypes } from 'utilis/types'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { scheduleData, updateScheduleModal } from '@/store/atoms'
 
 const schema = Yup.object({
   person: Yup.string().required(' name of a person '),
@@ -27,7 +29,16 @@ const schema = Yup.object({
 })
 
 export const UpdateButton = (props: EditButtonType) => {
-  const { isOpen, onOpen, onClose } = useDisclosure()
+  const [isOpen, setIsOpen] = useRecoilState(updateScheduleModal)
+  const [_, setOpen] = useRecoilState(updateScheduleModal)
+  const udatescheduleDataUse = useRecoilValue(scheduleData)
+  const onClose = () => {
+    setIsOpen(false)
+  }
+
+  const openUdateModal = () => {
+    setOpen(true)
+  }
 
   const {
     register,
@@ -51,7 +62,7 @@ export const UpdateButton = (props: EditButtonType) => {
   return (
     <>
       <Box mt={{ base: '-26px', sm: '-26px', md: '-26px' }} marginLeft="208px">
-        <Button onClick={onOpen} bg="grey" color="white" size="xs">
+        <Button onClick={openUdateModal} bg="grey" color="white" size="xs">
           Edit
         </Button>
 
@@ -61,6 +72,7 @@ export const UpdateButton = (props: EditButtonType) => {
             <ModalHeader>
               <AddIcon />
               Edit Schedule
+              {udatescheduleDataUse?.person}
             </ModalHeader>
             <ModalCloseButton />
             <ModalBody>

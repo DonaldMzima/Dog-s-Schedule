@@ -32,8 +32,8 @@ const MyCalender = () => {
     ['WalkSchedules'],
     () => WalkSchedules(),
     {
-      // retry: 3,
-      // refetchInterval: 1000, // Refetch data every 1 second
+      retry: 3,
+      refetchInterval: 1000, // Refetch data every 1 second
     },
   )
 
@@ -47,7 +47,7 @@ const MyCalender = () => {
   })
   console.log('data', data)
 
-  const results = fuse.search(query)
+  const results = fuse?.search(query)
 
   const dogSchedulesResults = query ? results.map((data) => data.item) : data
 

@@ -18,6 +18,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
   )
 
   const [_, setIsOpen] = useRecoilState(deleteScheduleModal)
+
   if (!walkSchedules) {
     // Handle the case where walkSchedules or attributes are undefined
     return null // or you can render an error message
@@ -54,11 +55,11 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
               Delete
             </Button>
             <UpdateButton
-              // userData={userData}
               attribute={{
                 person: person,
                 dog: dog,
                 date: date,
+                // userData={userData},
                 // createdAt: createdAt,
                 // publishedAt: publishedAt,
                 // updatedAt: updatedAt,
