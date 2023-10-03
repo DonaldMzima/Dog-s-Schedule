@@ -84,12 +84,15 @@ const CreateWalkSchedules = async (
   userData: UserDataTypes,
 ): Promise<Schedule> => {
   try {
-    const { data }: any = await client.mutate({
+    const { data }: Record<string, any> = await client.mutate({
       mutation: CREATE_WALK_SCHEDULE,
-      variables: {
-        person: userData.person,
-        dog: userData.dog,
-        date: userData.date,
+      variables: userData,
+      optimisticResponse: {
+        __typename: 'schedules',
+        insert_schedules_one: {
+          __typename: 'schedules',
+          content: userData,
+        },
       },
     })
     return data.insert_schedules_one
