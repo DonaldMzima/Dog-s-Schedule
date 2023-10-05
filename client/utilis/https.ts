@@ -1,6 +1,7 @@
-import { gql, ApolloQueryResult } from '@apollo/client'
-import client from 'apolloClient'
-
+import { client } from '@/pages/_app'
+import { ApolloQueryResult } from '@apollo/client'
+// import { client } from 'apolloClient'
+import gql from 'graphql-tag'
 // Define types for your data
 export interface Schedule {
   id: string
@@ -19,7 +20,7 @@ interface DeleteResult {
   id: string
 }
 
-const GET_WALK_SCHEDULES = gql`
+export const GET_WALK_SCHEDULES = gql`
   query GET_WALK_SCHEDULES {
     schedules {
       person
@@ -87,13 +88,6 @@ const CreateWalkSchedules = async (
     const { data }: Record<string, any> = await client.mutate({
       mutation: CREATE_WALK_SCHEDULE,
       variables: userData,
-      optimisticResponse: {
-        __typename: 'schedules',
-        insert_schedules_one: {
-          __typename: 'schedules',
-          content: userData,
-        },
-      },
     })
     return data.insert_schedules_one
   } catch (error) {

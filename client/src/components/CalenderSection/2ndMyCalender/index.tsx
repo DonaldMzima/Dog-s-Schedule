@@ -17,8 +17,8 @@ import { schedulesState } from '@/store/atoms'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
 import CalenderBody from '@/components/CalenderSection/Calender'
-import { useQuery } from 'react-query'
-import { Schedule, WalkSchedules } from 'utilis/https'
+import { useQuery } from '@apollo/react-hooks'
+import { GET_WALK_SCHEDULES, Schedule } from 'utilis/https'
 import CustomSpinner from '../Spinner'
 import WalkScheduleCard from '../Cards'
 import { MyIdType } from 'utilis/types'
@@ -28,28 +28,31 @@ const MyCalender = () => {
 
   const [isMobile] = useMediaQuery('(max-width: 768px)')
 
-  const { data, isLoading } = useQuery<Schedule[] | undefined>(
-    ['WalkSchedules'],
-    () => WalkSchedules(),
+  const { data, loading } = useQuery<{ schedules: Schedule[] }>(
+    GET_WALK_SCHEDULES,
     {
-      retry: 3,
-      refetchInterval: 1000, // Refetch data every 1 second
+      // fetchPolicy: 'cache-and-network',
+      pollInterval: 500,
     },
   )
 
-  if (isLoading) {
+  if (loading) {
     return <CustomSpinner text={'Loading ...'} />
   }
 
-  const fuse = new Fuse(data as Schedule[], {
-    keys: ['person', 'dog', 'date'],
+  // Create a Fuse instance
+  const fuse = new Fuse(data?.schedules || [], {
+    keys: ['person', 'dog', 'date'], // Define which fields to search
     includeScore: true,
   })
-  console.log('data', data)
 
-  const results = fuse?.search(query)
+  // Perform the search and get the results
+  const results = fuse.search(query)
 
-  const dogSchedulesResults = query ? results.map((data) => data.item) : data
+  // Filter the data based on search results
+  const filteredSchedules = query
+    ? results.map((result) => result.item)
+    : data?.schedules || []
 
   function onSearch({ currentTarget }: any) {
     updateQuery(currentTarget.value)
@@ -91,17 +94,15 @@ const MyCalender = () => {
         <Center>
           <Box>
             <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
-              {!isLoading && data && data?.length > 0 ? (
-                dogSchedulesResults?.map((walkSchedules) => (
+              {filteredSchedules.length > 0 ? (
+                filteredSchedules.map((schedule: Schedule) => (
                   <WalkScheduleCard
-                    key={walkSchedules.id}
-                    walkSchedules={walkSchedules}
+                    key={schedule.id}
+                    walkSchedules={schedule}
                   />
                 ))
               ) : (
-                <>
-                  <CalenderBody />
-                </>
+                <CalenderBody />
               )}
             </SimpleGrid>
           </Box>
