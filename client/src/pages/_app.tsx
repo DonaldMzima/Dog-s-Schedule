@@ -1,34 +1,32 @@
 import '@/styles/globals.css'
 import { ChakraProvider } from '@chakra-ui/react'
 import type { AppProps } from 'next/app'
-import { QueryClient, QueryClientProvider } from 'react-query'
-
-// highlight-start
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import { NhostProvider, NhostClient } from '@nhost/nextjs'
-// highlight-end
 import { RecoilRoot } from 'recoil'
 import { UserProvider } from 'utilis/hooks/UserProvider'
 
-const queryClient = new QueryClient()
+export const client = new ApolloClient({
+  uri: 'https://swfkedcclgqaeusybpxy.graphql.eu-central-1.nhost.run/v1',
+  cache: new InMemoryCache(),
+})
 
-// highlight-start
 const nhost = new NhostClient({
   subdomain: process.env.NEXT_PUBLIC_NHOST_SUBDOMAIN || '',
   region: process.env.NEXT_PUBLIC_NHOST_REGION || '',
 })
-// highlight-end
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <NhostProvider nhost={nhost} initial={pageProps.nhostSession}>
       <UserProvider>
-        <QueryClientProvider client={queryClient}>
+        <ApolloProvider client={client}>
           <ChakraProvider>
             <RecoilRoot>
               <Component {...pageProps} minHeight="100vh" />
             </RecoilRoot>
           </ChakraProvider>
-        </QueryClientProvider>
+        </ApolloProvider>
       </UserProvider>
       {/* highlight-next-line */}
     </NhostProvider>
