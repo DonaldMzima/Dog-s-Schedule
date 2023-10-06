@@ -25,13 +25,11 @@ import { MyIdType } from 'utilis/types'
 
 const MyCalender = () => {
   const [query, updateQuery] = useState('')
-
   const [isMobile] = useMediaQuery('(max-width: 768px)')
-
   const { data, loading } = useQuery<{ schedules: Schedule[] }>(
     GET_WALK_SCHEDULES,
     {
-      // fetchPolicy: 'cache-and-network',
+      fetchPolicy: 'network-only', // Change fetchPolicy to 'network-only'
       pollInterval: 500,
     },
   )
@@ -40,13 +38,11 @@ const MyCalender = () => {
     return <CustomSpinner text={'Loading ...'} />
   }
 
-  // Create a Fuse instance
   const fuse = new Fuse(data?.schedules || [], {
     keys: ['person', 'dog', 'date'], // Define which fields to search
     includeScore: true,
   })
 
-  // Perform the search and get the results
   const results = fuse.search(query)
 
   // Filter the data based on search results
