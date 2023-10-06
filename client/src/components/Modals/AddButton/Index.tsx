@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
 import * as Yup from 'yup'
-import { yupResolver } from '@hookform/resolvers/yup'
 import {
   Center,
   Container,

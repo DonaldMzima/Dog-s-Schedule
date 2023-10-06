@@ -8,10 +8,9 @@ import {
   ModalHeader,
   ModalOverlay,
   Box,
-  useDisclosure,
 } from '@chakra-ui/react'
 import React from 'react'
-import { DeleteSchedules, Schedule } from 'utilis/https'
+import { DeleteSchedules } from 'utilis/https'
 import { deleteScheduleModal, scheduleData } from '@/store/atoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
 const DeleteModal = ({ schedulePayload }: any) => {
