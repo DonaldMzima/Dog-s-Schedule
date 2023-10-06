@@ -8,6 +8,9 @@ export interface Schedule {
   person: string
   dog: string
   date: string
+  createdAt?: string
+  publishedAt?: string
+  updatedAt?: string
 }
 
 interface UserDataTypes {

@@ -3,13 +3,13 @@ export type attributesType = {
   person: string
   dog: string
   date: string
-  createdAt: Date
-  publishedAt: Date
-  updatedAt: Date
+  createdAt?: Date
+  publishedAt?: Date
+  updatedAt?: Date
 }
 
 export type EditButtonType = {
-  userData: UserDataTypes
+  userData?: UserDataTypes
   id: any
 
   attribute: attributesType
