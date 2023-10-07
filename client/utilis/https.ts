@@ -1,5 +1,6 @@
 import { client } from '@/pages/_app'
 import { ApolloQueryResult } from '@apollo/client'
+import { toast } from 'react-toastify'
 // import { client } from 'apolloClient'
 import gql from 'graphql-tag'
 // Define types for your data
@@ -92,8 +93,11 @@ const CreateWalkSchedules = async (
       mutation: CREATE_WALK_SCHEDULE,
       variables: userData,
     })
+
+    toast.success('Schedule created successfully') // Show success toast
     return data.insert_schedules_one
   } catch (error) {
+    toast.error('Failed to create schedule') // Show error toast
     throw new Error(error as string)
   }
 }
@@ -107,8 +111,10 @@ const DeleteSchedules = async (id: any): Promise<DeleteResult> => {
       },
     })
 
+    toast.success('Schedule deleted successfully') // Show success toast
     return data.delete_schedules_by_pk
   } catch (error) {
+    toast.error('Failed to delete schedule') // Show error toast
     throw new Error(error as string)
   }
 }
@@ -128,8 +134,10 @@ const EditSchedules = async (
       },
     })
 
+    toast.success('Schedule updated successfully') // Show success toast
     return data.update_schedules_by_pk
   } catch (error) {
+    toast.error('Failed to update schedule') // Show error toast
     throw new Error(error as string)
   }
 }

@@ -2,10 +2,14 @@
 import React, { FC, useState } from 'react'
 import { Flex, Center, Box, Avatar, Stack, Button } from '@chakra-ui/react'
 import DeleteModal from '@/components/Modals/DeleteModel'
-import { UpdateButton } from '@/components/Modals/UpdateButton'
 import { Schedule } from 'utilis/https'
-import { deleteScheduleModal, scheduleData } from '@/store/atoms'
+import {
+  deleteScheduleModal,
+  scheduleData,
+  updateScheduleModal,
+} from '@/store/atoms'
 import { useRecoilState } from 'recoil'
+import UpdateButton, { UpdateModal } from '@/components/Modals/UpdateButton'
 type WalkScheduleCardProps = {
   /**
    *  walkSchedules is collection of a schedule
@@ -16,6 +20,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
   const [schedulePayload, setSchedulePayload] = useRecoilState<null | Schedule>(
     scheduleData,
   )
+  const [, setOpen] = useRecoilState(updateScheduleModal)
 
   const [_, setIsOpen] = useRecoilState(deleteScheduleModal)
 
@@ -30,6 +35,10 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
   const openDelModal = () => {
     setSchedulePayload(walkSchedules)
     setIsOpen(true)
+  }
+
+  const openUdateModal = () => {
+    setOpen(true)
   }
   return (
     <Flex>
@@ -54,18 +63,18 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             <Button onClick={openDelModal} bg="grey" color="white" size="xs">
               Delete
             </Button>
+
             <UpdateButton
               attribute={{
                 person: person,
                 dog: dog,
                 date: date,
-                // userData={userData},
-                // createdAt: createdAt,
-                // publishedAt: publishedAt,
-                // updatedAt: updatedAt,
               }}
               id={id}
             />
+            <Button onClick={openUdateModal} bg="grey" color="white" size="xs">
+              Edit
+            </Button>
           </Box>
 
           <Stack

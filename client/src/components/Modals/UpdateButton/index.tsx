@@ -28,16 +28,12 @@ const schema = Yup.object({
   dog: Yup.string().required('dogs name'),
 })
 
-export const UpdateButton = (props: EditButtonType) => {
+export const UpdateModal = (props: EditButtonType) => {
   const [isOpen, setIsOpen] = useRecoilState(updateScheduleModal)
-  const [_, setOpen] = useRecoilState(updateScheduleModal)
+
   const udatescheduleDataUse = useRecoilValue(scheduleData)
   const onClose = () => {
     setIsOpen(false)
-  }
-
-  const openUdateModal = () => {
-    setOpen(true)
   }
 
   const {
@@ -62,10 +58,6 @@ export const UpdateButton = (props: EditButtonType) => {
   return (
     <>
       <Box mt={{ base: '-26px', sm: '-26px', md: '-26px' }} marginLeft="208px">
-        <Button onClick={openUdateModal} bg="grey" color="white" size="xs">
-          Edit
-        </Button>
-
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
@@ -127,4 +119,4 @@ export const UpdateButton = (props: EditButtonType) => {
   )
 }
 
-export default UpdateButton
+export default UpdateModal
