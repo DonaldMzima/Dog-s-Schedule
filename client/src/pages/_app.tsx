@@ -18,7 +18,11 @@ const nhost = new NhostClient({
   region: process.env.NEXT_PUBLIC_NHOST_REGION || '',
 })
 
-export default function App({ Component, pageProps }: AppProps) {
+interface MyAppProps extends AppProps {
+  Component: React.ComponentType
+}
+
+const App: React.FC<MyAppProps> = ({ Component, pageProps }: MyAppProps) => {
   return (
     <NhostProvider nhost={nhost} initial={pageProps.nhostSession}>
       <UserProvider>
@@ -35,3 +39,5 @@ export default function App({ Component, pageProps }: AppProps) {
     </NhostProvider>
   )
 }
+
+export default App

@@ -18,7 +18,7 @@ import { MdSettings } from 'react-icons/md'
 
 import SvgComponent from '@/components/Svg/HomeSvg'
 
-export default function HomePage() {
+const HomePage = () => {
   return (
     <>
       <Container
@@ -86,3 +86,5 @@ export default function HomePage() {
     </>
   )
 }
+
+export default HomePage
