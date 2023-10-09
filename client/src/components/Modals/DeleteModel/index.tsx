@@ -39,11 +39,13 @@ const DeleteModal = ({ schedulePayload }: any) => {
             <ModalFooter>
               <Button
                 type="submit"
-                colorScheme="blue"
+                colorScheme="red"
                 mr={3}
                 onClick={() => {
-                  DeleteSchedules(scheduleDataUse.id as any)
-                  onClose()
+                  if (scheduleDataUse) {
+                    DeleteSchedules(scheduleDataUse.id as any)
+                    onClose()
+                  }
                 }}
               >
                 Yes
