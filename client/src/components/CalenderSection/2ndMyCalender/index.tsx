@@ -10,10 +10,8 @@ import {
   InputLeftElement,
 } from '@chakra-ui/react'
 import { GrSearchAdvanced } from 'react-icons/gr'
-import { useRecoilValue } from 'recoil'
 import Nav from '@/components/UI/NavBar/Index'
 import FloatingButtons from '@/components/UI/FloatingButtons/Index'
-import { schedulesState } from '@/store/atoms'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
 import CalenderBody from '@/components/CalenderSection/Calender'
@@ -21,7 +19,6 @@ import { useQuery } from '@apollo/react-hooks'
 import { GET_WALK_SCHEDULES, Schedule } from 'utilis/https'
 import CustomSpinner from '../Spinner'
 import WalkScheduleCard from '../Cards'
-import { MyIdType } from 'utilis/types'
 
 const MyCalender = () => {
   const [query, updateQuery] = useState('')

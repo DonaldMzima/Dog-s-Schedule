@@ -1,8 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable @next/next/no-page-custom-font */
 import React from 'react'
-
-import Head from 'next/head'
 import {
   Heading,
   Container,
@@ -15,7 +13,6 @@ import {
 import { RiHome4Fill } from 'react-icons/ri'
 import { BsCalendarPlus } from 'react-icons/bs'
 import { MdSettings } from 'react-icons/md'
-
 import SvgComponent from '@/components/Svg/HomeSvg'
 
 const HomePage = () => {
