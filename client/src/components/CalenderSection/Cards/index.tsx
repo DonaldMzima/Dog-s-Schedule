@@ -57,11 +57,10 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
         <Box
           borderTopRadius="md"
           borderColor="black.900"
-          bg="#D5FF95"
           h={140}
           maxW={{ base: 680, sm: '200%', md: 850 }}
           w={{ base: 250, sm: '200%', md: 650 }}
-          boxShadow="0 0 6px 6px grey"
+          boxShadow="0 0 0px 2px grey"
         >
           <Flex alignItems="center">
             <Avatar
@@ -115,7 +114,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
               {/* Add the User icon */}
               <Text>Person Responsible: {person}</Text>
             </Flex>
-            <Flex alignItems="center">
+            <Flex alignItems="center" ml={400} mt={{ base: 0, md: -8 }}>
               <FaDog style={{ marginRight: '5px' }} /> {/* Add the Dog icon */}
               <Text>Dog's Name: {dog}</Text>
             </Flex>
