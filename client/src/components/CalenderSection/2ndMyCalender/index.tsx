@@ -86,7 +86,7 @@ const MyCalender = () => {
 
         <Center>
           <Box>
-            <SimpleGrid columns={{ base: 1, sm: 2, md: 4 }} spacing={8}>
+            <SimpleGrid columns={{ base: 1, sm: 2, md: 1 }} spacing={8}>
               {filteredSchedules.length > 0 ? (
                 filteredSchedules.map((schedule: Schedule) => (
                   <WalkScheduleCard
