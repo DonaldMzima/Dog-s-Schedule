@@ -3,6 +3,7 @@ export type attributesType = {
   person: string
   dog: string
   date: string
+  isCompleted?: boolean | any
   createdAt?: Date
   publishedAt?: Date
   updatedAt?: Date
@@ -24,6 +25,7 @@ export type UserDataTypes = {
   person: string
   dog: string
   date: string
+  isCompleted?: boolean
 }
 
 export type MyIdType = {
