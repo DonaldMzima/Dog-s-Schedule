@@ -5,6 +5,7 @@ import { toast } from 'react-toastify'
 import gql from 'graphql-tag'
 // Define types for your data
 export interface Schedule {
+  isCompleted?: boolean | string
   id: string
   person: string
   dog: string
@@ -18,6 +19,7 @@ interface UserDataTypes {
   person: string
   dog: string
   date: string
+  isCompleted?: boolean
 }
 
 interface DeleteResult {
@@ -31,6 +33,8 @@ export const GET_WALK_SCHEDULES = gql`
       dog
       date
       id
+      isCompleted
+      __typename
     }
   }
 `
@@ -59,15 +63,22 @@ const EDIT_SCHEDULE = gql`
     $person: String!
     $dog: String!
     $date: date!
+    $isCompleted: Boolean!
   ) {
     update_schedules_by_pk(
       pk_columns: { id: $id }
-      _set: { person: $person, dog: $dog, date: $date }
+      _set: {
+        person: $person
+        dog: $dog
+        date: $date
+        isCompleted: $isCompleted
+      }
     ) {
       id
       person
       dog
       date
+      isCompleted
     }
   }
 `
@@ -131,6 +142,7 @@ const EditSchedules = async (
         person: userData.person,
         dog: userData.dog,
         date: userData.date,
+        isCompleted: userData.isCompleted,
       },
     })
 
