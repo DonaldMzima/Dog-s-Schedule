@@ -21,9 +21,6 @@ import { useRecoilState } from 'recoil'
 import UpdateButton, { UpdateModal } from '@/components/Modals/UpdateButton'
 
 type WalkScheduleCardProps = {
-  /**
-   *  walkSchedules is a collection of a schedule
-   */
   walkSchedules: Schedule
 }
 
@@ -32,12 +29,12 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
     scheduleData,
   )
   const [, setOpen] = useRecoilState(updateScheduleModal)
+  const [isCompleted, setIsCompleted] = useState(walkSchedules.isCompleted)
 
   const [_, setIsOpen] = useRecoilState(deleteScheduleModal)
 
   if (!walkSchedules) {
-    // Handle the case where walkSchedules or attributes are undefined
-    return null // or you can render an error message
+    return null
   }
 
   const { date, dog, id, person } = walkSchedules
@@ -49,6 +46,12 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
 
   const openUdateModal = () => {
     setOpen(true)
+  }
+
+  const toggleCompletion = () => {
+    // You can use an API call here to update the completion status in the database.
+    // For this example, we will just toggle the state locally.
+    setIsCompleted(!isCompleted)
   }
 
   return (
@@ -63,44 +66,42 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
           boxShadow="0 0 0px 2px grey"
         >
           <Flex alignItems="center">
-            <Avatar
-              size="md"
-              src="https://images.squarespace-cdn.com/content/v1/521e1d22e4b007ddd23fa56e/1378084877559-GB036YBRTCMVO13OWJH4/dog-walk.jpg?format=1000w"
-              ml={2} // Add margin to move the avatar to the left
-            />
+            <Button
+              onClick={() => setIsCompleted(!isCompleted)}
+              bg={isCompleted ? 'green' : 'grey'}
+              color="white"
+              size="xs"
+            >
+              {isCompleted ? 'Mark Incomplete' : 'Mark Completed'}
+            </Button>
             <Text ml={2} fontSize="xl" fontWeight="bold">
               Schedule
             </Text>
           </Flex>
           <Box textAlign={'right'}>
-            <DeleteModal schedulePayload={schedulePayload} />
-            <Button
-              onClick={openDelModal}
-              bg="grey"
-              color="white"
-              size="xs"
-              ml={15}
-            >
-              Delete
-            </Button>
-
-            <UpdateButton
-              attribute={{
-                person: person,
-                dog: dog,
-                date: date,
-              }}
-              id={id}
-            />
-            <Button
-              onClick={openUdateModal}
-              bg="grey"
-              color="white"
-              size="xs"
-              // Add margin to move the "Edit" button away from "Delete"
-            >
-              Edit
-            </Button>
+            <Flex>
+              <DeleteModal schedulePayload={schedulePayload} ml={15} />
+              <Button onClick={openDelModal} bg="grey" color="white" size="xs">
+                Delete
+              </Button>
+              <UpdateButton
+                attribute={{
+                  person: person,
+                  dog: dog,
+                  date: date,
+                  isCompleted: isCompleted,
+                }}
+                id={id}
+              />
+              <Button
+                onClick={openUdateModal}
+                bg="grey"
+                color="white"
+                size="xs"
+              >
+                Edit
+              </Button>
+            </Flex>
           </Box>
 
           <Stack
