@@ -15,6 +15,7 @@ import {
   useDisclosure,
   Input,
   Box,
+  Checkbox,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
@@ -45,6 +46,7 @@ export const UpdateModal = (props: EditButtonType) => {
       person: props.attribute.person,
       dog: props.attribute.dog,
       date: props.attribute.date,
+      isCompleted: props.attribute.isCompleted,
     },
   })
 
@@ -97,6 +99,13 @@ export const UpdateModal = (props: EditButtonType) => {
                     required
                   />
                   {errors.date && <p>This field is required</p>}
+                </FormLabel>
+                <FormLabel>
+                  <p>Is Completed:</p>
+                  <Checkbox
+                    defaultChecked={props.attribute.isCompleted}
+                    {...register('isCompleted')}
+                  />
                 </FormLabel>
                 <Center>
                   <Button
