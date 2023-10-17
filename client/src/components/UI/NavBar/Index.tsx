@@ -61,7 +61,7 @@ const NavBar = () => {
                         bg="#1f1f1a"
                         _hover={{ border: '2px solid white' }}
                       >
-                        Calender
+                        Schedules
                       </Button>
                     </>
                   )}
