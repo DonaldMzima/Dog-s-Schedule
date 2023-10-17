@@ -101,7 +101,11 @@ export const UpdateModal = (props: EditButtonType) => {
                   {errors.date && <p>This field is required</p>}
                 </FormLabel>
                 <FormLabel>
-                  <p>Is Completed:</p>
+                  <p>
+                    {register('isCompleted')
+                      ? 'Is Complete'
+                      : 'Is Not Complete'}
+                  </p>
                   <Checkbox
                     defaultChecked={props.attribute.isCompleted}
                     {...register('isCompleted')}

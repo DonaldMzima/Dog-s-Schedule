@@ -4,12 +4,13 @@ import {
   Flex,
   Center,
   Box,
-  Avatar,
   Stack,
   Button,
   Text,
+  Checkbox,
+  Icon,
 } from '@chakra-ui/react'
-import { FaUser, FaDog, FaCalendar } from 'react-icons/fa'
+import { FaUser, FaDog, FaCalendar, FaEdit, FaTrash } from 'react-icons/fa'
 import DeleteModal from '@/components/Modals/DeleteModel'
 import { Schedule } from 'utilis/https'
 import {
@@ -59,69 +60,75 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
       <Center>
         <Box
           borderTopRadius="md"
+          borderBottomRadius="md" // Add a bottom border radius
+          bg="black"
+          color="white"
           borderColor="black.900"
           h={140}
           maxW={{ base: 680, sm: '200%', md: 850 }}
           w={{ base: 250, sm: '200%', md: 650 }}
-          boxShadow="0 0 0px 2px grey"
+          boxShadow="0 0 2px 2px grey"
+          p={4}
+          position="relative"
         >
-          <Flex alignItems="center">
-            <Button
-              onClick={() => setIsCompleted(!isCompleted)}
-              bg={isCompleted ? 'green' : 'grey'}
-              color="white"
-              size="xs"
-            >
-              {isCompleted ? 'Mark Incomplete' : 'Mark Completed'}
-            </Button>
+          <Flex alignItems="center" ml={15}>
+            <Checkbox
+              isChecked={isCompleted}
+              onChange={() => setIsCompleted(!isCompleted)}
+              size="lg"
+              colorScheme="green"
+            />
             <Text ml={2} fontSize="xl" fontWeight="bold">
               Schedule
             </Text>
           </Flex>
-          <Box textAlign={'right'}>
-            <Flex>
-              <DeleteModal schedulePayload={schedulePayload} ml={15} />
-              <Button onClick={openDelModal} bg="grey" color="white" size="xs">
-                Delete
-              </Button>
-              <UpdateButton
-                attribute={{
-                  person: person,
-                  dog: dog,
-                  date: date,
-                  isCompleted: isCompleted,
-                }}
-                id={id}
-              />
-              <Button
-                onClick={openUdateModal}
-                bg="grey"
-                color="white"
-                size="xs"
-              >
-                Edit
-              </Button>
-            </Flex>
-          </Box>
+          <Flex position="absolute" top={2} right={2} mr={15}>
+            <DeleteModal schedulePayload={schedulePayload} />
+
+            <UpdateButton
+              attribute={{
+                person: person,
+                dog: dog,
+                date: date,
+                isCompleted: isCompleted,
+              }}
+              id={id}
+            />
+            <Button
+              onClick={openUdateModal}
+              bg="grey"
+              color="white"
+              size="xs"
+              ml={2}
+            >
+              <Icon as={FaEdit} />
+            </Button>
+            <Button
+              onClick={openDelModal}
+              bg="grey"
+              color="white"
+              size="xs"
+              ml={2}
+            >
+              <Icon as={FaTrash} />
+            </Button>
+          </Flex>
 
           <Stack
-            // textAlign={'center'}
-            color="#1f1f1a"
+            color="#ffffff"
             spacing={{ base: 2, md: 2 }}
-            py={{ base: 5, md: 4 }}
+            p={{ base: 3, md: 4 }}
           >
             <Flex alignItems="center">
               <FaUser style={{ marginRight: '5px' }} />{' '}
-              {/* Add the User icon */}
               <Text>Person Responsible: {person}</Text>
             </Flex>
             <Flex alignItems="center" ml={400} mt={{ base: 0, md: -8 }}>
-              <FaDog style={{ marginRight: '5px' }} /> {/* Add the Dog icon */}
+              <FaDog style={{ marginRight: '5px' }} />
               <Text>Dog's Name: {dog}</Text>
             </Flex>
             <Flex alignItems="center">
-              <FaCalendar style={{ marginRight: '5px' }} />{' '}
-              {/* Add the Calendar icon */}
+              <FaCalendar style={{ marginRight: '5px' }} />
               <Text>Date: {date}</Text>
             </Flex>
           </Stack>
