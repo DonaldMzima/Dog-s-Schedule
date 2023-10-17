@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-/* eslint-disable @next/next/no-page-custom-font */
 import React from 'react'
 import {
   Heading,
@@ -9,15 +8,17 @@ import {
   Box,
   Center,
   Link,
+  useMediaQuery,
 } from '@chakra-ui/react'
-import { RiHome4Fill } from 'react-icons/ri'
-import { BsCalendarPlus } from 'react-icons/bs'
-import { MdSettings } from 'react-icons/md'
+import Nav from '@/components/UI/NavBar/Index'
 import SvgComponent from '@/components/Svg/HomeSvg'
+import NavigationBar from '../../2ndNavBar/Index'
 
 const HomePage = () => {
+  const [isMobile] = useMediaQuery('(max-width: 768px)')
   return (
     <>
+      {!isMobile && <Nav />}
       <Container
         maxW={'100%'}
         minHeight="100vh"
@@ -27,12 +28,12 @@ const HomePage = () => {
           as={Box}
           textAlign={'center'}
           spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 36 }}
+          py={{ base: 10, md: 20 }} // Adjusted padding for better mobile experience
           color={'#1f2b3a'}
         >
           <Heading
             fontWeight={600}
-            fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
+            fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }} // Adjusted font sizes for responsiveness
             lineHeight={'110%'}
           >
             Dog's Walking <br />
@@ -40,7 +41,7 @@ const HomePage = () => {
               Schedule
             </Text>
           </Heading>
-          <Text fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}>Ruh roh</Text>
+          <Text fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}>Ruh roh</Text>
           <Text>
             Regular exercise with your pet is <br />
             good for both your health and your
@@ -54,31 +55,7 @@ const HomePage = () => {
             <SvgComponent />
           </Center>
         </Stack>
-        <Center>
-          <Stack
-            direction={'row'}
-            color="black"
-            spacing={{ base: 20, sm: 155 }}
-            ml={{ base: 25, sm: 50 }}
-            mt={{ base: -150, sm: -120 }}
-          >
-            <Link href="/">
-              <Box mb={4}>
-                <RiHome4Fill size={'3em'} />
-              </Box>
-            </Link>
-            <Link href="/calender">
-              <Box mb={4}>
-                <BsCalendarPlus size={'3em'} />
-              </Box>
-            </Link>
-            <Link href="/settings">
-              <Box mb={4}>
-                <MdSettings size={'3em'} />
-              </Box>
-            </Link>
-          </Stack>
-        </Center>
+        {isMobile && <NavigationBar />}
       </Container>
     </>
   )

@@ -7,7 +7,7 @@ import { MdSettings } from 'react-icons/md'
 const NavigationBar = () => {
   return (
     <>
-      <Flex h={9} bg="yellow" height={90} pos="fixed">
+      <Flex bg="yellow" height={100}>
         <Center>
           <Stack
             direction={'row'}
@@ -21,7 +21,7 @@ const NavigationBar = () => {
                 <RiHome4Fill size={'3em'} />
               </Box>
             </Link>
-            <Link href="/calender">
+            <Link href="/schedules">
               <Box mb={4}>
                 <BsCalendarPlus size={'3em'} />
               </Box>

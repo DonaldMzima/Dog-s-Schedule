@@ -59,15 +59,14 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
     <Flex>
       <Center>
         <Box
-          borderTopRadius="md"
-          borderBottomRadius="md" // Add a bottom border radius
-          bg="black"
-          color="white"
+          borderRadius="20px"
+          bg="white"
+          color="black"
           borderColor="black.900"
           h={140}
           maxW={{ base: 680, sm: '200%', md: 850 }}
           w={{ base: 250, sm: '200%', md: 650 }}
-          boxShadow="0 0 2px 2px grey"
+          boxShadow="0 0 0px 2px grey.100"
           p={4}
           position="relative"
         >
@@ -77,6 +76,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
               onChange={() => setIsCompleted(!isCompleted)}
               size="lg"
               colorScheme="green"
+              isDisabled={true} // Make the checkbox not clickable
             />
             <Text ml={2} fontSize="xl" fontWeight="bold">
               Schedule
@@ -115,7 +115,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
           </Flex>
 
           <Stack
-            color="#ffffff"
+            color="#000000"
             spacing={{ base: 2, md: 2 }}
             p={{ base: 3, md: 4 }}
           >

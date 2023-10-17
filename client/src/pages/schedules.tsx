@@ -1,10 +1,10 @@
-import MyCalender from '@/components/CalenderSection/2ndMyCalender'
+import Schedules from '@/components/CalenderSection/Scheldules'
 import { Box } from '@chakra-ui/react'
 
 const Calender = () => {
   return (
     <Box>
-      <MyCalender />
+      <Schedules />
     </Box>
   )
 }

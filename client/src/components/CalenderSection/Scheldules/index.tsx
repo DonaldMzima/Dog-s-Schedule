@@ -8,6 +8,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  InputRightElement,
 } from '@chakra-ui/react'
 import { GrSearchAdvanced } from 'react-icons/gr'
 import Nav from '@/components/UI/NavBar/Index'
@@ -19,8 +20,9 @@ import { useQuery } from '@apollo/react-hooks'
 import { GET_WALK_SCHEDULES, Schedule } from 'utilis/https'
 import CustomSpinner from '../Spinner'
 import WalkScheduleCard from '../Cards'
+import { FaSearch } from 'react-icons/fa'
 
-const MyCalender = () => {
+const Schedules = () => {
   const [query, updateQuery] = useState('')
   const [isMobile] = useMediaQuery('(max-width: 768px)')
   const { data, loading } = useQuery<{ schedules: Schedule[] }>(
@@ -66,21 +68,21 @@ const MyCalender = () => {
           width="100%"
           height="115px"
           mt={{ base: -70, sm: -70, md: -80, lg: -100 }}
-          ml={{ base: 65, sm: 250, md: -80, lg: 622 }}
+          ml={{ base: 65, sm: 250, md: -80, lg: 520 }}
         >
           <InputGroup>
-            <InputLeftElement />
-            <GrSearchAdvanced size={'1em'} />
             <Input
               type="text"
               placeholder="search"
               id="query"
               value={query}
               onChange={onSearch}
-              htmlSize={7}
-              width="auto"
-              boxShadow="0 0  6px grey"
+              width={{ base: 170, sm: 170, md: 300 }}
+              boxShadow="0 0 6px grey"
             />
+            <InputLeftElement pointerEvents="none">
+              <FaSearch />
+            </InputLeftElement>
           </InputGroup>
         </Box>
 
@@ -106,4 +108,4 @@ const MyCalender = () => {
   )
 }
 
-export default MyCalender
+export default Schedules
