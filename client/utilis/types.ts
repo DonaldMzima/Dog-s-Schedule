@@ -24,7 +24,7 @@ export type SchedulesTypes = {
 export type UserDataTypes = {
   person: string
   dog: string
-  date: string
+  date: any
   isCompleted?: boolean
 }
 
