@@ -49,12 +49,6 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
     setOpen(true)
   }
 
-  const toggleCompletion = () => {
-    // You can use an API call here to update the completion status in the database.
-    // For this example, we will just toggle the state locally.
-    setIsCompleted(!isCompleted)
-  }
-
   return (
     <Flex>
       <Center>
