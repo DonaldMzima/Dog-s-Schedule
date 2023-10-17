@@ -19,41 +19,52 @@ import {
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
-
+import { yupResolver } from '@hookform/resolvers/yup'
 import { useRecoilState } from 'recoil'
 import { schedulesState } from '@/store/atoms'
 import { CreateWalkSchedules } from 'utilis/https'
 import { FormType, UserDataTypes } from 'utilis/types'
 
-// const schema = Yup.object().shape({
-//   person: Yup.string().required('Person Walking the dog is required'),
-//   dog: Yup.string().required("Dog's Name is required"),
-//   date: Yup.string().required('Date is required'),
-// })
-
 export const AddModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [dogSchedules, setDogSchedules] = useRecoilState<any>(schedulesState)
 
-  const form = useForm<FormType>()
-  const { register, control, handleSubmit, formState } = form
-  const { errors } = formState
+  const schema = Yup.object().shape({
+    person: Yup.string().required('Person Walking the dog is required'),
+    dog: Yup.string().required("Dog's Name is required"),
+    date: Yup.date().required('Date is required'),
+  })
+
+  const {
+    handleSubmit,
+    register,
+    control,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  })
 
   const onSubmit = (data: UserDataTypes) => {
     onClose()
     CreateWalkSchedules(data)
 
-    // initial state and update it with the new data
     setDogSchedules((previousState: UserDataTypes[]) => [
       ...previousState,
       data,
     ])
-    console.log('this one here', dogSchedules)
   }
+
   return (
     <>
       <Container rounded="md">
-        <Circle size="65px" bg="grey" color="white" onClick={onOpen}>
+        <Circle
+          size="65px"
+          bg="grey"
+          color="white"
+          onClick={onOpen}
+          left={0}
+          right={0}
+        >
           <AddIcon />
         </Circle>
 
@@ -70,36 +81,38 @@ export const AddModal = () => {
                 <FormLabel>
                   <p>Person Walking the dog:</p>
                   <Input
+                    {...register('person')}
                     type="text"
                     placeholder="Person Walking the dog..."
-                    {...register('person', {
-                      required: 'required ',
-                    })}
                   />
-                  <p>{errors.person?.message}</p>
+                  {errors.person && (
+                    <span style={{ color: 'red' }}>
+                      {errors.person?.message}
+                    </span>
+                  )}
                 </FormLabel>
                 <FormLabel>
                   <p>Dog's Name:</p>
                   <Input
+                    {...register('dog')}
                     type="text"
                     placeholder="Dog's Name..."
-                    {...register('dog', {
-                      required: 'Dog Name is required ',
-                    })}
                   />
-                  <p>{errors.dog?.message}</p>
+                  {errors.dog && (
+                    <span style={{ color: 'red' }}>{errors.dog?.message}</span>
+                  )}
                 </FormLabel>
                 <FormLabel>
                   <p>Date:</p>
                   <Input
+                    {...register('date')}
                     placeholder="Select Date and Time"
                     size="md"
                     type="datetime-local"
-                    {...register('date', {
-                      required: 'date is required ',
-                    })}
                   />
-                  <p>{errors.date?.message}</p>
+                  {errors.date && (
+                    <span style={{ color: 'red' }}>{errors.date.message}</span>
+                  )}
                 </FormLabel>
                 <Center>
                   <Button
