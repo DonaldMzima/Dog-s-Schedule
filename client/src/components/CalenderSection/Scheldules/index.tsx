@@ -8,7 +8,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  InputRightElement,
+  Flex,
 } from '@chakra-ui/react'
 import { GrSearchAdvanced } from 'react-icons/gr'
 import Nav from '@/components/UI/NavBar/Index'
@@ -28,7 +28,7 @@ const Schedules = () => {
   const { data, loading } = useQuery<{ schedules: Schedule[] }>(
     GET_WALK_SCHEDULES,
     {
-      fetchPolicy: 'network-only', // Change fetchPolicy to 'network-only'
+      fetchPolicy: 'network-only',
       pollInterval: 500,
     },
   )
@@ -38,7 +38,7 @@ const Schedules = () => {
   }
 
   const fuse = new Fuse(data?.schedules || [], {
-    keys: ['person', 'dog', 'date'], // Define which fields to search
+    keys: ['person', 'dog', 'date'],
     includeScore: true,
   })
 
@@ -63,10 +63,13 @@ const Schedules = () => {
       >
         <FloatingButtons />
 
-        <Box
+        <Flex
           pos="fixed"
+          justifyContent="center"
           width="100%"
           height="115px"
+          left={0}
+          right={0}
           mt={{ base: -70, sm: -70, md: -80, lg: -100 }}
           ml={{ base: 65, sm: 250, md: -80, lg: 520 }}
         >
@@ -84,7 +87,7 @@ const Schedules = () => {
               <FaSearch />
             </InputLeftElement>
           </InputGroup>
-        </Box>
+        </Flex>
 
         <Center>
           <Box>
