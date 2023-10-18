@@ -56,7 +56,7 @@ export const AddModal = () => {
 
   return (
     <>
-      <Container rounded="md">
+      <Container>
         <Circle
           size="65px"
           bg="grey"
@@ -68,15 +68,25 @@ export const AddModal = () => {
           <AddIcon />
         </Circle>
 
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal isOpen={isOpen} onClose={onClose} size="md">
           <ModalOverlay />
-          <ModalContent color="grey">
-            <ModalHeader>
-              <AddIcon />
+          <ModalContent
+            color="black"
+            bg="white"
+            borderRadius="10px"
+            boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
+          >
+            <ModalHeader
+              bg="grey"
+              color="white"
+              p={4}
+              borderRadius="10px 10px 0 0"
+              fontWeight="bold"
+            >
               Add Schedule
             </ModalHeader>
             <ModalCloseButton />
-            <ModalBody>
+            <ModalBody p={4}>
               <form onSubmit={handleSubmit(onSubmit)}>
                 <FormLabel>
                   <p>Person Walking the dog:</p>
@@ -116,9 +126,10 @@ export const AddModal = () => {
                 </FormLabel>
                 <Center>
                   <Button
-                    colorScheme="gray"
-                    color="blackAlpha.900"
-                    mr={2}
+                    colorScheme="grey"
+                    bg="grey"
+                    color="white"
+                    mt={4}
                     type="submit"
                   >
                     Add
@@ -126,8 +137,7 @@ export const AddModal = () => {
                 </Center>
               </form>
             </ModalBody>
-
-            <ModalFooter></ModalFooter>
+            <ModalFooter />
           </ModalContent>
         </Modal>
       </Container>

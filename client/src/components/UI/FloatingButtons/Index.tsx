@@ -1,5 +1,5 @@
 import React from 'react'
-import AddModal from '@/components/Modals/AddButton/Index'
+import AddModal from '@/components/Modals/AddModal/Index'
 import { Box, Tooltip, Center, useMediaQuery } from '@chakra-ui/react'
 
 const FloatingButtons = () => {
