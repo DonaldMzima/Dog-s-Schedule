@@ -67,7 +67,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
         >
           <Flex alignItems="center" ml={15}>
             <Checkbox
-              isChecked={isCompleted}
+              // isChecked={isCompleted}
               onChange={() => setIsCompleted(!isCompleted)}
               size="lg"
               colorScheme="green"
