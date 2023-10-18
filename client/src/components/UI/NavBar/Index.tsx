@@ -10,12 +10,13 @@ const NavBar = () => {
       h={90}
       alignItems="center"
       justifyContent="center" // Center-align buttons
-      bg={'transparent'}
+      bg={'white'}
       pos="fixed"
       top={0}
       left={0}
       right={0}
       px={4}
+      boxShadow="md"
     >
       <Stack direction="row" spacing={250}>
         <Link href="/">

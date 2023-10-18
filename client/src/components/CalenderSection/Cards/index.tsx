@@ -60,7 +60,8 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
           h={140}
           maxW={{ base: 680, sm: '200%', md: 850 }}
           w={{ base: 250, sm: '200%', md: 650 }}
-          boxShadow="0 0 0px 2px grey.100"
+          // boxShadow="0 0 2px 2px grey.100"
+          boxShadow="lg"
           p={4}
           position="relative"
         >
@@ -72,7 +73,12 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
               colorScheme="green"
               isDisabled={true} // Make the checkbox not clickable
             />
-            <Text ml={2} fontSize="xl" fontWeight="bold">
+            <Text
+              ml={2}
+              fontSize="xl"
+              fontWeight="bold"
+              style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}
+            >
               Schedule
             </Text>
           </Flex>
