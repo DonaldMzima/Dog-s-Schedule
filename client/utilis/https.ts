@@ -9,7 +9,7 @@ export interface Schedule {
   id: string
   person: string
   dog: string
-  date: string
+  date: string | any
   createdAt?: string
   publishedAt?: string
   updatedAt?: string
@@ -18,7 +18,7 @@ export interface Schedule {
 interface UserDataTypes {
   person: string
   dog: string
-  date: string
+  date: string | Date
   isCompleted?: boolean
 }
 
