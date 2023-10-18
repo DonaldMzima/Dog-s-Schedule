@@ -60,7 +60,11 @@ export const UpdateModal = (props: EditButtonType) => {
   return (
     <>
       <Box mt={{ base: '-26px', sm: '-26px', md: '-26px' }} marginLeft="208px">
-        <Modal isOpen={isOpen} onClose={onClose}>
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+          size={{ base: 'xs', md: 'sm' }}
+        >
           <ModalOverlay />
           <ModalContent
             color="black"

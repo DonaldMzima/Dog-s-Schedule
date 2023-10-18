@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-
 import * as Yup from 'yup'
 import {
   Center,
@@ -58,17 +57,23 @@ export const AddModal = () => {
     <>
       <Container>
         <Circle
-          size="65px"
+          size={{ base: '50px', md: '65px' }} // Adjust the size as needed
           bg="grey"
           color="white"
           onClick={onOpen}
-          left={0}
-          right={0}
+          position={{ base: 'fixed', md: 'static' }} // Adjust the position as needed
+          bottom={0} // Adjust the position as needed
+          right={{ base: 8, md: 'auto' }} // Adjust the position as needed
+          top={{ base: 8, md: 'auto' }}
         >
           <AddIcon />
         </Circle>
 
-        <Modal isOpen={isOpen} onClose={onClose} size="md">
+        <Modal
+          isOpen={isOpen}
+          onClose={onClose}
+          size={{ base: 'xs', md: 'sm' }}
+        >
           <ModalOverlay />
           <ModalContent
             color="black"

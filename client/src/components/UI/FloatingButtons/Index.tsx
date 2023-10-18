@@ -7,25 +7,27 @@ const FloatingButtons = () => {
   return (
     <div>
       {isMobile ? (
-        <>
-          <Center width="180%" height="100px">
-            <Tooltip hasArrow label="Add Schedules" bg="black">
-              <Box pos="fixed">
-                <AddModal />
-              </Box>
-            </Tooltip>
-          </Center>
-        </>
+        <Center
+          width={{ base: '100%', md: '180%' }}
+          height={{ base: '100px', md: '250px' }}
+        >
+          <Tooltip hasArrow label="Add Schedules" bg="black">
+            <Box pos="fixed">
+              <AddModal />
+            </Box>
+          </Tooltip>
+        </Center>
       ) : (
-        <>
-          <Center width="2520px" height="250px">
-            <Tooltip hasArrow label="Add Schedules" bg="black">
-              <Box pos="fixed">
-                <AddModal />
-              </Box>
-            </Tooltip>
-          </Center>
-        </>
+        <Center
+          width={{ base: '100%', md: '2520px' }}
+          height={{ base: '100px', md: '250px' }}
+        >
+          <Tooltip hasArrow label="Add Schedules" bg="black">
+            <Box pos="fixed">
+              <AddModal />
+            </Box>
+          </Tooltip>
+        </Center>
       )}
     </div>
   )

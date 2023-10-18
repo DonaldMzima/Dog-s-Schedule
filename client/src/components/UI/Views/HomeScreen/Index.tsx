@@ -28,12 +28,13 @@ const HomePage = () => {
           as={Box}
           textAlign={'center'}
           spacing={{ base: 8, md: 14 }}
-          py={{ base: 10, md: 20 }} // Adjusted padding for better mobile experience
+          py={{ base: 16, md: 24 }} // Adjusted padding for better mobile experience
+          marginTop={{ base: 0, md: 8 }} // Adjusted padding for better mobile experience
           color={'#1f2b3a'}
         >
           <Heading
             fontWeight={600}
-            fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }} // Adjusted font sizes for responsiveness
+            fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
             lineHeight={'110%'}
           >
             Dog's Walking <br />
@@ -42,15 +43,23 @@ const HomePage = () => {
             </Text>
           </Heading>
           <Text fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}>Ruh roh</Text>
-          <Text>
-            Regular exercise with your pet is <br />
-            good for both your health and your
-            <br />
-            dog's health and can be great fun.
-            <br /> There's nothing like an exercise partner who's waiting by the
-            door with
-            <br /> a wagging tail to keep you motivated!
-          </Text>
+          {isMobile ? (
+            <Text>
+              Regular exercise with your pet is <br />
+              good for both your health and your <br />
+              dog's health and can be great fun. <br />
+              There's nothing like an exercise partner who's waiting by the door
+              with <br />a wagging tail to keep you motivated!
+            </Text>
+          ) : (
+            <Text>
+              Regular exercise with your pet is good for both your health and
+              your dog's health and can be great fun. There's nothing like an
+              <br />
+              exercise partner who's waiting by the door with a wagging tail to
+              keep you motivated!
+            </Text>
+          )}
           <Center textAlign={'center'}>
             <SvgComponent />
           </Center>
