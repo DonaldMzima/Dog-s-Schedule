@@ -19,7 +19,7 @@ import {
   updateScheduleModal,
 } from '@/store/atoms'
 import { useRecoilState } from 'recoil'
-import UpdateButton, { UpdateModal } from '@/components/Modals/UpdateButton'
+import UpdateButton, { UpdateModal } from '@/components/Modals/UpdateModal'
 
 type WalkScheduleCardProps = {
   walkSchedules: Schedule
