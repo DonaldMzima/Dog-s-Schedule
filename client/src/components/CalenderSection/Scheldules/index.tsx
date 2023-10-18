@@ -78,10 +78,10 @@ const Schedules = () => {
               type="text"
               placeholder="search"
               id="query"
+              boxShadow="lg"
               value={query}
               onChange={onSearch}
               width={{ base: 170, sm: 170, md: 300 }}
-              boxShadow="0 0 6px grey"
             />
             <InputLeftElement pointerEvents="none">
               <FaSearch />
