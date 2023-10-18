@@ -60,7 +60,6 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
           h={140}
           maxW={{ base: 680, sm: '200%', md: 850 }}
           w={{ base: 250, sm: '200%', md: 650 }}
-          // boxShadow="0 0 2px 2px grey.100"
           boxShadow="lg"
           p={4}
           position="relative"
@@ -75,7 +74,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             />
             <Text
               ml={2}
-              fontSize="xl"
+              fontSize={{ base: 'sm', md: 'xl' }} // Adjusted font size for mobile view
               fontWeight="bold"
               style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}
             >
@@ -113,23 +112,35 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
               <Icon as={FaTrash} />
             </Button>
           </Flex>
-
           <Stack
             color="#000000"
             spacing={{ base: 2, md: 2 }}
             p={{ base: 3, md: 4 }}
           >
-            <Flex alignItems="center">
-              <FaUser style={{ marginRight: '5px' }} />{' '}
-              <Text>Person Responsible: {person}</Text>
+            <Flex
+              alignItems="center"
+              justifyContent={{ base: 'center', md: 'flex-start' }}
+            >
+              <FaUser style={{ marginRight: '5px' }} />
+              <Text fontSize={{ base: 'xs', md: 'md' }}>
+                Person Responsible: {person}
+              </Text>
             </Flex>
-            <Flex alignItems="center" ml={400} mt={{ base: 0, md: -8 }}>
+            <Flex
+              alignItems="center"
+              justifyContent={{ base: 'center', md: 'flex-start' }}
+              ml={{ base: 0, md: 400 }}
+              mt={{ base: 0, md: -8 }}
+            >
               <FaDog style={{ marginRight: '5px' }} />
-              <Text>Dog's Name: {dog}</Text>
+              <Text fontSize={{ base: 'xs', md: 'md' }}>Dog's Name: {dog}</Text>
             </Flex>
-            <Flex alignItems="center">
+            <Flex
+              alignItems="center"
+              justifyContent={{ base: 'center', md: 'flex-start' }}
+            >
               <FaCalendar style={{ marginRight: '5px' }} />
-              <Text>Date: {date}</Text>
+              <Text fontSize={{ base: 'xs', md: 'md' }}>Date: {date}</Text>
             </Flex>
           </Stack>
         </Box>
