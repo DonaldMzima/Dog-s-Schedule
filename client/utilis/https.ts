@@ -5,7 +5,7 @@ import { toast } from 'react-toastify'
 import gql from 'graphql-tag'
 // Define types for your data
 export interface Schedule {
-  isCompleted?: boolean | string | undefined
+  isCompleted?: boolean
   id: string
   person: string
   dog: string
