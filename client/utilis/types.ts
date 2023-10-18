@@ -2,7 +2,7 @@
 export type attributesType = {
   person: string
   dog: string
-  date: string
+  date: Date | string
   isCompleted?: boolean | any
   createdAt?: Date
   publishedAt?: Date
@@ -36,4 +36,9 @@ export type CustomSpinnerType = {
   text: string
 }
 
-export type FormType = { person: string; dog: string; date: string }
+export type FormType = {
+  person: string
+  dog: string
+  date: string | Date
+  isCompleted?: boolean | any
+}

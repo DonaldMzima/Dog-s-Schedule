@@ -62,9 +62,19 @@ export const UpdateModal = (props: EditButtonType) => {
       <Box mt={{ base: '-26px', sm: '-26px', md: '-26px' }} marginLeft="208px">
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
-          <ModalContent>
-            <ModalHeader>
-              <AddIcon />
+          <ModalContent
+            color="black"
+            bg="white"
+            borderRadius="10px"
+            boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
+          >
+            <ModalHeader
+              bg="grey"
+              color="white"
+              p={4}
+              borderRadius="10px 10px 0 0"
+              fontWeight="bold"
+            >
               Edit Schedule
               {udatescheduleDataUse?.person}
             </ModalHeader>
@@ -113,9 +123,10 @@ export const UpdateModal = (props: EditButtonType) => {
                 </FormLabel>
                 <Center>
                   <Button
-                    colorScheme="gray"
-                    color="blackAlpha.900"
-                    mr={2}
+                    colorScheme="grey"
+                    bg="grey"
+                    color="white"
+                    mt={4}
                     type="submit"
                   >
                     Save Changes

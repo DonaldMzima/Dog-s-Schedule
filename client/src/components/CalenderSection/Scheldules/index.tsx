@@ -78,10 +78,11 @@ const Schedules = () => {
               type="text"
               placeholder="search"
               id="query"
-              boxShadow="lg"
+              boxShadow="md"
               value={query}
               onChange={onSearch}
               width={{ base: 170, sm: 170, md: 300 }}
+              border="2px solid black" // Add this line to set the black border
             />
             <InputLeftElement pointerEvents="none">
               <FaSearch />
