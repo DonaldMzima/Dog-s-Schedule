@@ -58,14 +58,15 @@ export const AddModal = () => {
     <>
       <Container>
         <Circle
-          size={{ base: '50px', md: '65px' }} // Adjust the size as needed
+          size={{ base: '50px', md: '65px' }}
           bg="#1f1f1a"
           color="white"
           onClick={onOpen}
-          position={{ base: 'fixed', md: 'static' }} // Adjust the position as needed
-          bottom={0} // Adjust the position as needed
-          right={{ base: 8, md: 'auto' }} // Adjust the position as needed
+          position={{ base: 'fixed', md: 'static' }}
+          bottom={0}
+          right={{ base: 8, md: 'auto' }}
           top={{ base: 8, md: 'auto' }}
+          cursor="pointer"
         >
           <AddIcon />
         </Circle>
