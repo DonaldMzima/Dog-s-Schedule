@@ -73,7 +73,7 @@ export const UpdateModal = (props: EditButtonType) => {
             boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
           >
             <ModalHeader
-              bg="grey"
+              bg="#1f1f1a"
               color="white"
               p={4}
               borderRadius="10px 10px 0 0"
@@ -117,24 +117,39 @@ export const UpdateModal = (props: EditButtonType) => {
                 <FormLabel>
                   <p>
                     {register('isCompleted')
-                      ? 'Is Complete'
-                      : 'Is Not Complete'}
+                      ? 'Complete Task'
+                      : 'Do Not Complete Task'}
                   </p>
                   <Checkbox
                     defaultChecked={props.attribute.isCompleted}
                     {...register('isCompleted')}
+                    border=" black"
                   />
                 </FormLabel>
                 <Center>
-                  <Button
-                    colorScheme="grey"
-                    bg="grey"
-                    color="white"
+                  <Box
                     mt={4}
-                    type="submit"
+                    display="flex"
+                    justifyContent="space-between"
+                    width="100%"
                   >
-                    Save Changes
-                  </Button>
+                    <Button
+                      colorScheme="grey"
+                      bg="#1f1f1a"
+                      color="white"
+                      type="submit"
+                    >
+                      Save Changes
+                    </Button>
+                    <Button
+                      type="submit"
+                      colorScheme="red"
+                      color="white"
+                      onClick={onClose}
+                    >
+                      Cancel
+                    </Button>
+                  </Box>
                 </Center>
               </form>
             </ModalBody>

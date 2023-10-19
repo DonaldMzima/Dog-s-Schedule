@@ -8,6 +8,7 @@ import {
   ModalHeader,
   ModalOverlay,
   Box,
+  Text, // Import Text component for responsive typography
 } from '@chakra-ui/react'
 import React from 'react'
 import { DeleteSchedules } from 'utilis/https'
@@ -23,64 +24,58 @@ const DeleteModal = ({ schedulePayload }: any) => {
   }
 
   return (
-    <>
-      <Box
-        mt={{ base: '-45', sm: '-45' }}
-        marginLeft={{ base: 0, sm: 0, md: '48px' }}
+    <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay bg="blackAlpha.300" />
+      <ModalContent
+        color="black"
+        bg="white"
+        borderRadius="10px"
+        boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
+        maxW={{ base: '80%', sm: '50%', md: '40%' }}
       >
-        <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
-          <ModalOverlay bg="blackAlpha.300" />
-          <ModalContent
-            color="black"
-            bg="white"
-            borderRadius="10px"
-            boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
-            maxW={{ base: '80%', sm: '50%', md: '40%' }} // Adjusted width for mobile view
+        <ModalHeader
+          bg="#1f1f1a"
+          color="white"
+          p={4}
+          borderRadius="10px 10px 0 0"
+          fontWeight="bold"
+        >
+          <Text fontSize={{ base: 'sm', md: 'md' }}>
+            Delete {scheduleDataUse?.person}
+            {scheduleDataUse?.date}
+          </Text>
+        </ModalHeader>
+        <ModalCloseButton />
+        <ModalBody pb={2} pt={2}>
+          <Text fontSize={{ base: 'md', md: 'lg' }}>Are you Sure?</Text>
+          <DelSvg />
+        </ModalBody>
+
+        <ModalFooter pb={4} pt={2}>
+          <Button
+            bg="#1f1f1a"
+            color="white"
+            mr={3}
+            onClick={() => {
+              if (scheduleDataUse) {
+                DeleteSchedules(scheduleDataUse.id as any)
+                onClose()
+              }
+            }}
           >
-            <ModalHeader
-              bg="grey"
-              color="white"
-              p={4}
-              borderRadius="10px 10px 0 0"
-              fontWeight="bold"
-            >
-              Delete {scheduleDataUse?.person}
-              {scheduleDataUse?.date}
-            </ModalHeader>
-            <ModalCloseButton />
-            <ModalBody pb={4}>
-              Are you Sure?
-              <DelSvg />
-            </ModalBody>
-
-            <ModalFooter>
-              <Button
-                bg="grey"
-                color="white"
-                mr={3}
-                onClick={() => {
-                  if (scheduleDataUse) {
-                    DeleteSchedules(scheduleDataUse.id as any)
-                    onClose()
-                  }
-                }}
-              >
-                Yes
-              </Button>
-
-              <Button
-                type="submit"
-                colorScheme="red"
-                color="white"
-                onClick={onClose}
-              >
-                NO
-              </Button>
-            </ModalFooter>
-          </ModalContent>
-        </Modal>
-      </Box>
-    </>
+            <Text fontSize={{ base: 'sm', md: 'md' }}>Yes</Text>
+          </Button>
+          <Button
+            type="submit"
+            colorScheme="red"
+            color="white"
+            onClick={onClose}
+          >
+            <Text fontSize={{ base: 'sm', md: 'md' }}>NO</Text>
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   )
 }
 

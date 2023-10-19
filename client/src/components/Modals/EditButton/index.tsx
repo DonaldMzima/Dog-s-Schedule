@@ -14,13 +14,14 @@ const EditButton = (props: EditButtonType) => {
     <>
       <Box marginTop="-26px" marginLeft="208px">
         <Button
-          bg="grey"
+          bg="#1f1f1a"
           color="white"
           size="xs"
           onClick={() => EditSchedules(props.userData, props.id)}
         >
           Edit
         </Button>
+        
       </Box>
     </>
   )
