@@ -69,8 +69,10 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
               isChecked={isCompleted}
               onChange={() => setIsCompleted(!isCompleted)}
               size="lg"
-              colorScheme="green"
+              colorScheme="black"
               isDisabled={true}
+              border="black"
+              bg={'black'}
             />
             <Text
               ml={2}
@@ -95,7 +97,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             />
             <Button
               onClick={openUdateModal}
-              bg="grey"
+              bg="#1f1f1a"
               color="white"
               size="xs"
               ml={2}
@@ -104,7 +106,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             </Button>
             <Button
               onClick={openDelModal}
-              bg="grey"
+              bg="#1f1f1a"
               color="white"
               size="xs"
               ml={2}

@@ -15,6 +15,7 @@ import {
   useDisclosure,
   Input,
   Circle,
+  Box,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
@@ -58,7 +59,7 @@ export const AddModal = () => {
       <Container>
         <Circle
           size={{ base: '50px', md: '65px' }} // Adjust the size as needed
-          bg="grey"
+          bg="#1f1f1a"
           color="white"
           onClick={onOpen}
           position={{ base: 'fixed', md: 'static' }} // Adjust the position as needed
@@ -76,13 +77,13 @@ export const AddModal = () => {
         >
           <ModalOverlay />
           <ModalContent
-            color="black"
+            color="white"
             bg="white"
             borderRadius="10px"
             boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
           >
             <ModalHeader
-              bg="grey"
+              bg="#1f1f1a"
               color="white"
               p={4}
               borderRadius="10px 10px 0 0"
@@ -130,15 +131,29 @@ export const AddModal = () => {
                   )}
                 </FormLabel>
                 <Center>
-                  <Button
-                    colorScheme="grey"
-                    bg="grey"
-                    color="white"
+                  <Box
                     mt={4}
-                    type="submit"
+                    display="flex"
+                    justifyContent="space-between"
+                    width="100%"
                   >
-                    Add
-                  </Button>
+                    <Button
+                      colorScheme="grey"
+                      bg="#1f1f1a"
+                      color="white"
+                      type="submit"
+                    >
+                      Add
+                    </Button>
+                    <Button
+                      type="submit"
+                      colorScheme="red"
+                      color="white"
+                      onClick={onClose}
+                    >
+                      Cancel
+                    </Button>
+                  </Box>
                 </Center>
               </form>
             </ModalBody>
