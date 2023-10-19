@@ -1,5 +1,4 @@
 /* eslint-disable react/no-unescaped-entities */
-
 import * as Yup from 'yup'
 import {
   Center,
@@ -23,10 +22,13 @@ import { EditSchedules } from 'utilis/https'
 import { EditButtonType, UserDataTypes } from 'utilis/types'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { scheduleData, updateScheduleModal } from '@/store/atoms'
+import { yupResolver } from '@hookform/resolvers/yup'
 
-const schema = Yup.object({
-  person: Yup.string().required(' name of a person '),
-  dog: Yup.string().required('dogs name'),
+const schema = Yup.object().shape({
+  person: Yup.string().required('Name of a person is required'),
+  dog: Yup.string().required("Dog's name is required"),
+  date: Yup.date().required('Date is required'),
+  isCompleted: Yup.boolean(),
 })
 
 export const UpdateModal = (props: EditButtonType) => {
@@ -45,120 +47,119 @@ export const UpdateModal = (props: EditButtonType) => {
     defaultValues: {
       person: props.attribute.person,
       dog: props.attribute.dog,
-      date: props.attribute.date,
+      date: new Date(props.attribute.date),
       isCompleted: props.attribute.isCompleted,
     },
+    resolver: yupResolver(schema),
   })
 
   const onSubmit = (data: UserDataTypes) => {
     onClose()
     EditSchedules(data, props.id)
-
-    // initial state and update it with the new data
   }
 
   return (
-    <>
-      <Box mt={{ base: '-26px', sm: '-26px', md: '-26px' }} marginLeft="208px">
-        <Modal
-          isOpen={isOpen}
-          onClose={onClose}
-          size={{ base: 'xs', md: 'sm' }}
+    <Box mt={{ base: '-26px', sm: '-26px', md: '-26px' }} marginLeft="208px">
+      <Modal isOpen={isOpen} onClose={onClose} size={{ base: 'xs', md: 'sm' }}>
+        <ModalOverlay />
+        <ModalContent
+          color="black"
+          bg="white"
+          borderRadius="10px"
+          boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
         >
-          <ModalOverlay />
-          <ModalContent
-            color="black"
-            bg="white"
-            borderRadius="10px"
-            boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
+          <ModalHeader
+            bg="#1f1f1a"
+            color="white"
+            p={4}
+            borderRadius="10px 10px 0 0"
+            fontWeight="bold"
           >
-            <ModalHeader
-              bg="#1f1f1a"
-              color="white"
-              p={4}
-              borderRadius="10px 10px 0 0"
-              fontWeight="bold"
-            >
-              Edit Schedule
-              {udatescheduleDataUse?.person}
-            </ModalHeader>
-            <ModalCloseButton />
-            <ModalBody>
-              <form onSubmit={handleSubmit(onSubmit)}>
-                <FormLabel>
-                  <p>Person Walking the dog:</p>
-                  <Input
-                    type="text"
-                    placeholder="Person Walking the dog..."
-                    {...register('person')}
-                  />
-                  {errors.person && <p>This field is required</p>}
-                </FormLabel>
-                <FormLabel>
-                  <p>Dog's Name:</p>
-                  <Input
-                    type="text"
-                    placeholder="Dog's Name..."
-                    {...register('dog')}
-                  />
-                  {errors.dog && <p>This field is required</p>}
-                </FormLabel>
-                <FormLabel>
-                  <p>Date:</p>
-                  <Input
-                    placeholder="Select Date and Time"
-                    size="md"
-                    type="datetime-local"
-                    {...register('date')}
-                    required
-                  />
-                  {errors.date && <p>This field is required</p>}
-                </FormLabel>
-                <FormLabel>
-                  <p>
-                    {register('isCompleted')
-                      ? 'Complete Task'
-                      : 'Do Not Complete Task'}
-                  </p>
-                  <Checkbox
-                    defaultChecked={props.attribute.isCompleted}
-                    {...register('isCompleted')}
-                    border=" black"
-                  />
-                </FormLabel>
-                <Center>
-                  <Box
-                    mt={4}
-                    display="flex"
-                    justifyContent="space-between"
-                    width="100%"
+            Edit Schedule
+            {udatescheduleDataUse?.person}
+          </ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <FormLabel>
+                <p>Person Walking the dog:</p>
+                <Input
+                  type="text"
+                  placeholder="Person Walking the dog..."
+                  {...register('person')}
+                />
+                {errors.person && (
+                  <p style={{ color: 'red' }}>{errors.person.message}</p>
+                )}
+              </FormLabel>
+              <FormLabel>
+                <p>Dog's Name:</p>
+                <Input
+                  type="text"
+                  placeholder="Dog's Name..."
+                  {...register('dog')}
+                />
+                {errors.dog && (
+                  <p style={{ color: 'red' }}>{errors.dog.message}</p>
+                )}
+              </FormLabel>
+              <FormLabel>
+                <p>Date:</p>
+                <Input
+                  placeholder="Select Date and Time"
+                  size="md"
+                  type="datetime-local"
+                  {...register('date')}
+                  required
+                />
+                {errors.date && (
+                  <p style={{ color: 'red' }}>{errors.date.message}</p>
+                )}
+              </FormLabel>
+              <FormLabel>
+                <p>
+                  {register('isCompleted')
+                    ? 'Complete Task'
+                    : 'Do Not Complete Task'}
+                </p>
+                <Checkbox
+                  defaultChecked={props.attribute.isCompleted}
+                  {...register('isCompleted')}
+                  border="black"
+                />
+              </FormLabel>
+              <Center>
+                <Box
+                  mt={4}
+                  display="flex"
+                  justifyContent="space-between"
+                  width="100%"
+                >
+                  <Button
+                    colorScheme="grey"
+                    bg="#1f1f1a"
+                    color="white"
+                    type="submit"
                   >
-                    <Button
-                      colorScheme="grey"
-                      bg="#1f1f1a"
-                      color="white"
-                      type="submit"
-                    >
-                      Save Changes
-                    </Button>
-                    <Button
-                      type="submit"
-                      colorScheme="red"
-                      color="white"
-                      onClick={onClose}
-                    >
-                      Cancel
-                    </Button>
-                  </Box>
-                </Center>
-              </form>
-            </ModalBody>
+                    Save Changes
+                  </Button>
+                  <Button
+                    type="submit"
+                    colorScheme="red"
+                    color="white"
+                    onClick={onClose}
+                  >
+                    Cancel
+                  </Button>
+                </Box>
+              </Center>
+            </form>
+          </ModalBody>
 
-            <ModalFooter></ModalFooter>
-          </ModalContent>
-        </Modal>
-      </Box>
-    </>
+          <ModalFooter></ModalFooter>
+        </ModalContent>
+      </Modal>
+    </Box>
   )
 }
 

@@ -23,22 +23,21 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { useRecoilState } from 'recoil'
 import { schedulesState } from '@/store/atoms'
 import { CreateWalkSchedules } from 'utilis/https'
-import { FormType, UserDataTypes } from 'utilis/types'
+import { UserDataTypes } from 'utilis/types'
+
+const schema = Yup.object().shape({
+  person: Yup.string().required('Person Walking the dog is required'),
+  dog: Yup.string().required("Dog's Name is required"),
+  date: Yup.date().required('Date is required'),
+})
 
 export const AddModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [dogSchedules, setDogSchedules] = useRecoilState<any>(schedulesState)
 
-  const schema = Yup.object().shape({
-    person: Yup.string().required('Person Walking the dog is required'),
-    dog: Yup.string().required("Dog's Name is required"),
-    date: Yup.date().required('Date is required'),
-  })
-
   const {
     handleSubmit,
     register,
-    control,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
@@ -58,14 +57,15 @@ export const AddModal = () => {
     <>
       <Container>
         <Circle
-          size={{ base: '50px', md: '65px' }} // Adjust the size as needed
+          size={{ base: '50px', md: '65px' }}
           bg="#1f1f1a"
           color="white"
           onClick={onOpen}
-          position={{ base: 'fixed', md: 'static' }} // Adjust the position as needed
-          bottom={0} // Adjust the position as needed
-          right={{ base: 8, md: 'auto' }} // Adjust the position as needed
+          position={{ base: 'fixed', md: 'static' }}
+          bottom={0}
+          right={{ base: 8, md: 'auto' }}
           top={{ base: 8, md: 'auto' }}
+          cursor="pointer"
         >
           <AddIcon />
         </Circle>
@@ -146,10 +146,9 @@ export const AddModal = () => {
                       Add
                     </Button>
                     <Button
-                      type="submit"
                       colorScheme="red"
                       color="white"
-                      onClick={onClose}
+                      onClick={onClose} // Close the modal without adding schedules
                     >
                       Cancel
                     </Button>
