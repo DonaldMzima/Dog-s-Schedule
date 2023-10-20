@@ -15,12 +15,13 @@ import Nav from '@/components/UI/NavBar/Index'
 import FloatingButtons from '@/components/UI/FloatingButtons/Index'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
-import CalenderBody from '@/components/CalenderSection/Calender'
+import CalenderBody from '@/components/CalenderSection/Schedule404'
 import { useQuery } from '@apollo/react-hooks'
 import { GET_WALK_SCHEDULES, Schedule } from 'utilis/https'
 import CustomSpinner from '../Spinner'
 import WalkScheduleCard from '../Cards'
 import { FaSearch } from 'react-icons/fa'
+import SearchError from '../SearchFilter/ErrorSearch'
 
 const Schedules = () => {
   const [query, updateQuery] = useState('')
@@ -101,7 +102,7 @@ const Schedules = () => {
                   />
                 ))
               ) : (
-                <CalenderBody />
+                <CalenderBody query={query} />
               )}
             </SimpleGrid>
           </Box>
