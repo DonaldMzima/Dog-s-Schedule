@@ -31,8 +31,8 @@ const NavBar = () => {
             size="md"
             height="48px"
             width="100px"
-            color="white"
-            bg={router.pathname === '/' ? '#696969' : '#1f1f1a'}
+            color={router.pathname === '/' ? '#1f1f1a' : 'white'}
+            bg={router.pathname === '/' ? '#fafaf7' : '#1f1f1a'}
             onClick={() => handleButtonClick('/')}
           >
             Home
@@ -43,8 +43,8 @@ const NavBar = () => {
             size="md"
             height="48px"
             width="100px"
-            color="white"
-            bg={router.pathname === '/schedules' ? '#696969' : '#1f1f1a'}
+            color={router.pathname === '/schedules' ? '#1f1f1a' : 'white'}
+            bg={router.pathname === '/schedules' ? '#fafaf7' : '#1f1f1a'}
             onClick={() => handleButtonClick('/schedules')}
           >
             Schedules
@@ -55,8 +55,8 @@ const NavBar = () => {
             size="md"
             height="48px"
             width="100px"
-            color="white"
-            bg={router.pathname === '/settings' ? '#696969' : '#1f1f1a'}
+            color={router.pathname === '/settings' ? '#1f1f1a' : 'white'}
+            bg={router.pathname === '/settings' ? '#fafaf7' : '#1f1f1a'}
             onClick={() => handleButtonClick('/settings')}
           >
             Settings
