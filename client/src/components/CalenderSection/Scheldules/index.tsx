@@ -21,7 +21,6 @@ import { GET_WALK_SCHEDULES, Schedule } from 'utilis/https'
 import CustomSpinner from '../Spinner'
 import WalkScheduleCard from '../Cards'
 import { FaSearch } from 'react-icons/fa'
-import SearchError from '../SearchFilter/ErrorSearch'
 
 const Schedules = () => {
   const [query, updateQuery] = useState('')
