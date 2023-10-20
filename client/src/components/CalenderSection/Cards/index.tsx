@@ -25,6 +25,8 @@ type WalkScheduleCardProps = {
   walkSchedules: Schedule
 }
 
+// ... (Previous code)
+
 const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
   const [schedulePayload, setSchedulePayload] = useRecoilState<null | Schedule>(
     scheduleData,
@@ -45,8 +47,24 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
     setIsOpen(true)
   }
 
-  const openUdateModal = () => {
+  const openUpdateModal = () => {
     setOpen(true)
+  }
+
+  const openUdateModal = (e: any) => {
+    // Check if the event target is not the DeleteModal's button
+    if (
+      !e.target.classList.contains('delete-modal-button') &&
+      !e.target.closest('.delete-modal-button')
+    ) {
+      openUpdateModal()
+    }
+  }
+
+  const handleIsCompletedToggle = () => {
+    setIsCompleted(!isCompleted)
+
+    // You can add code here to update the `isCompleted` property in your data source.
   }
 
   return (
@@ -63,11 +81,13 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
           boxShadow="lg"
           p={4}
           position="relative"
+          onClick={openUdateModal}
+          style={{ cursor: 'pointer' }}
         >
           <Flex alignItems="center" ml={15}>
             <Checkbox
               isChecked={isCompleted}
-              onChange={() => setIsCompleted(!isCompleted)}
+              onChange={handleIsCompletedToggle}
               size="lg"
               colorScheme="black"
               isDisabled={true}
@@ -76,7 +96,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             />
             <Text
               ml={2}
-              fontSize={{ base: 'sm', md: 'xl' }} // Adjusted font size for mobile view
+              fontSize={{ base: 'sm', md: 'xl' }}
               fontWeight="bold"
               style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}
             >
@@ -106,6 +126,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             </Button>
             <Button
               onClick={openDelModal}
+              className="delete-modal-button" // Add a class for the DeleteModal's button
               bg="#1f1f1a"
               color="white"
               size="xs"
