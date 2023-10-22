@@ -20,7 +20,7 @@ function SettingDrawer({ children, ...rest }: any) {
   return (
     <>
       <Button
-        ref={btnRef}
+        // ref={btnRef}
         colorScheme="teal"
         onClick={onOpen}
         size="md"
