@@ -10,12 +10,12 @@ import {
   InputLeftElement,
   Flex,
 } from '@chakra-ui/react'
-import { GrSearchAdvanced } from 'react-icons/gr'
+
 import Nav from '@/components/UI/NavBar/Index'
 import FloatingButtons from '@/components/UI/FloatingButtons/Index'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
-import CalenderBody from '@/components/CalenderSection/Schedule404'
+import CalenderBody from '@/components/CalenderSection/SearchhError'
 import { useQuery } from '@apollo/react-hooks'
 import { GET_WALK_SCHEDULES, Schedule } from 'utilis/https'
 import CustomSpinner from '../Spinner'
