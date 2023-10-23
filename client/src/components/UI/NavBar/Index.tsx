@@ -31,6 +31,7 @@ const NavBar = () => {
             size="md"
             height="48px"
             width="100px"
+            border="2px solid #1f1f1a"
             color={router.pathname === '/' ? '#1f1f1a' : 'white'}
             bg={router.pathname === '/' ? '#fafaf7' : '#1f1f1a'}
             onClick={() => handleButtonClick('/')}
@@ -43,6 +44,7 @@ const NavBar = () => {
             size="md"
             height="48px"
             width="100px"
+            border="2px solid #1f1f1a"
             color={router.pathname === '/schedules' ? '#1f1f1a' : 'white'}
             bg={router.pathname === '/schedules' ? '#fafaf7' : '#1f1f1a'}
             onClick={() => handleButtonClick('/schedules')}
@@ -55,6 +57,7 @@ const NavBar = () => {
             size="md"
             height="48px"
             width="100px"
+            border="2px solid #1f1f1a"
             color={router.pathname === '/settings' ? '#1f1f1a' : 'white'}
             bg={router.pathname === '/settings' ? '#fafaf7' : '#1f1f1a'}
             onClick={() => handleButtonClick('/settings')}
