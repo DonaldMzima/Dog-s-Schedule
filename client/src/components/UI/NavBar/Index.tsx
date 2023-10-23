@@ -20,6 +20,7 @@ const NavBar = () => {
       bg={'white'}
       pos="fixed"
       top={0}
+      zIndex={1}
       left={0}
       right={0}
       px={4}

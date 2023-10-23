@@ -69,6 +69,7 @@ const Schedules = () => {
           width="100%"
           height="115px"
           left={0}
+          zIndex={1}
           right={0}
           mt={{ base: -70, sm: -70, md: -80, lg: -100 }}
           ml={{ base: 65, sm: 250, md: -80, lg: 520 }}
