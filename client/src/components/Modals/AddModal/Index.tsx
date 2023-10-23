@@ -16,6 +16,7 @@ import {
   Input,
   Circle,
   Box,
+  Flex,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
@@ -56,20 +57,21 @@ export const AddModal = () => {
   return (
     <>
       <Container>
-        <Circle
-          size={{ base: '50px', md: '65px' }}
-          bg="#1f1f1a"
-          color="white"
-          onClick={onOpen}
-          position={{ base: 'fixed', md: 'static' }}
-          bottom={0}
-          right={{ base: 8, md: 'auto' }}
-          top={{ base: 8, md: 'auto' }}
-          cursor="pointer"
-        >
-          <AddIcon />
-        </Circle>
-
+        <Flex zIndex={1}>
+          <Circle
+            size={{ base: '50px', md: '65px' }}
+            bg="#1f1f1a"
+            color="white"
+            onClick={onOpen}
+            position={{ base: 'fixed', md: 'static' }}
+            bottom={0}
+            right={{ base: 8, md: 'auto' }}
+            top={{ base: 8, md: 'auto' }}
+            cursor="pointer"
+          >
+            <AddIcon />
+          </Circle>
+        </Flex>
         <Modal
           isOpen={isOpen}
           onClose={onClose}
