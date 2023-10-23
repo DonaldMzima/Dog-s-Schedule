@@ -61,7 +61,7 @@ const Schedules = () => {
         minHeight="100vh"
         bgGradient={['linear(to-b, white, yellow)']}
       >
-        {isMobile ? <FloatingButtons /> : <FloatingButtons />}
+        <FloatingButtons />
 
         <Flex
           pos="fixed"
