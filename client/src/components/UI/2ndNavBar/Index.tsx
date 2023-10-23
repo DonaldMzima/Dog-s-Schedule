@@ -9,10 +9,11 @@ const NavigationBar = () => {
 
   return (
     <>
-      <Flex bg="yellow" height={100}>
+      <Flex bg="yellow" zIndex={1} height={100}>
         <Center>
           <Stack
             direction={'row'}
+            zIndex={1}
             color="black"
             spacing={{ base: 20, sm: 155 }}
             ml={{ base: 25, sm: 50 }}
