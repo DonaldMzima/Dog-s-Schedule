@@ -8,7 +8,8 @@ import {
   ModalHeader,
   ModalOverlay,
   Box,
-  Text, // Import Text component for responsive typography
+  Text,
+  Center, // Import Text component for responsive typography
 } from '@chakra-ui/react'
 import React from 'react'
 import { DeleteSchedules } from 'utilis/https'
@@ -31,7 +32,7 @@ const DeleteModal = ({ schedulePayload }: any) => {
         bg="white"
         borderRadius="10px"
         boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
-        maxW={{ base: '80%', sm: '50%', md: '40%' }}
+        maxW={{ base: '50%', sm: '30%', md: '30%' }}
       >
         <ModalHeader
           bg="#1f1f1a"
@@ -47,8 +48,10 @@ const DeleteModal = ({ schedulePayload }: any) => {
         </ModalHeader>
         <ModalCloseButton />
         <ModalBody pb={2} pt={2}>
-          <Text fontSize={{ base: 'md', md: 'lg' }}>Are you Sure?</Text>
-          <DelSvg />
+          <Center>
+            <Text fontSize={{ base: 'md', md: 'lg' }}>Are you Sure?</Text>
+            <DelSvg />
+          </Center>
         </ModalBody>
 
         <ModalFooter pb={4} pt={2}>
