@@ -17,7 +17,7 @@ import {
   Checkbox,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
-import { AddIcon } from '@chakra-ui/icons'
+
 import { EditSchedules } from 'utilis/https'
 import { EditButtonType, UserDataTypes } from 'utilis/types'
 import { useRecoilState, useRecoilValue } from 'recoil'
