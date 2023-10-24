@@ -15,6 +15,7 @@ import {
   Input,
   Box,
   Checkbox,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 
@@ -63,8 +64,8 @@ export const UpdateModal = (props: EditButtonType) => {
       <Modal isOpen={isOpen} onClose={onClose} size={{ base: 'xs', md: 'sm' }}>
         <ModalOverlay />
         <ModalContent
-          color="black"
-          bg="white"
+          color={useColorModeValue('#000000', ' white')}
+          bg={useColorModeValue('white', ' gray.700')}
           borderRadius="10px"
           boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
         >
@@ -145,7 +146,7 @@ export const UpdateModal = (props: EditButtonType) => {
                   </Button>
                   <Button
                     type="submit"
-                    colorScheme="red"
+                    bg="#1f1f1a"
                     color="white"
                     onClick={onClose}
                   >

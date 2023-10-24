@@ -17,6 +17,7 @@ import {
   Circle,
   Box,
   Flex,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 import { AddIcon } from '@chakra-ui/icons'
@@ -60,7 +61,7 @@ export const AddModal = () => {
         <Flex zIndex={1}>
           <Circle
             size={{ base: '50px', md: '65px' }}
-            bg="#1f1f1a"
+            bg={useColorModeValue('black', 'gray.900')}
             color="white"
             onClick={onOpen}
             position={{ base: 'fixed', md: 'static' }}
@@ -79,8 +80,8 @@ export const AddModal = () => {
         >
           <ModalOverlay />
           <ModalContent
-            color="black"
-            bg="white"
+            color={useColorModeValue('#000000', ' white')}
+            bg={useColorModeValue('white', ' gray.700')}
             borderRadius="10px"
             boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
           >
@@ -148,7 +149,7 @@ export const AddModal = () => {
                       Add
                     </Button>
                     <Button
-                      colorScheme="red"
+                      bg="#1f1f1a"
                       color="white"
                       onClick={onClose} // Close the modal without adding schedules
                     >
