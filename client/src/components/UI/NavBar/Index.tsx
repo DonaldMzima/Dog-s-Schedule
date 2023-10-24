@@ -1,9 +1,18 @@
-import { Button, Flex, Link, Stack, useMediaQuery } from '@chakra-ui/react'
+import SettingDrawer from '@/components/Settings'
+import {
+  Button,
+  Flex,
+  Link,
+  Stack,
+  useColorMode,
+  useColorModeValue,
+  useMediaQuery,
+} from '@chakra-ui/react'
 import { useRouter } from 'next/router'
 import { SetStateAction, useState } from 'react'
 
 const NavBar = () => {
-  const [isMobile] = useMediaQuery('(max-width: 768px')
+  const [isMobile] = useMediaQuery('(max-width: 768px)')
   const [activeButton, setActiveButton] = useState('')
 
   const router = useRouter()
@@ -16,8 +25,8 @@ const NavBar = () => {
     <Flex
       h={90}
       alignItems="center"
-      justifyContent="center" // Center-align buttons
-      bg={'white'}
+      justifyContent="center"
+      bg={useColorModeValue('white', 'gray.900')}
       pos="fixed"
       top={0}
       zIndex={1}
@@ -32,9 +41,15 @@ const NavBar = () => {
             size="md"
             height="48px"
             width="100px"
-            border="2px solid #1f1f1a"
-            color={router.pathname === '/' ? '#1f1f1a' : 'white'}
-            bg={router.pathname === '/' ? '#fafaf7' : '#1f1f1a'}
+            border={useColorModeValue('2px solid #1f1f1a', '1px solid #fafaf7')}
+            color={useColorModeValue(
+              router.pathname === '/' ? '#1f1f1a' : 'white',
+              router.pathname === '/' ? 'white' : 'gray.900',
+            )}
+            bg={useColorModeValue(
+              router.pathname === '/' ? '#fafaf7' : '#1f1f1a',
+              router.pathname === '/' ? 'gray.900' : '#fafaf7',
+            )}
             onClick={() => handleButtonClick('/')}
           >
             Home
@@ -45,27 +60,21 @@ const NavBar = () => {
             size="md"
             height="48px"
             width="100px"
-            border="2px solid #1f1f1a"
-            color={router.pathname === '/schedules' ? '#1f1f1a' : 'white'}
-            bg={router.pathname === '/schedules' ? '#fafaf7' : '#1f1f1a'}
+            border={useColorModeValue('2px solid #1f1f1a', '1px solid #fafaf7')}
+            color={useColorModeValue(
+              router.pathname === '/schedules' ? '#1f1f1a' : 'white',
+              router.pathname === '/schedules' ? 'white' : 'gray.900',
+            )}
+            bg={useColorModeValue(
+              router.pathname === '/schedules' ? '#fafaf7' : '#1f1f1a',
+              router.pathname === '/schedules' ? 'gray.900' : '#fafaf7',
+            )}
             onClick={() => handleButtonClick('/schedules')}
           >
             Schedules
           </Button>
         </Link>
-        <Link href="/settings">
-          <Button
-            size="md"
-            height="48px"
-            width="100px"
-            border="2px solid #1f1f1a"
-            color={router.pathname === '/settings' ? '#1f1f1a' : 'white'}
-            bg={router.pathname === '/settings' ? '#fafaf7' : '#1f1f1a'}
-            onClick={() => handleButtonClick('/settings')}
-          >
-            Settings
-          </Button>
-        </Link>
+        <SettingDrawer />
       </Stack>
     </Flex>
   )

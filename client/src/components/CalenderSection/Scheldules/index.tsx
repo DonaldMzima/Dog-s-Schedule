@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useState } from 'react'
 import {
   SimpleGrid,
@@ -9,6 +10,7 @@ import {
   InputGroup,
   InputLeftElement,
   Flex,
+  useColorModeValue,
 } from '@chakra-ui/react'
 
 import Nav from '@/components/UI/NavBar/Index'
@@ -59,7 +61,10 @@ const Schedules = () => {
       <Container
         maxW={'100%'}
         minHeight="100vh"
-        bgGradient={['linear(to-b, white, yellow)']}
+        bgGradient={useColorModeValue(
+          ['linear(to-b, white, yellow)'],
+          ['linear(to-b, white, gray.900)'],
+        )}
       >
         <FloatingButtons />
 
@@ -83,9 +88,13 @@ const Schedules = () => {
               value={query}
               onChange={onSearch}
               width={{ base: 170, sm: 170, md: 300 }}
-              border="2px solid black" // Add this line to set the black border
+              border={useColorModeValue(
+                '2px solid #1f1f1a',
+                '1px solid #27271c',
+              )}
+              _placeholder={{ color: 'black' }}
             />
-            <InputLeftElement pointerEvents="none">
+            <InputLeftElement pointerEvents="none" color={'black'}>
               <FaSearch />
             </InputLeftElement>
           </InputGroup>

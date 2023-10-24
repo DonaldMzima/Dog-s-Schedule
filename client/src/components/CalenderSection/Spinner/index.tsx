@@ -1,4 +1,11 @@
-import { Spinner, Stack, Text, Box, useMediaQuery } from '@chakra-ui/react' // Import Box component
+import {
+  Spinner,
+  Stack,
+  Text,
+  Box,
+  useMediaQuery,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { CustomSpinnerType } from 'utilis/types'
 import Nav from '@/components/UI/NavBar/Index'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
@@ -17,7 +24,10 @@ const CustomSpinner = ({ text }: CustomSpinnerType) => {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        bgGradient={['linear(to-b, white, yellow)']}
+        bgGradient={useColorModeValue(
+          ['linear(to-b, white, yellow)'],
+          ['linear(to-b, white, gray.900)'],
+        )}
       >
         {!isMobile && <Nav />}
         <Stack

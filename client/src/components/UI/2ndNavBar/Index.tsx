@@ -3,6 +3,7 @@ import { RiHome4Fill } from 'react-icons/ri'
 import { BsCalendarPlus } from 'react-icons/bs'
 import { MdSettings } from 'react-icons/md'
 import { useRouter } from 'next/router' // Import the router from Next.js
+import SettingDrawer from '@/components/Settings'
 
 const NavigationBar = () => {
   const router = useRouter() // Get the router object
@@ -39,16 +40,7 @@ const NavigationBar = () => {
                 <BsCalendarPlus size={'3em'} />
               </Box>
             </Link>
-            <Link
-              href="/settings"
-              borderBottom={
-                router.pathname === '/settings' ? '2px solid black' : 'none'
-              }
-            >
-              <Box mb={4}>
-                <MdSettings size={'3em'} />
-              </Box>
-            </Link>
+            <SettingDrawer />
           </Stack>
         </Center>
       </Flex>

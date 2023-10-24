@@ -9,7 +9,8 @@ import {
   ModalOverlay,
   Box,
   Text,
-  Center, // Import Text component for responsive typography
+  Center,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import React from 'react'
 import { DeleteSchedules } from 'utilis/https'
@@ -28,8 +29,8 @@ const DeleteModal = ({ schedulePayload }: any) => {
     <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay bg="blackAlpha.300" />
       <ModalContent
-        color="black"
-        bg="white"
+        color={useColorModeValue('#000000', ' white')}
+        bg={useColorModeValue('white', ' gray.700')}
         borderRadius="10px"
         boxShadow="0 4px 6px rgba(0, 0, 0, 0.1)"
         maxW={{ base: '50%', sm: '30%', md: '30%' }}
@@ -56,8 +57,8 @@ const DeleteModal = ({ schedulePayload }: any) => {
 
         <ModalFooter pb={4} pt={2}>
           <Button
-            bg="#1f1f1a"
             color="white"
+            bg="red.600"
             mr={3}
             onClick={() => {
               if (scheduleDataUse) {
@@ -68,12 +69,7 @@ const DeleteModal = ({ schedulePayload }: any) => {
           >
             <Text fontSize={{ base: 'sm', md: 'md' }}>Yes</Text>
           </Button>
-          <Button
-            type="submit"
-            colorScheme="red"
-            color="white"
-            onClick={onClose}
-          >
+          <Button type="submit" bg="#1f1f1a" color="white" onClick={onClose}>
             <Text fontSize={{ base: 'sm', md: 'md' }}>NO</Text>
           </Button>
         </ModalFooter>

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
 import {
   Drawer,
@@ -10,26 +11,46 @@ import {
   Button,
   Input,
   useDisclosure,
+  useColorModeValue,
+  useColorMode,
+  Center,
+  Box,
+  useMediaQuery,
 } from '@chakra-ui/react'
 import { DarkMode } from '../DarkMode'
+import { MdSettings } from 'react-icons/md'
 
 function SettingDrawer({ children, ...rest }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const btnRef = React.useRef()
+  const [isMobile] = useMediaQuery('(max-width: 768px)')
 
   return (
     <>
-      <Button
-        // ref={btnRef}
-        colorScheme="teal"
-        onClick={onOpen}
-        size="md"
-        height="48px"
-        width="100px"
-        bg="#1f1f1a"
-      >
-        Settings
-      </Button>
+      {isMobile ? (
+        <Button
+          onClick={onOpen}
+          size="md"
+          height="48px"
+          width="100px"
+          color="black"
+        >
+          <Box>
+            <MdSettings size={'3em'} />
+          </Box>
+        </Button>
+      ) : (
+        <Button
+          onClick={onOpen}
+          size="md"
+          height="48px"
+          width="100px"
+          color={useColorModeValue('#fafaf7', '#1f1f1a')}
+          bg={useColorModeValue('#1f1f1a', ' #fafaf7')}
+        >
+          Settings
+        </Button>
+      )}
       <Drawer
         variant="alwaysOpen"
         {...rest}
@@ -41,7 +62,7 @@ function SettingDrawer({ children, ...rest }: any) {
         blockScrollOnMount={false}
       >
         {/* <DrawerOverlay /> */}
-        <DrawerContent>
+        <DrawerContent bg={useColorModeValue('white', 'gray.900')}>
           <DrawerCloseButton />
           <DrawerHeader>Create your account</DrawerHeader>
 
@@ -50,10 +71,11 @@ function SettingDrawer({ children, ...rest }: any) {
           </DrawerBody>
 
           <DrawerFooter>
-            <Button variant="outline" mr={3} onClick={onClose}>
-              Cancel
-            </Button>
-            <Button colorScheme="blue">Save</Button>
+            <Center>
+              <Button variant="outline" mr={3} onClick={onClose}>
+                Close
+              </Button>
+            </Center>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>

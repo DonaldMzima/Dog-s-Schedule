@@ -1,5 +1,5 @@
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import { Button, useColorMode } from '@chakra-ui/react'
+import { Box, Button, useColorMode, useColorModeValue } from '@chakra-ui/react'
 
 export const DarkMode = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -20,21 +20,25 @@ export const DarkMode = () => {
     <header>
       <Button
         onClick={handleDarkModeClick}
-        w="15%"
+        w="50%"
         m={[1, 15]}
         mr={2}
         colorScheme="gray"
       >
         <MoonIcon />
+        DarkMode
       </Button>
-      <Button
-        onClick={handleLightModeClick}
-        w="15%"
-        m={[1, 15]}
-        colorScheme="teal"
-      >
-        <SunIcon />
-      </Button>
+      <Box>
+        <Button
+          onClick={handleLightModeClick}
+          w="50%"
+          m={[1, 15]}
+          color={useColorModeValue('black', 'whiteAlpha')}
+        >
+          <SunIcon />
+          LightMode
+        </Button>
+      </Box>
     </header>
   )
 }
