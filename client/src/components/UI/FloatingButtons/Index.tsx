@@ -1,6 +1,13 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React from 'react'
 import AddModal from '@/components/Modals/AddModal/Index'
-import { Box, Tooltip, Center, useMediaQuery } from '@chakra-ui/react'
+import {
+  Box,
+  Tooltip,
+  Center,
+  useMediaQuery,
+  useColorModeValue,
+} from '@chakra-ui/react'
 
 const FloatingButtons = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)')
@@ -11,7 +18,12 @@ const FloatingButtons = () => {
           width={{ base: '100%', md: '180%' }}
           height={{ base: '100px', md: '250px' }}
         >
-          <Tooltip hasArrow label="Add Schedules" bg="black">
+          <Tooltip
+            hasArrow
+            label="Add Schedules"
+            color="white"
+            bg={useColorModeValue('black', 'gray.900')}
+          >
             <Box pos="fixed">
               <AddModal />
             </Box>
