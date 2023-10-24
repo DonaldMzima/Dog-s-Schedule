@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable react/no-unescaped-entities */
 import React, { FC, useState } from 'react'
 import {
@@ -9,6 +10,7 @@ import {
   Text,
   Checkbox,
   Icon,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import { FaUser, FaDog, FaCalendar, FaEdit, FaTrash } from 'react-icons/fa'
 import DeleteModal from '@/components/Modals/DeleteModel'
@@ -72,7 +74,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
       <Center>
         <Box
           borderRadius="20px"
-          bg="white"
+          bg={useColorModeValue('white', ' gray.700')}
           color="black"
           borderColor="black.900"
           h={140}
@@ -97,6 +99,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             <Text
               ml={2}
               fontSize={{ base: 'sm', md: 'xl' }}
+              color={useColorModeValue('#000000', ' white')}
               fontWeight="bold"
               style={{ textDecoration: isCompleted ? 'line-through' : 'none' }}
             >
@@ -117,7 +120,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             />
             <Button
               onClick={openUdateModal}
-              bg="#1f1f1a"
+              bg={useColorModeValue('#1f1f1a', ' gray.900')}
               color="white"
               size="xs"
               ml={2}
@@ -127,7 +130,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             <Button
               onClick={openDelModal}
               className="delete-modal-button" // Add a class for the DeleteModal's button
-              bg="#1f1f1a"
+              bg={useColorModeValue('#1f1f1a', ' gray.900')}
               color="white"
               size="xs"
               ml={2}
@@ -136,7 +139,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             </Button>
           </Flex>
           <Stack
-            color="#000000"
+            color={useColorModeValue('#000000', ' white')}
             spacing={{ base: 2, md: 2 }}
             p={{ base: 3, md: 4 }}
           >
