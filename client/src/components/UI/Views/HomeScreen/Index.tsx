@@ -7,7 +7,7 @@ import {
   Stack,
   Box,
   Center,
-  Link,
+  useColorModeValue,
   useMediaQuery,
 } from '@chakra-ui/react'
 import Nav from '@/components/UI/NavBar/Index'
@@ -22,7 +22,10 @@ const HomePage = () => {
       <Container
         maxW={'100%'}
         minHeight="100vh"
-        bgGradient={['linear(to-b, white, yellow)']}
+        bgGradient={useColorModeValue(
+          ['linear(to-b, white, yellow)'],
+          ['linear(to-b, white, gray.900)'],
+        )}
       >
         <Stack
           as={Box}
@@ -30,7 +33,7 @@ const HomePage = () => {
           spacing={{ base: 8, md: 14 }}
           py={{ base: 16, md: 24 }} // Adjusted padding for better mobile experience
           marginTop={{ base: 0, md: 8 }} // Adjusted padding for better mobile experience
-          color={'#1f2b3a'}
+          color={useColorModeValue('#182d47', '#fafaf7')}
         >
           <Heading
             fontWeight={600}
@@ -38,7 +41,7 @@ const HomePage = () => {
             lineHeight={'110%'}
           >
             Dog's Walking <br />
-            <Text as={'span'} color={'#20201c'}>
+            <Text as={'span'} color={useColorModeValue('#20201c', '#f3f3e3')}>
               Schedule
             </Text>
           </Heading>
