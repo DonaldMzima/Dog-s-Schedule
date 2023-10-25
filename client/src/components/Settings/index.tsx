@@ -65,7 +65,7 @@ function SettingDrawer({ children, ...rest }: any) {
         {/* <DrawerOverlay /> */}
         <DrawerContent bg={useColorModeValue('white', 'gray.900')}>
           <DrawerCloseButton />
-          <DrawerHeader>Create your account</DrawerHeader>
+          <DrawerHeader>DarkMode</DrawerHeader>
 
           <DrawerBody>
             <DarkMode />
