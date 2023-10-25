@@ -34,6 +34,7 @@ function SettingDrawer({ children, ...rest }: any) {
           height="48px"
           width="100px"
           color="black"
+          bg={'transparent'}
         >
           <Box>
             <MdSettings size={'3em'} />
