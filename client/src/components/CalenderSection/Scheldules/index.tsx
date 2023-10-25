@@ -70,13 +70,13 @@ const Schedules = () => {
 
         <Box
           pos="fixed"
+          zIndex={1}
           justifyContent="center"
           mt={{ base: -70, sm: -70, md: -80, lg: -100 }}
           ml={{ base: 65, sm: 250, md: -80, lg: 520 }}
         >
           <InputGroup left={0} right={0}>
             <Input
-              zIndex={1}
               type="text"
               placeholder="search"
               id="query"
