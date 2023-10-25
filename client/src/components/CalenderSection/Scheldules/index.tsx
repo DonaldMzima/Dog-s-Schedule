@@ -68,19 +68,15 @@ const Schedules = () => {
       >
         <FloatingButtons />
 
-        <Flex
+        <Box
           pos="fixed"
           justifyContent="center"
-          width="100%"
-          height="115px"
-          left={0}
-          zIndex={1}
-          right={0}
           mt={{ base: -70, sm: -70, md: -80, lg: -100 }}
           ml={{ base: 65, sm: 250, md: -80, lg: 520 }}
         >
-          <InputGroup>
+          <InputGroup left={0} right={0}>
             <Input
+              zIndex={1}
               type="text"
               placeholder="search"
               id="query"
@@ -98,7 +94,7 @@ const Schedules = () => {
               <FaSearch />
             </InputLeftElement>
           </InputGroup>
-        </Flex>
+        </Box>
 
         <Center>
           <Box>
