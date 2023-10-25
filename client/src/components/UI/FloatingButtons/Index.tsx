@@ -18,23 +18,21 @@ const FloatingButtons = () => {
           width={{ base: '100%', md: '180%' }}
           height={{ base: '100px', md: '250px' }}
         >
-          <Tooltip
-            hasArrow
-            label="Add Schedules"
-            color="white"
-            bg={useColorModeValue('black', 'gray.900')}
-          >
-            <Box pos="fixed">
-              <AddModal />
-            </Box>
-          </Tooltip>
+          <Box pos="fixed">
+            <AddModal />
+          </Box>
         </Center>
       ) : (
         <Center
           width={{ base: '100%', md: '2520px' }}
           height={{ base: '100px', md: '250px' }}
         >
-          <Tooltip hasArrow label="Add Schedules" bg="black">
+          <Tooltip
+            hasArrow
+            label="Add Schedules"
+            color="white"
+            bg={useColorModeValue('black', 'gray.900')}
+          >
             <Box pos="fixed">
               <AddModal />
             </Box>
