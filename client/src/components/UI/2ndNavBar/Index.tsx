@@ -1,4 +1,11 @@
-import { Box, Flex, Link, Stack, Center } from '@chakra-ui/react'
+import {
+  Box,
+  Flex,
+  Link,
+  Stack,
+  Center,
+  useColorModeValue,
+} from '@chakra-ui/react'
 import { RiHome4Fill } from 'react-icons/ri'
 import { BsCalendarPlus } from 'react-icons/bs'
 import { MdSettings } from 'react-icons/md'
@@ -10,7 +17,7 @@ const NavigationBar = () => {
 
   return (
     <>
-      <Flex bg="yellow" zIndex={1} height={100}>
+      <Flex>
         <Center>
           <Stack
             direction={'row'}
