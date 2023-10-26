@@ -13,7 +13,7 @@ import { useRouter } from 'next/router' // Import the router from Next.js
 import SettingDrawer from '@/components/Settings'
 
 const NavigationBar = () => {
-  const router = useRouter() // Get the router object
+  const router = useRouter()
 
   return (
     <Box
@@ -22,7 +22,7 @@ const NavigationBar = () => {
       left="0"
       width="100%"
       zIndex={1}
-      background="white" // Change this to the desired background color
+      background="white"
       boxShadow="lg"
       paddingY="20px"
     >
