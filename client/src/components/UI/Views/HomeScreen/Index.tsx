@@ -67,8 +67,8 @@ const HomePage = () => {
             <SvgComponent />
           </Center>
         </Stack>
-        {isMobile && <NavigationBar />}
       </Container>
+      {isMobile && <NavigationBar />}
     </>
   )
 }

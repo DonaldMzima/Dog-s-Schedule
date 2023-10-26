@@ -23,6 +23,7 @@ import { GET_WALK_SCHEDULES, Schedule } from 'utilis/https'
 import CustomSpinner from '../Spinner'
 import WalkScheduleCard from '../Cards'
 import { FaSearch } from 'react-icons/fa'
+import Sidebar from './Sidebar'
 
 const Schedules = () => {
   const [query, updateQuery] = useState('')
@@ -61,6 +62,7 @@ const Schedules = () => {
       <Container
         maxW={'100%'}
         minHeight="100vh"
+        bottom={0}
         bgGradient={useColorModeValue(
           ['linear(to-b, white, yellow)'],
           ['linear(to-b, white, gray.900)'],
@@ -95,7 +97,7 @@ const Schedules = () => {
             </InputLeftElement>
           </InputGroup>
         </Box>
-
+        {/* <Sidebar /> */}
         <Center>
           <Box>
             <SimpleGrid columns={{ base: 1, sm: 2, md: 1 }} spacing={8}>
@@ -112,8 +114,8 @@ const Schedules = () => {
             </SimpleGrid>
           </Box>
         </Center>
+        {isMobile && <NavigationBar />}
       </Container>
-      {isMobile && <NavigationBar />}
     </>
   )
 }
