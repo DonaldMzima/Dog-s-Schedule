@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
-import { Box, VStack, Text, IconButton, Icon, Spacer } from '@chakra-ui/react'
+import {
+  Box,
+  VStack,
+  Text,
+  IconButton,
+  Icon,
+  Spacer,
+  Button,
+} from '@chakra-ui/react'
 import {
   FaHome,
   FaUser,
@@ -24,7 +32,6 @@ const Sidebar = () => {
         aria-label="Toggle Sidebar"
         display={{ base: 'block', md: 'none' }}
         onClick={toggleSidebar}
-        pos="fixed"
         top="20px"
         left="20px"
       />
@@ -40,30 +47,51 @@ const Sidebar = () => {
         p={4}
         display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
       >
-        <VStack align="start" spacing={4}>
+        <VStack align="start" spacing={4} mb={600}>
           <Text fontSize="xl">My Sidebar</Text>
-          <IconButton
-            icon={<Icon as={FaHome} />}
-            aria-label="Home"
-            variant="ghost"
-          />
-          <IconButton
-            icon={<Icon as={FaUser} />}
-            aria-label="Profile"
-            variant="ghost"
-          />
-          <IconButton
-            icon={<Icon as={FaCog} />}
-            aria-label="Settings"
-            variant="ghost"
-          />
         </VStack>
         <Spacer />
-        <IconButton
-          icon={<Icon as={FaSignOutAlt} />}
-          aria-label="Logout"
+        <Button
+          leftIcon={<Icon as={FaHome} />}
           variant="ghost"
-        />
+          color="gray.400"
+        >
+          Home
+        </Button>
+        <Button
+          leftIcon={<Icon as={FaUser} />}
+          variant="ghost"
+          color="gray.400"
+        >
+          Profile
+        </Button>
+        <Button
+          leftIcon={<Icon as={FaSignOutAlt} />}
+          variant="ghost"
+          color="gray.400"
+        >
+          Completed
+        </Button>
+        <Button leftIcon={<Icon as={FaCog} />} variant="ghost" color="gray.400">
+          Settings
+        </Button>
+        <Button
+          leftIcon={<Icon as={FaSignOutAlt} />}
+          variant="ghost"
+          color="gray.400"
+          onClick={() => {
+            // Handle the logout action here
+          }}
+        >
+          Logout
+        </Button>
+        <Button
+          leftIcon={<Icon as={FaSignOutAlt} />}
+          variant="ghost"
+          color="gray.400"
+        >
+          Login
+        </Button>
       </Box>
     </>
   )
