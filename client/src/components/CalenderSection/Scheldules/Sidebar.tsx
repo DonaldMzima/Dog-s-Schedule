@@ -7,6 +7,7 @@ import {
   Icon,
   Spacer,
   Button,
+  useColorModeValue,
 } from '@chakra-ui/react'
 import {
   FaHome,
@@ -39,15 +40,16 @@ const Sidebar = () => {
         as="nav"
         pos="fixed"
         left={0}
-        top={0}
-        h="100%"
+        top={81}
         w="200px"
-        bg="gray.800"
+        bg={useColorModeValue('white', 'gray.900')}
         color="white"
-        p={4}
+        p={14}
         display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
+        zIndex={1}
+        boxShadow="lg"
       >
-        <VStack align="start" spacing={4} mb={600}>
+        <VStack align="start" spacing={4}>
           <Text fontSize="xl">My Sidebar</Text>
         </VStack>
         <Spacer />
