@@ -9,21 +9,22 @@ import {
   Button,
   useColorModeValue,
 } from '@chakra-ui/react'
-import {
-  FaHome,
-  FaUser,
-  FaCog,
-  FaSignOutAlt,
-  FaBars,
-  FaTimes,
-} from 'react-icons/fa'
+import { FaHome, FaUser, FaSignOutAlt, FaTimes } from 'react-icons/fa'
 import { HiDotsVertical } from 'react-icons/hi'
+import { BiComment } from 'react-icons/bi'
+import { AiOutlineCheckSquare } from 'react-icons/ai'
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
+  }
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const toggleLoginLogout = () => {
+    setIsLoggedIn(!isLoggedIn)
   }
 
   return (
@@ -41,58 +42,38 @@ const Sidebar = () => {
         pos="fixed"
         left={0}
         top={81}
+        bottom={0}
         w="200px"
         bg={useColorModeValue('white', 'gray.900')}
-        color="white"
+        color={useColorModeValue('#000000', ' white')}
         p={14}
         display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
         zIndex={1}
         boxShadow="lg"
       >
-        <VStack align="start" spacing={4}>
-          <Text fontSize="xl">My Sidebar</Text>
-        </VStack>
+        <Text fontSize="xl">Dog Schedule</Text>
+
         <Spacer />
-        <Button
-          leftIcon={<Icon as={FaHome} />}
-          variant="ghost"
-          color="gray.400"
-        >
+        <Button leftIcon={<Icon as={FaHome} />} variant="ghost">
           Home
         </Button>
-        <Button
-          leftIcon={<Icon as={FaUser} />}
-          variant="ghost"
-          color="gray.400"
-        >
+        <Button leftIcon={<Icon as={FaUser} />} variant="ghost">
           Profile
         </Button>
-        <Button
-          leftIcon={<Icon as={FaSignOutAlt} />}
-          variant="ghost"
-          color="gray.400"
-        >
+        <Button leftIcon={<Icon as={AiOutlineCheckSquare} />} variant="ghost">
           Completed
         </Button>
-        <Button leftIcon={<Icon as={FaCog} />} variant="ghost" color="gray.400">
-          Settings
+        <Button leftIcon={<Icon as={BiComment} />} variant="ghost">
+          Comments
         </Button>
+
         <Button
           leftIcon={<Icon as={FaSignOutAlt} />}
           variant="ghost"
-          color="gray.400"
-          onClick={() => {
-            // Handle the logout action here
-          }}
+          onClick={toggleLoginLogout}
+          top={{ base: 100, md: 250 }}
         >
-          Logout
-        </Button>
-        <Button
-          leftIcon={<Icon as={FaSignOutAlt} />}
-          variant="ghost"
-          color="gray.400"
-        >
-          Login
+          {isLoggedIn ? 'Logout' : 'Login'}
         </Button>
       </Box>
     </>

@@ -18,17 +18,14 @@ const NavigationBar = () => {
   return (
     <Box
       position="fixed"
-      bottom="0"
-      left="0"
+      bottom={-50}
       width="100%"
       zIndex={1}
-      background="white"
       boxShadow="lg"
-      paddingY="20px"
+      backgroundColor={'white'}
     >
       <Center>
         <Stack
-          w="100%"
           direction={'row'}
           color="black"
           spacing={{ base: 20, sm: 155 }}
