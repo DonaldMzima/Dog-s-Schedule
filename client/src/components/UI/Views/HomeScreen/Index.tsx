@@ -18,7 +18,6 @@ const HomePage = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)')
   return (
     <>
-      {!isMobile && <Nav />}
       <Container
         maxW={'100%'}
         minHeight="100vh"
@@ -27,12 +26,12 @@ const HomePage = () => {
           ['linear(to-b, white, gray.900)'],
         )}
       >
+        {!isMobile && <Nav />}
         <Stack
-          as={Box}
           textAlign={'center'}
           spacing={{ base: 8, md: 14 }}
-          py={{ base: 16, md: 24 }} // Adjusted padding for better mobile experience
-          marginTop={{ base: 0, md: 8 }} // Adjusted padding for better mobile experience
+          py={{ base: 16, md: 24 }}
+          marginTop={{ base: 0, md: 8 }}
           color={useColorModeValue('#182d47', '#fafaf7')}
         >
           <Heading
