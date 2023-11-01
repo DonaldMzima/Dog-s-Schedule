@@ -97,7 +97,7 @@ const Schedules = () => {
             </InputLeftElement>
           </InputGroup>
         </Box>
-        {/* <Sidebar /> */}
+        <Sidebar />
         <Center>
           <Box>
             <SimpleGrid columns={{ base: 1, sm: 2, md: 1 }} spacing={8}>
