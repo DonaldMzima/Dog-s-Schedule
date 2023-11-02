@@ -1,43 +1,33 @@
-import React from 'react'
-import {
-  Center,
-  Text,
-  Container,
-  Stack,
-  Box,
-  useMediaQuery,
-} from '@chakra-ui/react'
-import SvgComponent from '@/components/Svg/SettingsSvg/Index'
-import Nav from '@/components/UI/NavBar/Index'
-import NavigationBar from '@/components/UI/2ndNavBar/Index'
+import React, { useState } from 'react'
+import WalkScheduleCard from '@/components/CalenderSection/Cards'
+import { Schedule } from 'utilis/https'
+import { SimpleGrid } from '@chakra-ui/react'
+import CalenderBody from '@/components/CalenderSection/Schedule404'
 
-const Settings = () => {
-  const [isMobile] = useMediaQuery('(max-width: 768px)')
+const FilteredWalkScheduleCard = ({
+  walkSchedulesList,
+}: {
+  walkSchedulesList: Schedule[] | undefined
+}) => {
+  const [query, _] = useState('')
+  // Check if walkSchedulesList is defined before filtering
+  const filteredWalkSchedules = walkSchedulesList
+    ? walkSchedulesList.filter((schedule) => !schedule.isCompleted)
+    : []
+
   return (
-    <>
-      {!isMobile && <Nav />}
-      <Container
-        maxW={'100%'}
-        minHeight="100vh"
-        bgGradient={['linear(to-b, white, yellow)']}
-      >
-        <Stack
-          as={Box}
-          textAlign={'center'}
-          spacing={{ base: 8, md: 14 }}
-          py={{ base: 20, md: 36 }}
-        >
-          <Text>
-            Contant <br />
-            Coming soon...
-          </Text>
-          <Center textAlign={'center'}>
-            <SvgComponent />
-          </Center>
-        </Stack>
-      </Container>
-      {isMobile && <NavigationBar />}
-    </>
+    <div>
+      <SimpleGrid columns={{ base: 1, sm: 2, md: 1 }} spacing={8}>
+        {filteredWalkSchedules.length > 0 ? (
+          filteredWalkSchedules.map((schedule: Schedule) => (
+            <WalkScheduleCard key={schedule.id} walkSchedules={schedule} />
+          ))
+        ) : (
+          <CalenderBody query={query} />
+        )}
+      </SimpleGrid>
+    </div>
   )
 }
-export default Settings
+
+export default FilteredWalkScheduleCard
