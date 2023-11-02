@@ -74,7 +74,7 @@ const Schedules = () => {
           pos="fixed"
           zIndex={1}
           justifyContent="center"
-          mt={{ base: -70, sm: -70, md: -80, lg: -100 }}
+          mt={{ base: -70, sm: -70, md: -90, lg: -155 }}
           ml={{ base: 65, sm: 250, md: -80, lg: 520 }}
         >
           <InputGroup left={0} right={0}>
