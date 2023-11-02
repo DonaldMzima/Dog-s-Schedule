@@ -16,6 +16,7 @@ import {
   Box,
   Checkbox,
   useColorModeValue,
+  Flex,
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
 
@@ -118,17 +119,20 @@ export const UpdateModal = (props: EditButtonType) => {
                 )}
               </FormLabel>
               <FormLabel>
-                <p>
-                  {register('isCompleted')
-                    ? 'Complete Task'
-                    : 'Do Not Complete Task'}
-                </p>
-                <Checkbox
-                  defaultChecked={props.attribute.isCompleted}
-                  {...register('isCompleted')}
-                  border="black"
-                />
+                <Flex align="center">
+                  <Checkbox
+                    defaultChecked={props.attribute.isCompleted}
+                    {...register('isCompleted')}
+                    border="black"
+                  />
+                  <Box ml="2">
+                    {register('isCompleted')
+                      ? 'Complete Task'
+                      : 'Do Not Complete Task'}
+                  </Box>
+                </Flex>
               </FormLabel>
+
               <Center>
                 <Box
                   mt={4}
