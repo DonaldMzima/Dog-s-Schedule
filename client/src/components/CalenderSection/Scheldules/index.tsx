@@ -11,6 +11,7 @@ import {
   InputLeftElement,
   Flex,
   useColorModeValue,
+  Button,
 } from '@chakra-ui/react'
 
 import Nav from '@/components/UI/NavBar/Index'
@@ -27,6 +28,7 @@ import Sidebar from './Sidebar'
 
 const Schedules = () => {
   const [query, updateQuery] = useState('')
+  const [showCompleted, setShowCompleted] = useState(false)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
   const { data, loading } = useQuery<{ schedules: Schedule[] }>(
     GET_WALK_SCHEDULES,
@@ -51,6 +53,12 @@ const Schedules = () => {
   const filteredSchedules = query
     ? results.map((result) => result.item)
     : data?.schedules || []
+
+  //filterterdTask,use boolean,data?.schedules || []
+
+  const filteredTask = showCompleted
+    ? filteredSchedules.filter((schedule) => schedule.isCompleted)
+    : filteredSchedules
 
   function onSearch({ currentTarget }: any) {
     updateQuery(currentTarget.value)
@@ -100,9 +108,16 @@ const Schedules = () => {
         <Sidebar />
         <Center>
           <Box>
+            <Button
+              onClick={() => setShowCompleted(!showCompleted)}
+              variant="ghost"
+            >
+              {showCompleted ? 'Show All' : 'CompletedTasks '}
+            </Button>
+
             <SimpleGrid columns={{ base: 1, sm: 2, md: 1 }} spacing={8}>
-              {filteredSchedules.length > 0 ? (
-                filteredSchedules.map((schedule: Schedule) => (
+              {filteredTask.length > 0 ? (
+                filteredTask.map((schedule: Schedule) => (
                   <WalkScheduleCard
                     key={schedule.id}
                     walkSchedules={schedule}
