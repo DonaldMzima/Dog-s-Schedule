@@ -11,13 +11,7 @@ import {
   Textarea,
   Avatar,
 } from '@chakra-ui/react'
-import {
-  FaHome,
-  FaUser,
-  FaSignOutAlt,
-  FaTimes,
-  FaComment,
-} from 'react-icons/fa'
+import { FaUser, FaSignOutAlt, FaTimes, FaComment } from 'react-icons/fa'
 import { HiDotsVertical } from 'react-icons/hi'
 import { AiOutlineCheckSquare } from 'react-icons/ai'
 import Link from 'next/link'
@@ -79,13 +73,11 @@ const Sidebar = () => {
         zIndex={1}
         boxShadow="lg"
       >
-        <VStack spacing={2} alignItems="center">
-          <Avatar size="lg" icon={<FaUser />} />
-          <Text fontSize="xl">User</Text>
-        </VStack>
-
-        <Spacer />
-        <VStack spacing={2} alignItems="center">
+        <VStack spacing={8} alignItems="center">
+          <VStack spacing={2} alignItems="center">
+            <Avatar size="lg" icon={<FaUser />} />
+            <Text fontSize="xl">User</Text>
+          </VStack>
           <Button leftIcon={<Icon as={FaUser} boxSize={5} />} variant="ghost">
             Profile
           </Button>
@@ -110,7 +102,6 @@ const Sidebar = () => {
             leftIcon={<Icon as={FaSignOutAlt} boxSize={5} />}
             variant="ghost"
             onClick={toggleLoginLogout}
-            top={{ base: 100, md: 250 }}
           >
             {isLoggedIn ? 'Logout' : 'Login'}
           </Button>
