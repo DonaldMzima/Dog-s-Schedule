@@ -59,7 +59,7 @@ function SettingDrawer({ children, ...rest }: any) {
         placement="right"
         onClose={onClose}
         trapFocus={false}
-        closeOnOverlayClick={false}
+        closeOnOverlayClick={true}
         blockScrollOnMount={false}
       >
         {/* <DrawerOverlay /> */}
