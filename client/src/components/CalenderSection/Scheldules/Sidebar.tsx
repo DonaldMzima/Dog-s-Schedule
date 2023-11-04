@@ -14,7 +14,6 @@ import {
 import { FaUser, FaSignOutAlt, FaTimes, FaComment } from 'react-icons/fa'
 import { BiDotsVertical } from 'react-icons/bi'
 import { AiOutlineCheckSquare } from 'react-icons/ai'
-import Link from 'next/link'
 import {
   useDisclosure,
   Modal,
@@ -26,14 +25,11 @@ import {
   ModalFooter,
 } from '@chakra-ui/react'
 import { useRecoilState } from 'recoil'
-import { scheduleData, showCompletedState } from '@/store/atoms'
-import { Schedule } from 'utilis/https'
+import { showCompletedState } from '@/store/atoms'
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const [schedulePayload, setSchedulePayload] = useRecoilState<null | Schedule>(
-    scheduleData,
-  )
+
   const [showCompleted, setShowCompleted] = useRecoilState(showCompletedState)
 
   const Completedtasks = () => {
@@ -65,6 +61,7 @@ const Sidebar = () => {
         top="-70px"
         variant={'unstyled'}
         color={'black'}
+        // pos="fixed"
       />
       <Box
         as="nav"
