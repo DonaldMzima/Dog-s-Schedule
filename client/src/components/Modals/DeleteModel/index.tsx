@@ -7,7 +7,6 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
-  Box,
   Text,
   Center,
   useColorModeValue,
@@ -18,7 +17,7 @@ import { deleteScheduleModal, scheduleData } from '@/store/atoms'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import DelSvg from '@/components/Svg/DeleteSvg'
 
-const DeleteModal = ({ schedulePayload }: any) => {
+const DeleteModal = () => {
   const [isOpen, setIsOpen] = useRecoilState(deleteScheduleModal)
   const scheduleDataUse = useRecoilValue(scheduleData)
   const onClose = () => {
@@ -26,7 +25,7 @@ const DeleteModal = ({ schedulePayload }: any) => {
   }
 
   return (
-    <Modal closeOnOverlayClick={false} isOpen={isOpen} onClose={onClose}>
+    <Modal closeOnOverlayClick={true} isOpen={isOpen} onClose={onClose}>
       <ModalOverlay bg="blackAlpha.300" />
       <ModalContent
         color={useColorModeValue('#000000', ' white')}
