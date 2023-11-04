@@ -16,6 +16,7 @@ const NavigationBar = () => {
           spacing={{ base: 20, sm: 155 }}
           ml={{ base: 25, sm: 50 }}
           mt={{ base: -150, sm: -150 }}
+          bg={useColorModeValue(' yellow', 'transparent')}
         >
           <Link
             href="/"
