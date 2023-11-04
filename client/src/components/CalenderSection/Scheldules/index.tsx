@@ -25,10 +25,12 @@ import CustomSpinner from '../Spinner'
 import WalkScheduleCard from '../Cards'
 import { FaSearch } from 'react-icons/fa'
 import Sidebar from './Sidebar'
+import { showCompletedState } from '@/store/atoms'
+import { useRecoilState } from 'recoil'
 
 const Schedules = () => {
   const [query, updateQuery] = useState('')
-  const [showCompleted, setShowCompleted] = useState(false)
+  const [showCompleted, setShowCompleted] = useRecoilState(showCompletedState)
   const [isMobile] = useMediaQuery('(max-width: 768px)')
   const { data, loading } = useQuery<{ schedules: Schedule[] }>(
     GET_WALK_SCHEDULES,
