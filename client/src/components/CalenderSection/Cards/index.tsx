@@ -50,11 +50,12 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
   }
 
   const openUpdateModal = () => {
+    setSchedulePayload(walkSchedules)
     setOpen(true)
   }
 
   const openUdateModal = (e: any) => {
-    // Check if the event target is not the DeleteModal's button
+    // Check if the event target is not the DeleteModal's button or its descendants
     if (
       !e.target.classList.contains('delete-modal-button') &&
       !e.target.closest('.delete-modal-button')
@@ -107,7 +108,7 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
             </Text>
           </Flex>
           <Flex position="absolute" top={2} right={2} mr={15}>
-            <DeleteModal schedulePayload={schedulePayload} />
+            <DeleteModal />
 
             <UpdateButton
               attribute={{
