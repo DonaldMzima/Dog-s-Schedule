@@ -26,6 +26,11 @@ const StorageState = atom<Array<unknown>>({
   default: [],
 })
 
+export const showCompletedState = atom({
+  key: 'showCompletedState',
+  default: false,
+})
+
 export {
   StorageState,
   schedulesState,

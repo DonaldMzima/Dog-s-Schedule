@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { useState } from 'react'
 import {
   Box,
   VStack,
@@ -9,16 +9,16 @@ import {
   Button,
   useColorModeValue,
   Textarea,
+  Avatar,
 } from '@chakra-ui/react'
 import {
   FaHome,
   FaUser,
   FaSignOutAlt,
   FaTimes,
-  FaComment, // Added the FaComment icon
+  FaComment,
 } from 'react-icons/fa'
 import { HiDotsVertical } from 'react-icons/hi'
-// import { BiComment } from 'react-icons/bi'
 import { AiOutlineCheckSquare } from 'react-icons/ai'
 import Link from 'next/link'
 import {
@@ -31,9 +31,14 @@ import {
   ModalBody,
   ModalFooter,
 } from '@chakra-ui/react'
+import { useRecoilState } from 'recoil'
+import { showCompletedState } from '@/store/atoms' // Import the Recoil atom
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false)
+
+  const [showCompleted, setShowCompleted] = useRecoilState(showCompletedState)
+
   const {
     isOpen: isFeedbackModalOpen,
     onOpen: openFeedbackModal,
@@ -67,44 +72,49 @@ const Sidebar = () => {
         top={90}
         bottom={0}
         w="200px"
-        bg={useColorModeValue('white', 'gray.900')}
+        bg={useColorModeValue('white', ' gray.700')}
         color={useColorModeValue('#000000', 'white')}
         p={14}
         display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
         zIndex={1}
         boxShadow="lg"
       >
-        <Text fontSize="xl">Dog Schedule</Text>
+        <VStack spacing={2} alignItems="center">
+          <Avatar size="lg" icon={<FaUser />} />
+          <Text fontSize="xl">User</Text>
+        </VStack>
 
         <Spacer />
+        <VStack spacing={2} alignItems="center">
+          <Button leftIcon={<Icon as={FaUser} boxSize={5} />} variant="ghost">
+            Profile
+          </Button>
 
-        <Button leftIcon={<Icon as={FaUser} boxSize={5} />} variant="ghost">
-          Profile
-        </Button>
-        <Link href="/settings">
           <Button
             leftIcon={<Icon as={AiOutlineCheckSquare} boxSize={5} />}
             variant="ghost"
+            onClick={() => setShowCompleted(!showCompleted)} // Call the function from props
           >
-            Completed
+            {showCompleted ? 'Show All' : 'CompletedTasks'}
           </Button>
-        </Link>
-        <Button
-          leftIcon={<Icon as={FaComment} boxSize={5} />} // Use the FaComment icon
-          variant="ghost"
-          onClick={openFeedbackModal} // Open the Feedback modal
-        >
-          Feedback
-        </Button>
 
-        <Button
-          leftIcon={<Icon as={FaSignOutAlt} boxSize={5} />}
-          variant="ghost"
-          onClick={toggleLoginLogout}
-          top={{ base: 100, md: 250 }}
-        >
-          {isLoggedIn ? 'Logout' : 'Login'}
-        </Button>
+          <Button
+            leftIcon={<Icon as={FaComment} boxSize={5} />}
+            variant="ghost"
+            onClick={openFeedbackModal}
+          >
+            Feedback
+          </Button>
+
+          <Button
+            leftIcon={<Icon as={FaSignOutAlt} boxSize={5} />}
+            variant="ghost"
+            onClick={toggleLoginLogout}
+            top={{ base: 100, md: 250 }}
+          >
+            {isLoggedIn ? 'Logout' : 'Login'}
+          </Button>
+        </VStack>
       </Box>
 
       <Modal isOpen={isFeedbackModalOpen} onClose={closeFeedbackModal}>
@@ -113,10 +123,7 @@ const Sidebar = () => {
           <ModalHeader>Feedback</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <Textarea
-              placeholder="Add your comments here..."
-              size="lg" // You can adjust the size as needed
-            />
+            <Textarea placeholder="Add your comments here..." size="lg" />
           </ModalBody>
           <ModalFooter>
             <Box
@@ -131,7 +138,7 @@ const Sidebar = () => {
                 color="white"
                 type="submit"
               >
-                submitt
+                Submit
               </Button>
               <Button onClick={closeFeedbackModal}>Close</Button>
             </Box>
