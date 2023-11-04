@@ -1,15 +1,7 @@
-import {
-  Box,
-  Flex,
-  Link,
-  Stack,
-  Center,
-  useColorModeValue,
-} from '@chakra-ui/react'
+import { Box, Link, Stack, Center, useColorModeValue } from '@chakra-ui/react'
 import { RiHome4Fill } from 'react-icons/ri'
-import { BsCalendarPlus } from 'react-icons/bs'
-import { MdSettings } from 'react-icons/md'
-import { useRouter } from 'next/router' // Import the router from Next.js
+import { FaRegCalendarCheck } from 'react-icons/fa'
+import { useRouter } from 'next/router'
 import SettingDrawer from '@/components/Settings'
 
 const NavigationBar = () => {
@@ -20,7 +12,7 @@ const NavigationBar = () => {
       <Center>
         <Stack
           direction={'row'}
-          color="black"
+          color={useColorModeValue('#000000', ' white')}
           spacing={{ base: 20, sm: 155 }}
           ml={{ base: 25, sm: 50 }}
           mt={{ base: -150, sm: -150 }}
@@ -40,7 +32,7 @@ const NavigationBar = () => {
             }
           >
             <Box mb={4}>
-              <BsCalendarPlus size={'3em'} />
+              <FaRegCalendarCheck size={'3em'} />
             </Box>
           </Link>
           <SettingDrawer />

@@ -5,14 +5,11 @@ import {
   DrawerBody,
   DrawerFooter,
   DrawerHeader,
-  DrawerOverlay,
   DrawerContent,
   DrawerCloseButton,
   Button,
-  Input,
   useDisclosure,
   useColorModeValue,
-  useColorMode,
   Center,
   Box,
   useMediaQuery,
@@ -33,7 +30,7 @@ function SettingDrawer({ children, ...rest }: any) {
           size="md"
           height="48px"
           width="100px"
-          color="black"
+          color={useColorModeValue('#000000', ' white')}
           bg={'transparent'}
         >
           <Box>
@@ -62,7 +59,6 @@ function SettingDrawer({ children, ...rest }: any) {
         closeOnOverlayClick={true}
         blockScrollOnMount={false}
       >
-        {/* <DrawerOverlay /> */}
         <DrawerContent bg={useColorModeValue('white', 'gray.900')}>
           <DrawerCloseButton />
           <DrawerHeader>DarkMode</DrawerHeader>

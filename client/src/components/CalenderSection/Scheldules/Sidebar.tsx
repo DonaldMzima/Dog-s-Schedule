@@ -26,13 +26,19 @@ import {
   ModalFooter,
 } from '@chakra-ui/react'
 import { useRecoilState } from 'recoil'
-import { showCompletedState } from '@/store/atoms' // Import the Recoil atom
+import { scheduleData, showCompletedState } from '@/store/atoms'
+import { Schedule } from 'utilis/https'
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false)
-
+  const [schedulePayload, setSchedulePayload] = useRecoilState<null | Schedule>(
+    scheduleData,
+  )
   const [showCompleted, setShowCompleted] = useRecoilState(showCompletedState)
 
+  const Completedtasks = () => {
+    setShowCompleted(!showCompleted)
+  }
   const {
     isOpen: isFeedbackModalOpen,
     onOpen: openFeedbackModal,
@@ -58,6 +64,7 @@ const Sidebar = () => {
         onClick={toggleSidebar}
         top="-70px"
         variant={'unstyled'}
+        color={'black'}
       />
       <Box
         as="nav"
@@ -85,7 +92,7 @@ const Sidebar = () => {
           <Button
             leftIcon={<Icon as={AiOutlineCheckSquare} boxSize={5} />}
             variant="ghost"
-            onClick={() => setShowCompleted(!showCompleted)} // Call the function from props
+            onClick={Completedtasks}
           >
             {showCompleted ? 'Show All' : 'CompletedTasks'}
           </Button>
