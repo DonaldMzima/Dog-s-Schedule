@@ -16,21 +16,14 @@ const NavigationBar = () => {
   const router = useRouter()
 
   return (
-    <Box
-      position="fixed"
-      bottom={-50}
-      width="100%"
-      zIndex={1}
-      boxShadow="lg"
-      backgroundColor={'white'}
-    >
+    <Box position="fixed" bottom={-50} width="100%" zIndex={1} boxShadow="lg">
       <Center>
         <Stack
           direction={'row'}
           color="black"
           spacing={{ base: 20, sm: 155 }}
           ml={{ base: 25, sm: 50 }}
-          mt={{ base: -150, sm: -120 }}
+          mt={{ base: -150, sm: -150 }}
         >
           <Link
             href="/"
