@@ -12,7 +12,7 @@ import {
   Avatar,
 } from '@chakra-ui/react'
 import { FaUser, FaSignOutAlt, FaTimes, FaComment } from 'react-icons/fa'
-import { HiDotsVertical } from 'react-icons/hi'
+import { BiDotsVertical } from 'react-icons/bi'
 import { AiOutlineCheckSquare } from 'react-icons/ai'
 import Link from 'next/link'
 import {
@@ -52,12 +52,12 @@ const Sidebar = () => {
   return (
     <>
       <IconButton
-        icon={isOpen ? <Icon as={FaTimes} /> : <HiDotsVertical />}
+        icon={isOpen ? <FaTimes /> : <BiDotsVertical size={24} />}
         aria-label="Toggle Sidebar"
         display={{ base: 'block', md: 'none' }}
         onClick={toggleSidebar}
-        top="20px"
-        left="20px"
+        top="-70px"
+        variant={'unstyled'}
       />
       <Box
         as="nav"
@@ -108,7 +108,11 @@ const Sidebar = () => {
         </VStack>
       </Box>
 
-      <Modal isOpen={isFeedbackModalOpen} onClose={closeFeedbackModal}>
+      <Modal
+        isOpen={isFeedbackModalOpen}
+        onClose={closeFeedbackModal}
+        size={{ base: 'xs', md: 'sm' }}
+      >
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Feedback</ModalHeader>
