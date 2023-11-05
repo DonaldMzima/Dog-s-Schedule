@@ -25,10 +25,7 @@ const FeedbackModal = () => {
         <ModalContent>
           <ModalHeader>Feedback</ModalHeader>
           <ModalCloseButton />
-          <ModalBody>
-            {/* Add your feedback form or content here */}
-            Feedback form or content goes here.
-          </ModalBody>
+          <ModalBody>Feedback form or content goes here.</ModalBody>
           <ModalFooter>
             <Button onClick={closeFeedbackModal}>Close</Button>
           </ModalFooter>

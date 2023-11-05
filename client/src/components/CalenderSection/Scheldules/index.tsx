@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react'
 
 import Nav from '@/components/UI/NavBar/Index'
-import FloatingButtons from '@/components/UI/FloatingButtons/Index'
+import FloatingButtons from '@/components/UI/Buttons/Index'
 import NavigationBar from '@/components/UI/2ndNavBar/Index'
 import Fuse from 'fuse.js'
 import CalenderBody from '@/components/CalenderSection/SearchhError'

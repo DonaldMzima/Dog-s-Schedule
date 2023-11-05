@@ -61,7 +61,6 @@ const Sidebar = () => {
         top="-70px"
         variant={'unstyled'}
         color={'black'}
-        // pos="fixed"
       />
       <Box
         as="nav"
@@ -72,7 +71,7 @@ const Sidebar = () => {
         w="200px"
         bg={useColorModeValue('white', ' gray.700')}
         color={useColorModeValue('#000000', 'white')}
-        p={14}
+        p={{ base: 2, md: 14 }}
         display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
         zIndex={1}
         boxShadow="lg"
