@@ -19,7 +19,7 @@ import { MdSettings } from 'react-icons/md'
 
 function SettingDrawer({ children, ...rest }: any) {
   const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef()
+
   const [isMobile] = useMediaQuery('(max-width: 768px)')
 
   return (
