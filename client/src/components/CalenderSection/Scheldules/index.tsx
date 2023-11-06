@@ -9,7 +9,7 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
-  Flex,
+  Text,
   useColorModeValue,
   Button,
 } from '@chakra-ui/react'
@@ -110,12 +110,9 @@ const Schedules = () => {
         <Sidebar />
         <Center>
           <Box>
-            <Button
-              onClick={() => setShowCompleted(!showCompleted)}
-              variant="ghost"
-            >
+            <Text fontWeight="bold">
               {showCompleted ? 'Show All' : 'CompletedTasks '}
-            </Button>
+            </Text>
 
             <SimpleGrid columns={{ base: 1, sm: 2, md: 1 }} spacing={8}>
               {filteredTask.length > 0 ? (
