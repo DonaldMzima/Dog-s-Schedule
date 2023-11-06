@@ -10,6 +10,8 @@ import {
   useColorModeValue,
   Textarea,
   Avatar,
+  HStack,
+  Stack,
 } from '@chakra-ui/react'
 import { FaUser, FaSignOutAlt, FaTimes, FaComment } from 'react-icons/fa'
 import { BiDotsVertical } from 'react-icons/bi'
@@ -62,6 +64,7 @@ const Sidebar = () => {
         variant={'unstyled'}
         color={'black'}
       />
+
       <Box
         as="nav"
         pos="fixed"
@@ -77,22 +80,29 @@ const Sidebar = () => {
         boxShadow="lg"
       >
         <VStack spacing={8} alignItems="center">
-          <VStack spacing={2} alignItems="center">
-            <Avatar size="lg" icon={<FaUser />} />
-            <Text fontSize="xl">User</Text>
-          </VStack>
+          <Avatar size="lg" icon={<FaUser />} />
+          <Text fontSize="xl" ml={0}>
+            User
+          </Text>
+        </VStack>
+        <VStack spacing={8} alignItems="flex-start" left={0}>
           <Button leftIcon={<Icon as={FaUser} boxSize={5} />} variant="ghost">
             Profile
           </Button>
-
           <Button
             leftIcon={<Icon as={AiOutlineCheckSquare} boxSize={5} />}
             variant="ghost"
             onClick={Completedtasks}
           >
-            {showCompleted ? 'Show All' : 'CompletedTasks'}
+            {showCompleted ? (
+              <Text>Show All</Text>
+            ) : (
+              <Text>
+                Completed <br />
+                Tasks
+              </Text>
+            )}
           </Button>
-
           <Button
             leftIcon={<Icon as={FaComment} boxSize={5} />}
             variant="ghost"
@@ -100,7 +110,6 @@ const Sidebar = () => {
           >
             Feedback
           </Button>
-
           <Button
             leftIcon={<Icon as={FaSignOutAlt} boxSize={5} />}
             variant="ghost"
