@@ -1,3 +1,4 @@
+import { openFeedbackModal } from '@/store/atoms'
 import {
   Button,
   Modal,
@@ -10,24 +11,25 @@ import {
   useDisclosure,
 } from '@chakra-ui/react'
 import React from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 
 const FeedbackModal = () => {
-  const {
-    isOpen: isFeedbackModalOpen,
+  const [isOpen, setIsOpen] = useRecoilState(openFeedbackModal)
 
-    onClose: closeFeedbackModal,
-  } = useDisclosure()
+  const onClose = () => {
+    setIsOpen(false)
+  }
 
   return (
     <>
-      <Modal isOpen={isFeedbackModalOpen} onClose={closeFeedbackModal}>
+      <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Feedback</ModalHeader>
           <ModalCloseButton />
           <ModalBody>Feedback form or content goes here.</ModalBody>
           <ModalFooter>
-            <Button onClick={closeFeedbackModal}>Close</Button>
+            <Button onClick={onClose}>Close</Button>
           </ModalFooter>
         </ModalContent>
       </Modal>

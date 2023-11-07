@@ -31,6 +31,11 @@ export const showCompletedState = atom({
   default: false,
 })
 
+export const openFeedbackModal = atom({
+  key: 'openFeedbackModal',
+  default: false,
+})
+
 export {
   StorageState,
   schedulesState,

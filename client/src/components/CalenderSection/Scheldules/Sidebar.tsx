@@ -26,22 +26,27 @@ import {
   ModalBody,
   ModalFooter,
 } from '@chakra-ui/react'
-import { useRecoilState } from 'recoil'
-import { showCompletedState } from '@/store/atoms'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { showCompletedState, openFeedbackModal } from '@/store/atoms'
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const [showCompleted, setShowCompleted] = useRecoilState(showCompletedState)
+  const [FeedbackModal, setFeedbackModal] = useRecoilState(openFeedbackModal)
 
   const Completedtasks = () => {
     setShowCompleted(!showCompleted)
   }
-  const {
-    isOpen: isFeedbackModalOpen,
-    onOpen: openFeedbackModal,
-    onClose: closeFeedbackModal,
-  } = useDisclosure()
+
+  const openFeedModal = () => {
+    setFeedbackModal(false)
+  }
+  // const {
+  //   isOpen: isFeedbackModalOpen,
+  //   onOpen: openFeedbackModal,
+  //   onClose: closeFeedbackModal,
+  // } = useDisclosure()
 
   const toggleSidebar = () => {
     setIsOpen(!isOpen)
@@ -106,7 +111,7 @@ const Sidebar = () => {
           <Button
             leftIcon={<Icon as={FaComment} boxSize={5} />}
             variant="ghost"
-            onClick={openFeedbackModal}
+            onClick={openFeedModal}
           >
             Feedback
           </Button>
@@ -119,39 +124,6 @@ const Sidebar = () => {
           </Button>
         </VStack>
       </Box>
-
-      <Modal
-        isOpen={isFeedbackModalOpen}
-        onClose={closeFeedbackModal}
-        size={{ base: 'xs', md: 'sm' }}
-      >
-        <ModalOverlay />
-        <ModalContent>
-          <ModalHeader>Feedback</ModalHeader>
-          <ModalCloseButton />
-          <ModalBody>
-            <Textarea placeholder="Add your comments here..." size="lg" />
-          </ModalBody>
-          <ModalFooter>
-            <Box
-              mt={4}
-              display="flex"
-              justifyContent="space-between"
-              width="100%"
-            >
-              <Button
-                colorScheme="grey"
-                bg="#1f1f1a"
-                color="white"
-                type="submit"
-              >
-                Submit
-              </Button>
-              <Button onClick={closeFeedbackModal}>Close</Button>
-            </Box>
-          </ModalFooter>
-        </ModalContent>
-      </Modal>
     </>
   )
 }
