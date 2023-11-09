@@ -15,7 +15,7 @@ To get started with DogWalkSchedule on your local machine, follow these steps:
 # Clone the repository:
 
 Copy code
-git clone https://github.com/yourusername/dog-walk-schedule.git
+git clone [https://github.com/yourusername/dog-walk-schedule.git](https://github.com/DonaldMzima/Dog-s-Schedule.git)
 Change into the project directory:
 
 Copy code
@@ -69,7 +69,7 @@ Next.js: A React framework for building server-rendered applications.
 TypeScript: A statically typed superset of JavaScript.
 Chakra UI: A component library for building user interfaces.
 GraphQL: A query language for APIs.
-Database: Use your preferred database system (e.g., PostgreSQL, MongoDB) and configure it in the project.
+Database: Use your preferred database system (e.g., PostgreSQL) and configure it in the project.
 Features
 Create, edit, and delete dog walk tasks.
 Filter tasks by person responsible or dog's name.
