@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import { useSignUpEmailPassword } from '@nhost/nextjs'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Spinner } from '@chakra-ui/react'
 import CustomSpinner from '@/components/CalenderSection/Spinner'
 
 const SignUp = () => {
