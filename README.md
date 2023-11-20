@@ -121,11 +121,8 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Deployed site
+[(https://dog-s-schedule.vercel.app)](https://dog-s-schedule.vercel.app/) .
 
 
 ![dogschedule](https://github.com/DonaldMzima/Dog-s-Schedule/assets/90970069/4d0e8dd3-8145-488c-aa2d-3709c6ceac40)
