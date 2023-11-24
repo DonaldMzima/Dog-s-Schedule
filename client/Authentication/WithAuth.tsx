@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Spinner } from '@chakra-ui/react'
-import styles from './styles/pages/ProtectedRoute.module.css'
+
 import { useRouter } from 'next/router'
 import { useAuthenticationStatus } from '@nhost/nextjs'
 
@@ -21,18 +21,17 @@ export default function withAuth<P>(
 
     useEffect(() => {
       if (isLoading) {
-        // You may want to handle loading state differently
         return
       }
 
       if (!isAuthenticated) {
-        router.push('/sign-in')
+        router.push('/signIn')
       }
     }, [isLoading, isAuthenticated, router])
 
     if (isLoading) {
       return (
-        <div className={styles.container}>
+        <div>
           <Spinner size="xl" color="blue.500" />
         </div>
       )
