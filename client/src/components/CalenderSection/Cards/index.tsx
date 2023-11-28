@@ -22,12 +22,11 @@ import {
 } from '@/store/atoms'
 import { useRecoilState } from 'recoil'
 import UpdateButton, { UpdateModal } from '@/components/Modals/UpdateModal'
+// import { useAuthQuery } from '@nhost/react-apollo'
 
 type WalkScheduleCardProps = {
   walkSchedules: Schedule
 }
-
-// ... (Previous code)
 
 const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
   const [schedulePayload, setSchedulePayload] = useRecoilState<null | Schedule>(
