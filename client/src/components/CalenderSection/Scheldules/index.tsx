@@ -27,10 +27,18 @@ import { FaSearch } from 'react-icons/fa'
 import Sidebar from './Sidebar'
 import { showCompletedState } from '@/store/atoms'
 import { useRecoilState } from 'recoil'
+import {
+  useAuthenticated,
+  useSignInEmailPassword,
+  useSignOut,
+} from '@nhost/nextjs'
 
 const Schedules = () => {
   const [query, updateQuery] = useState('')
   const [showCompleted, setShowCompleted] = useRecoilState(showCompletedState)
+  const isAuthenticated = useAuthenticated()
+  const signOut = useSignOut()
+  const { signInEmailPassword } = useSignInEmailPassword()
   const [isMobile] = useMediaQuery('(max-width: 768px)')
   const { data, loading } = useQuery<{ schedules: Schedule[] }>(
     GET_WALK_SCHEDULES,
@@ -39,6 +47,28 @@ const Schedules = () => {
       pollInterval: 500,
     },
   )
+
+  const handleSubmit = async () => {
+    const result = await signInEmailPassword(
+      'donaldmzima8@gmail.com',
+      'Donald@99_',
+    )
+    console.log('SignIn Result:', result)
+  }
+
+  // const handleSubmit = () => {
+  //   if (data && data.schedules) {
+  //     console.log('Schedules:', data.schedules)
+  //   } else {
+  //     // Handle the case when data is not available
+  //     console.error('No data available')
+  //   }
+  // }
+
+  const handleSignOut = () => {
+    signOut.signOut()
+    console.log('User is signed out')
+  }
 
   if (loading) {
     return <CustomSpinner text={'Loading ...'} />
@@ -109,6 +139,13 @@ const Schedules = () => {
         </Box>
         <Sidebar />
         <Center>
+          {/* <Box>
+            {isAuthenticated ? (
+              <Button onClick={handleSignOut}>Signout{''}</Button>
+            ) : (
+              <Button onClick={handleSubmit}>Signin{''}</Button>
+            )}
+          </Box> */}
           <Box>
             <Text fontWeight="bold">
               {showCompleted ? 'Show All' : 'CompletedTasks '}
