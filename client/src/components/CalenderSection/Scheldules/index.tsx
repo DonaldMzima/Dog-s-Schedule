@@ -139,13 +139,7 @@ const Schedules = () => {
         </Box>
         <Sidebar />
         <Center>
-          {/* <Box>
-            {isAuthenticated ? (
-              <Button onClick={handleSignOut}>Signout{''}</Button>
-            ) : (
-              <Button onClick={handleSubmit}>Signin{''}</Button>
-            )}
-          </Box> */}
+  
           <Box>
             <Text fontWeight="bold">
               {showCompleted ? 'Show All' : 'CompletedTasks '}
