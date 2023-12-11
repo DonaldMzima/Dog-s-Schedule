@@ -15,7 +15,7 @@ To get started with DogWalkSchedule on your local machine, follow these steps:
 # Clone the repository:
 
 Copy code
-git clone [https://github.com/yourusername/dog-walk-schedule.git](https://github.com/DonaldMzima/Dog-s-Schedule.git)
+git clone(https://github.com/DonaldMzima/Dog-s-Schedule.git)
 Change into the project directory:
 
 Copy code
