@@ -7,6 +7,12 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import { NhostProvider, NhostClient } from '@nhost/nextjs'
 import { RecoilRoot } from 'recoil'
 import { UserProvider } from 'utilis/hooks/UserProvider'
+import {
+  ClerkProvider,
+  RedirectToSignIn,
+  SignedIn,
+  SignedOut,
+} from '@clerk/nextjs'
 
 export const client = new ApolloClient({
   uri: 'https://swfkedcclgqaeusybpxy.graphql.eu-central-1.nhost.run/v1',
@@ -28,10 +34,17 @@ const App: React.FC<MyAppProps> = ({ Component, pageProps }: MyAppProps) => {
       <UserProvider>
         <ApolloProvider client={client}>
           <ChakraProvider>
-            <RecoilRoot>
-              <Component {...pageProps} minHeight="100vh" />
-              <ToastContainer position="top-right" autoClose={1000} />
-            </RecoilRoot>
+            <ClerkProvider {...pageProps}>
+              <RecoilRoot>
+                <SignedIn>
+                  <Component {...pageProps} minHeight="100vh" />
+                  <ToastContainer position="top-right" autoClose={1000} />
+                </SignedIn>
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </RecoilRoot>
+            </ClerkProvider>
           </ChakraProvider>
         </ApolloProvider>
       </UserProvider>
