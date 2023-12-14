@@ -36,13 +36,8 @@ const App: React.FC<MyAppProps> = ({ Component, pageProps }: MyAppProps) => {
           <ChakraProvider>
             <ClerkProvider {...pageProps}>
               <RecoilRoot>
-                <SignedIn>
-                  <Component {...pageProps} minHeight="100vh" />
-                  <ToastContainer position="top-right" autoClose={1000} />
-                </SignedIn>
-                <SignedOut>
-                  <RedirectToSignIn />
-                </SignedOut>
+                <Component {...pageProps} minHeight="100vh" />
+                <ToastContainer position="top-right" autoClose={1000} />
               </RecoilRoot>
             </ClerkProvider>
           </ChakraProvider>
