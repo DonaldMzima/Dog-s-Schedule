@@ -28,12 +28,24 @@ import {
 } from '@chakra-ui/react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { showCompletedState, openFeedbackModal } from '@/store/atoms'
+import { SignedOut, UserButton, UserProfile } from '@clerk/nextjs'
+import ProfileModal from '@/components/Modals/ProfileModal'
 
 const Sidebar = () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const [showCompleted, setShowCompleted] = useRecoilState(showCompletedState)
   const [FeedbackModal, setFeedbackModal] = useRecoilState(openFeedbackModal)
+
+  const [isProfileModalOpen, setIsProfileModalOpen] = useState(false)
+
+  const openProfileModal = () => {
+    setIsProfileModalOpen(true)
+  }
+
+  const closeProfileModal = () => {
+    setIsProfileModalOpen(false)
+  }
 
   const Completedtasks = () => {
     setShowCompleted(!showCompleted)
@@ -85,15 +97,26 @@ const Sidebar = () => {
         boxShadow="lg"
       >
         <VStack spacing={8} alignItems="center">
-          <Avatar size="lg" icon={<FaUser />} />
+          <UserButton afterSignOutUrl="/" />
+
           <Text fontSize="xl" ml={0}>
             User
           </Text>
         </VStack>
         <VStack spacing={8} alignItems="flex-start" left={0}>
-          <Button leftIcon={<Icon as={FaUser} boxSize={5} />} variant="ghost">
+          <Button
+            leftIcon={<Icon as={FaUser} boxSize={5} />}
+            variant="ghost"
+            onClick={openProfileModal}
+          >
             Profile
           </Button>
+
+          <ProfileModal
+            isOpen={isProfileModalOpen}
+            onClose={closeProfileModal}
+          />
+
           <Button
             leftIcon={<Icon as={AiOutlineCheckSquare} boxSize={5} />}
             variant="ghost"
@@ -123,6 +146,7 @@ const Sidebar = () => {
             {isLoggedIn ? 'Logout' : 'Login'}
           </Button>
         </VStack>
+        <SignedOut />
       </Box>
     </>
   )
