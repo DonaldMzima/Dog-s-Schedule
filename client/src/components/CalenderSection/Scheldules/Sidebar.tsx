@@ -146,7 +146,6 @@ const Sidebar = () => {
             {isLoggedIn ? 'Logout' : 'Login'}
           </Button>
         </VStack>
-        <SignedOut />
       </Box>
     </>
   )
