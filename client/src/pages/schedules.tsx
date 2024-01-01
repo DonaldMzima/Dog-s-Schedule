@@ -10,6 +10,9 @@ const Calender = () => {
       <SignedIn>
         <Schedules />
       </SignedIn>
+      <SignedOut>
+        <RedirectToSignIn />
+      </SignedOut>
       {/* </ApolloProviderWrapper> */}
     </Box>
   )
