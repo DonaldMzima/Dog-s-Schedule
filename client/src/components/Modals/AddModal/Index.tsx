@@ -26,6 +26,7 @@ import { useRecoilState } from 'recoil'
 import { schedulesState } from '@/store/atoms'
 import { CreateWalkSchedules } from 'utilis/https'
 import { UserDataTypes } from 'utilis/types'
+import { useUser } from '@clerk/nextjs'
 
 const schema = Yup.object().shape({
   person: Yup.string().required('Person Walking the dog is required'),
@@ -36,7 +37,8 @@ const schema = Yup.object().shape({
 export const AddModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [dogSchedules, setDogSchedules] = useRecoilState<any>(schedulesState)
-
+  const { isSignedIn, user } = useUser()
+  console.log('user', user?.primaryEmailAddress?.emailAddress)
   const {
     handleSubmit,
     register,
@@ -47,11 +49,20 @@ export const AddModal = () => {
 
   const onSubmit = (data: UserDataTypes) => {
     onClose()
-    CreateWalkSchedules(data)
 
+    // Access user's email using useUser hook
+    const userEmail = user?.primaryEmailAddress?.emailAddress
+
+    // Add the email key to the data object
+    const newData = { ...data, email: userEmail }
+
+    // Create the schedule with the updated data
+    CreateWalkSchedules(newData)
+
+    // Update the dogSchedules state with the new schedule
     setDogSchedules((previousState: UserDataTypes[]) => [
       ...previousState,
-      data,
+      newData,
     ])
   }
 
