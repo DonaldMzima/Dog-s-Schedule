@@ -27,8 +27,8 @@ interface DeleteResult {
 }
 
 export const GET_WALK_SCHEDULES = gql`
-  query GET_WALK_SCHEDULES {
-    schedules {
+  query GET_WALK_SCHEDULES($email: String) {
+    schedules(where: { email: { _eq: $email } }) {
       person
       dog
       date
@@ -40,11 +40,20 @@ export const GET_WALK_SCHEDULES = gql`
 `
 
 const CREATE_WALK_SCHEDULE = gql`
-  mutation CreateWalkSchedule($person: String!, $dog: String!, $date: date!) {
-    insert_schedules_one(object: { person: $person, dog: $dog, date: $date }) {
+  mutation CreateWalkSchedule(
+    $email: String
+    $person: String!
+    $dog: String!
+    $date: date!
+  ) {
+    insert_schedules_one(
+      object: { person: $person, dog: $dog, date: $date, email: $email }
+    ) {
       person
       dog
       date
+      __typename
+      email
     }
   }
 `
