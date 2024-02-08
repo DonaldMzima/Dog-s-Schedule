@@ -22,7 +22,6 @@ import {
 } from '@/store/atoms'
 import { useRecoilState } from 'recoil'
 import UpdateButton, { UpdateModal } from '@/components/Modals/UpdateModal'
-// import { useAuthQuery } from '@nhost/react-apollo'
 
 type WalkScheduleCardProps = {
   walkSchedules: Schedule
@@ -54,7 +53,6 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
   }
 
   const openUdateModal = (e: any) => {
-    // Check if the event target is not the DeleteModal's button or its descendants
     if (
       !e.target.classList.contains('delete-modal-button') &&
       !e.target.closest('.delete-modal-button')
@@ -65,8 +63,6 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
 
   const handleIsCompletedToggle = () => {
     setIsCompleted(!isCompleted)
-
-    // You can add code here to update the `isCompleted` property in your data source.
   }
 
   return (

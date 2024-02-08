@@ -18,7 +18,7 @@ const FloatingButtons = () => {
           width={{ base: '100%', md: '180%' }}
           height={{ base: '100px', md: '250px' }}
         >
-          <Box pos="fixed">
+          <Box pos="absolute">
             <AddModal />
           </Box>
         </Center>

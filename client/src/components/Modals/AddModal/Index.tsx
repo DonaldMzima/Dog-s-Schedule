@@ -37,7 +37,7 @@ const schema = Yup.object().shape({
 export const AddModal = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const [dogSchedules, setDogSchedules] = useRecoilState<any>(schedulesState)
-  const { isSignedIn, user } = useUser()
+  const { user } = useUser()
   console.log('user', user?.primaryEmailAddress?.emailAddress)
   const {
     handleSubmit,
@@ -84,6 +84,7 @@ export const AddModal = () => {
             <AddIcon />
           </Circle>
         </Flex>
+
         <Modal
           isOpen={isOpen}
           onClose={onClose}

@@ -89,19 +89,24 @@ const Schedules = () => {
         bottom={0}
         bgGradient={useColorModeValue(
           ['linear(to-b, white, yellow)'],
-          ['linear(to-b, white, gray.900)'],
+          ['linear(to-b, #928b8b, gray.900)'],
         )}
       >
         <FloatingButtons />
 
         <Box
-          pos="fixed"
+          pos="absolute"
           zIndex={1}
           justifyContent="center"
           mt={{ base: -70, sm: -70, md: -90, lg: -155 }}
-          ml={{ base: 65, sm: 250, md: -80, lg: 520 }}
+          ml={{
+            base: 'calc(50% - 85px)',
+            sm: 'calc(50% - 85px)',
+            md: 'calc(50% - 150px)',
+            lg: 'calc(50% - 285px)',
+          }}
         >
-          <InputGroup left={0} right={0}>
+          <InputGroup width={{ base: '170px', sm: '170px', md: '400px' }}>
             <Input
               type="text"
               placeholder="search"
@@ -109,18 +114,19 @@ const Schedules = () => {
               boxShadow="md"
               value={query}
               onChange={onSearch}
-              width={{ base: 170, sm: 170, md: 300 }}
+              width="100%"
               border={useColorModeValue(
                 '2px solid #1f1f1a',
                 '1px solid #27271c',
               )}
               _placeholder={{ color: 'black' }}
             />
-            <InputLeftElement pointerEvents="none" color={'black'}>
+            <InputLeftElement pointerEvents="none" color="black">
               <FaSearch />
             </InputLeftElement>
           </InputGroup>
         </Box>
+
         <Sidebar />
         <Center>
           <Box>

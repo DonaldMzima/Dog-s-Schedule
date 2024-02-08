@@ -26,7 +26,7 @@ const CustomSpinner = ({ text }: CustomSpinnerType) => {
         justifyContent="center"
         bgGradient={useColorModeValue(
           ['linear(to-b, white, yellow)'],
-          ['linear(to-b, white, gray.900)'],
+          ['linear(to-b, #928b8b, gray.900)'],
         )}
       >
         {!isMobile && <Nav />}
