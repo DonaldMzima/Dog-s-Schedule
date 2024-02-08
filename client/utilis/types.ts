@@ -3,7 +3,7 @@ export type attributesType = {
   person: string
   dog: string
   date: Date | string
-  isCompleted?: boolean | any
+  isCompleted?: boolean
   createdAt?: Date
   publishedAt?: Date
   updatedAt?: Date
@@ -11,7 +11,7 @@ export type attributesType = {
 
 export type EditButtonType = {
   userData?: UserDataTypes
-  id: any
+  id: string
 
   attribute: attributesType
 }
@@ -24,7 +24,7 @@ export type SchedulesTypes = {
 export type UserDataTypes = {
   person: string
   dog: string
-  date: any
+  date: Date
   isCompleted?: boolean
 }
 
@@ -40,5 +40,5 @@ export type FormType = {
   person: string
   dog: string
   date: string | Date
-  isCompleted?: boolean | any
+  isCompleted?: boolean
 }
