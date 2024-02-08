@@ -15,6 +15,11 @@ export interface Schedule {
   updatedAt?: string
 }
 
+export interface Feedback {
+  email: string
+  massage: string
+}
+
 interface UserDataTypes {
   person: string
   dog: string
@@ -24,6 +29,11 @@ interface UserDataTypes {
 
 interface DeleteResult {
   id: string
+}
+
+interface FeedbackDataTypes {
+  email: string
+  massage: string
 }
 
 export const GET_WALK_SCHEDULES = gql`
@@ -88,6 +98,16 @@ const EDIT_SCHEDULE = gql`
       dog
       date
       isCompleted
+    }
+  }
+`
+
+const CREATE_FEED_BACK = gql`
+  mutation CreateFeedback($email: String, $massage: String!) {
+    insert_feedback_one(object: { email: $email, massage: $massage }) {
+      email
+      massage
+      __typename
     }
   }
 `
@@ -159,6 +179,23 @@ const EditSchedules = async (
     return data.update_schedules_by_pk
   } catch (error) {
     toast.error('Failed to update schedule') // Show error toast
+    throw new Error(error as string)
+  }
+}
+
+const CreateFeedback = async (
+  userData: FeedbackDataTypes,
+): Promise<Feedback> => {
+  try {
+    const { data }: Record<string, any> = await client.mutate({
+      mutation: CREATE_FEED_BACK,
+      variables: userData,
+    })
+
+    toast.success('Feedback created successfully')
+    return data.insert_schedules_one
+  } catch (error) {
+    toast.error('Failed to create Feedback')
     throw new Error(error as string)
   }
 }
