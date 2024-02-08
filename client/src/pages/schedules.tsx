@@ -6,14 +6,12 @@ import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/nextjs'
 const Calender = () => {
   return (
     <Box>
-      {/* <ApolloProviderWrapper> */}
       <SignedIn>
         <Schedules />
       </SignedIn>
       <SignedOut>
         <RedirectToSignIn />
       </SignedOut>
-      {/* </ApolloProviderWrapper> */}
     </Box>
   )
 }

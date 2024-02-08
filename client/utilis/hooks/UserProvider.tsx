@@ -1,12 +1,12 @@
 import React, { useContext, ReactNode } from 'react'
-import { useUserData } from '@nhost/nextjs'
+import { User, useUserData } from '@nhost/nextjs'
 
 interface UserProviderProps {
   children: ReactNode
 }
 
 interface UserContextValue {
-  user: any // Replace "YourUserType" with the actual type of user data
+  user: User | null
 }
 
 const UserContext = React.createContext<UserContextValue | null>(null)
