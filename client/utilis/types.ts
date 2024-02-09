@@ -42,3 +42,7 @@ export type FormType = {
   date: string | Date
   isCompleted?: boolean
 }
+
+export type MessageType = {
+  message: string
+}
