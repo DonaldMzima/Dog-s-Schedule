@@ -31,7 +31,7 @@ interface DeleteResult {
   id: string
 }
 
-interface FeedbackDataTypes {
+export interface FeedbackDataTypes {
   email: string
   massage: string
 }
@@ -193,11 +193,17 @@ const CreateFeedback = async (
     })
 
     toast.success('Feedback created successfully')
-    return data.insert_schedules_one
+    return data.insert_feedback_one
   } catch (error) {
     toast.error('Failed to create Feedback')
     throw new Error(error as string)
   }
 }
 
-export { WalkSchedules, CreateWalkSchedules, DeleteSchedules, EditSchedules }
+export {
+  WalkSchedules,
+  CreateWalkSchedules,
+  DeleteSchedules,
+  EditSchedules,
+  CreateFeedback,
+}
