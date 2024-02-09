@@ -32,11 +32,9 @@ const FeedbackModal = ({ isOpen, onClose }: any) => {
     resolver: yupResolver(schema),
   })
 
-  const onSubmit = async (data: FeedbackDataTypes | any) => {
-    console.log('Feedback message:', data)
-    // Reset message field after submission if needed
+  const onSubmit = async (data: FeedbackDataTypes) => {
     setValue('message', '')
-    onClose() // Close modal after submission
+    onClose()
     const userEmail = user?.primaryEmailAddress?.emailAddress
     const newData = { ...data, userEmail }
     await CreateFeedback(newData)
