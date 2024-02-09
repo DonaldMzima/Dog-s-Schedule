@@ -16,8 +16,9 @@ export interface Schedule {
 }
 
 export interface Feedback {
+  id: any
   email: string
-  massage: string
+  message: string
 }
 
 interface UserDataTypes {
@@ -32,8 +33,9 @@ interface DeleteResult {
 }
 
 export interface FeedbackDataTypes {
-  email: string
-  massage: string
+  id?: any
+  email?: string
+  message?: string
 }
 
 export const GET_WALK_SCHEDULES = gql`
@@ -103,10 +105,10 @@ const EDIT_SCHEDULE = gql`
 `
 
 const CREATE_FEED_BACK = gql`
-  mutation CreateFeedback($email: String, $massage: String!) {
-    insert_feedback_one(object: { email: $email, massage: $massage }) {
+  mutation CreateFeedback($email: String, $message: String!) {
+    insert_feedback_one(object: { email: $email, message: $message }) {
       email
-      massage
+      message
       __typename
     }
   }
