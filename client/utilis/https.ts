@@ -33,7 +33,7 @@ interface DeleteResult {
 }
 
 export interface FeedbackDataTypes {
-  id?: any
+  id?: string
   email?: string
   message?: string
 }
