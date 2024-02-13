@@ -9,6 +9,8 @@ import {
   Center,
   useColorModeValue,
   useMediaQuery,
+  Button,
+  Link,
 } from '@chakra-ui/react'
 import Nav from '@/components/UI/NavBar/Index'
 import SvgComponent from '@/components/Svg/HomeSvg'
@@ -23,10 +25,10 @@ const HomePage = () => {
         minHeight="100vh"
         bgGradient={useColorModeValue(
           ['linear(to-b, white, yellow)'],
-          ['linear(to-b, #928b8b, gray.900)'],
+          ['linear(to-b, #8f8e8e, #4e4e4e.900)'],
         )}
       >
-        {!isMobile && <Nav />}
+        {/* {!isMobile && <Nav />} */}
         <Stack
           textAlign={'center'}
           spacing={{ base: 8, md: 14 }}
@@ -62,6 +64,16 @@ const HomePage = () => {
               keep you motivated!
             </Text>
           )}
+          <Center textAlign={'center'}>
+            <Link href="/schedules">
+              <Button colorScheme="blue" size="lg" mr={4}>
+                Get Started
+              </Button>
+            </Link>
+            <Button colorScheme="teal" size="lg">
+              Learn More
+            </Button>
+          </Center>
           <Center textAlign={'center'}>
             <SvgComponent />
           </Center>
