@@ -14,7 +14,7 @@ import { AiOutlineCheckSquare } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { showCompletedState, openFeedbackModal } from '@/store/atoms'
-import { SignedOut, UserButton, UserProfile, useClerk } from '@clerk/nextjs'
+import { UserButton, useClerk } from '@clerk/nextjs'
 import ProfileModal from '@/components/Modals/ProfileModal'
 import FeedbackModal from '@/components/Modals/FeedbackModal'
 
@@ -47,12 +47,6 @@ const Sidebar = () => {
     setIsOpen(!isOpen)
   }
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
-
-  const toggleLoginLogout = () => {
-    setIsLoggedIn(!isLoggedIn)
-  }
-
   return (
     <>
       <IconButton
@@ -67,7 +61,7 @@ const Sidebar = () => {
 
       <Box
         as="nav"
-        pos="fixed"
+        pos="absolute"
         left={0}
         top={90}
         bottom={0}
@@ -83,10 +77,10 @@ const Sidebar = () => {
           <UserButton afterSignOutUrl="/" />
 
           <Text fontSize="xl" ml={0}>
-            User
+            _
           </Text>
         </VStack>
-        <VStack spacing={8} alignItems="flex-start" left={0}>
+        <VStack spacing={8} mr="50%">
           <Button
             leftIcon={<Icon as={FaUser} boxSize={5} />}
             variant="ghost"
@@ -102,16 +96,14 @@ const Sidebar = () => {
           <Button
             leftIcon={<Icon as={AiOutlineCheckSquare} boxSize={5} />}
             variant="ghost"
+            pos="static"
             onClick={Completedtasks}
             w="100%"
           >
             {showCompleted ? (
               <Text>Show All</Text>
             ) : (
-              <Text>
-                Completed <br />
-                Tasks
-              </Text>
+              <Text fontSize="xs">Completed Schedules</Text>
             )}
           </Button>
           <Button
@@ -130,6 +122,8 @@ const Sidebar = () => {
             leftIcon={<Icon as={FaSignOutAlt} boxSize={5} />}
             variant="ghost"
             w="100%"
+            mt="200%"
+            pos="absolute"
             onClick={() => signOut(() => router.push('/'))}
           >
             Sign out
