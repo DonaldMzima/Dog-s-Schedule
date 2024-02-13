@@ -89,7 +89,7 @@ const Schedules = () => {
         bottom={0}
         bgGradient={useColorModeValue(
           ['linear(to-b, white, yellow)'],
-          ['linear(to-b, #928b8b, gray.900)'],
+          ['linear(to-b, #8f8e8e, #4e4e4e.900)'],
         )}
       >
         <FloatingButtons />
@@ -117,9 +117,9 @@ const Schedules = () => {
               width="100%"
               border={useColorModeValue(
                 '2px solid #1f1f1a',
-                '1px solid #27271c',
+                '1px solid #5f5f5e',
               )}
-              _placeholder={{ color: 'black' }}
+              _placeholder={{ color: 'gray' }}
             />
             <InputLeftElement pointerEvents="none" color="black">
               <FaSearch />
@@ -130,8 +130,8 @@ const Schedules = () => {
         <Sidebar />
         <Center>
           <Box>
-            <Text fontWeight="bold">
-              {showCompleted ? 'Show All' : 'CompletedTasks '}
+            <Text fontWeight="bold" mb={5}>
+              {showCompleted ? 'Show All' : 'Completed Schedules '}
             </Text>
 
             <SimpleGrid columns={{ base: 1, sm: 2, md: 1 }} spacing={8}>
@@ -148,6 +148,7 @@ const Schedules = () => {
             </SimpleGrid>
           </Box>
         </Center>
+
         {isMobile && <NavigationBar />}
       </Container>
     </>

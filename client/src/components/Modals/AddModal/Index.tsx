@@ -69,21 +69,17 @@ export const AddModal = () => {
   return (
     <>
       <Container>
-        <Flex zIndex={1}>
+        <Box>
           <Circle
-            size={{ base: '50px', md: '65px' }}
-            bg={useColorModeValue('black', 'gray.900')}
+            size={{ base: '45px', md: '65px' }}
+            bg={useColorModeValue('black', 'gray.600')}
             color="white"
             onClick={onOpen}
-            position={{ base: 'fixed', md: 'static' }}
-            bottom={0}
-            right={{ base: 8, md: 'auto' }}
-            top={{ base: 8, md: 'auto' }}
             cursor="pointer"
           >
             <AddIcon />
           </Circle>
-        </Flex>
+        </Box>
 
         <Modal
           isOpen={isOpen}

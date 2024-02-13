@@ -1,5 +1,12 @@
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
-import { Box, Button, useColorMode, useColorModeValue } from '@chakra-ui/react'
+import {
+  Box,
+  Button,
+  useColorMode,
+  useColorModeValue,
+  Center,
+} from '@chakra-ui/react'
+import DarkModeSvg from './DarkModeSvg'
 
 export const DarkMode = () => {
   const { colorMode, toggleColorMode } = useColorMode()
@@ -28,7 +35,7 @@ export const DarkMode = () => {
         <MoonIcon />
         DarkMode
       </Button>
-      <Box>
+      <Center>
         <Button
           onClick={handleLightModeClick}
           w="50%"
@@ -38,7 +45,11 @@ export const DarkMode = () => {
           <SunIcon />
           LightMode
         </Button>
-      </Box>
+      </Center>
+
+      <Center mt="60%">
+        <DarkModeSvg />
+      </Center>
     </header>
   )
 }
