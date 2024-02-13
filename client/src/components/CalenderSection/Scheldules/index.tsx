@@ -130,8 +130,8 @@ const Schedules = () => {
         <Sidebar />
         <Center>
           <Box>
-            <Text fontWeight="bold">
-              {showCompleted ? 'Show All' : 'CompletedTasks '}
+            <Text fontWeight="bold" mb={5}>
+              {showCompleted ? 'Show All' : 'Completed Schedules '}
             </Text>
 
             <SimpleGrid columns={{ base: 1, sm: 2, md: 1 }} spacing={8}>
@@ -148,6 +148,7 @@ const Schedules = () => {
             </SimpleGrid>
           </Box>
         </Center>
+
         {isMobile && <NavigationBar />}
       </Container>
     </>
