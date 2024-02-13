@@ -72,7 +72,7 @@ export const AddModal = () => {
         <Box>
           <Circle
             size={{ base: '45px', md: '65px' }}
-            bg={useColorModeValue('black', 'gray.900')}
+            bg={useColorModeValue('black', 'gray.600')}
             color="white"
             onClick={onOpen}
             cursor="pointer"
