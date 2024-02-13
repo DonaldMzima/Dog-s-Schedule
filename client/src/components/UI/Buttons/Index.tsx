@@ -18,7 +18,7 @@ const FloatingButtons = () => {
           width={{ base: '100%', md: '180%' }}
           height={{ base: '100px', md: '250px' }}
         >
-          <Box pos="absolute">
+          <Box pos="absolute" right="0%">
             <AddModal />
           </Box>
         </Center>
@@ -33,7 +33,16 @@ const FloatingButtons = () => {
             color="white"
             bg={useColorModeValue('black', 'gray.900')}
           >
-            <Box pos="fixed">
+            <Box
+              pos="absolute"
+              right={{
+                base: '15%',
+                sm: '10%',
+                md: '2%',
+                lg: '20%',
+                xl: '32%',
+              }}
+            >
               <AddModal />
             </Box>
           </Tooltip>
