@@ -89,7 +89,7 @@ const Schedules = () => {
         bottom={0}
         bgGradient={useColorModeValue(
           ['linear(to-b, white, yellow)'],
-          ['linear(to-b, #928b8b, gray.900)'],
+          ['linear(to-b, #8f8e8e, #4e4e4e.900)'],
         )}
       >
         <FloatingButtons />
@@ -117,9 +117,12 @@ const Schedules = () => {
               width="100%"
               border={useColorModeValue(
                 '2px solid #1f1f1a',
-                '1px solid #27271c',
+                '1px solid #5f5f5e',
               )}
-              _placeholder={{ color: 'black' }}
+              _placeholder={useColorModeValue(
+                '2px solid white',
+                '1px solid black',
+              )}
             />
             <InputLeftElement pointerEvents="none" color="black">
               <FaSearch />

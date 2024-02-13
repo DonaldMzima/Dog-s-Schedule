@@ -72,7 +72,7 @@ const Sidebar = () => {
         top={90}
         bottom={0}
         w="200px"
-        bg={useColorModeValue('white', 'gray.700')}
+        bg={useColorModeValue('white', 'gray.900')}
         color={useColorModeValue('#000000', 'white')}
         p={{ base: 2, md: 14 }}
         display={{ base: isOpen ? 'block' : 'none', md: 'block' }}
