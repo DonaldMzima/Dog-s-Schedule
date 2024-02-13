@@ -119,10 +119,7 @@ const Schedules = () => {
                 '2px solid #1f1f1a',
                 '1px solid #5f5f5e',
               )}
-              _placeholder={useColorModeValue(
-                '2px solid white',
-                '1px solid black',
-              )}
+              _placeholder={{ color: 'gray' }}
             />
             <InputLeftElement pointerEvents="none" color="black">
               <FaSearch />
