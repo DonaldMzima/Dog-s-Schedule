@@ -70,9 +70,11 @@ const HomePage = () => {
                 Get Started
               </Button>
             </Link>
-            <Button colorScheme="teal" size="lg">
-              Learn More
-            </Button>
+            <Link href="/learnMorePage">
+              <Button colorScheme="teal" size="lg">
+                Learn More
+              </Button>
+            </Link>
           </Center>
           <Center textAlign={'center'}>
             <SvgComponent />
