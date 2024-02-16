@@ -10,6 +10,7 @@ import {
   AccordionPanel,
   AccordionIcon,
   Center,
+  Button,
 } from '@chakra-ui/react'
 import { MdArrowBack } from 'react-icons/md'
 import Head from 'next/head'
@@ -28,8 +29,10 @@ const LearnMorePage: React.FC = () => {
       {/* {!isMobile && <Nav />} */}
 
       <Link href="/">
-        <MdArrowBack size={24} />
+        <Button rightIcon={<MdArrowBack />}>Go Back Home</Button>
       </Link>
+
+      <br />
       <Center>
         <Box p={4}>
           <Head>
@@ -486,6 +489,9 @@ const LearnMorePage: React.FC = () => {
           </Accordion>
         </Box>
       </Center>
+      <br />
+      <br />
+      <br />
       <Footer />
     </>
   )
