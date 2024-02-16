@@ -15,6 +15,7 @@ import {
 import Nav from '@/components/UI/NavBar/Index'
 import SvgComponent from '@/components/Svg/HomeSvg'
 import NavigationBar from '../../2ndNavBar/Index'
+import Footer from '../../Footer'
 
 const HomePage = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)')
@@ -80,8 +81,9 @@ const HomePage = () => {
             <SvgComponent />
           </Center>
         </Stack>
+        {isMobile && <NavigationBar />}
+        <Box mb={0}>{!isMobile && <Footer />}</Box>
       </Container>
-      {isMobile && <NavigationBar />}
     </>
   )
 }

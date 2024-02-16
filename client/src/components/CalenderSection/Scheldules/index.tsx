@@ -28,7 +28,6 @@ import Sidebar from './Sidebar'
 import { showCompletedState } from '@/store/atoms'
 import { useRecoilState } from 'recoil'
 import { useUser } from '@clerk/nextjs'
-import Footer from '@/components/UI/Footer'
 
 const Schedules = () => {
   const [query, updateQuery] = useState('')
