@@ -12,7 +12,7 @@ import {
   Button,
   Link,
 } from '@chakra-ui/react'
-import Nav from '@/components/UI/NavBar/Index'
+import { MdArrowForward } from 'react-icons/md'
 import SvgComponent from '@/components/Svg/HomeSvg'
 import NavigationBar from '../../2ndNavBar/Index'
 import Footer from '../../Footer'
@@ -72,7 +72,11 @@ const HomePage = () => {
               </Button>
             </Link>
             <Link href="/learnMorePage">
-              <Button colorScheme="teal" size="lg">
+              <Button
+                colorScheme="teal"
+                size="lg"
+                rightIcon={<MdArrowForward />}
+              >
                 Learn More
               </Button>
             </Link>
