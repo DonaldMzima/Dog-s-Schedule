@@ -126,3 +126,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 
 
+![dogschedule](https://github.com/DonaldMzima/Dog-s-Schedule/assets/90970069/4d0e8dd3-8145-488c-aa2d-3709c6ceac40)
