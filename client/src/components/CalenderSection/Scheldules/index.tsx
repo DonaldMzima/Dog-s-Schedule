@@ -95,7 +95,7 @@ const Schedules = () => {
         <FloatingButtons />
 
         <Box
-          pos="absolute"
+          pos="fixed"
           zIndex={1}
           justifyContent="center"
           mt={{ base: -70, sm: -70, md: -90, lg: -155 }}
