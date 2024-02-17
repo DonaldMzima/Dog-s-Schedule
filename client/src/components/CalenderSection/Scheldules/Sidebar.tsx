@@ -61,7 +61,7 @@ const Sidebar = () => {
 
       <Box
         as="nav"
-        pos="absolute"
+        pos="fixed"
         left={0}
         top={90}
         bottom={0}
