@@ -76,6 +76,7 @@ export const AddModal = () => {
             color="white"
             onClick={onOpen}
             cursor="pointer"
+            zIndex={1}
           >
             <AddIcon />
           </Circle>
