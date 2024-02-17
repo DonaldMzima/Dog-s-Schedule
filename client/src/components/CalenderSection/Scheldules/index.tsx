@@ -28,6 +28,7 @@ import Sidebar from './Sidebar'
 import { showCompletedState } from '@/store/atoms'
 import { useRecoilState } from 'recoil'
 import { useUser } from '@clerk/nextjs'
+import ScrollToTopButton from '@/components/UI/Buttons/ScrollToTopButton'
 
 const Schedules = () => {
   const [query, updateQuery] = useState('')
@@ -133,6 +134,7 @@ const Schedules = () => {
             <Text fontWeight="bold" mb={5}>
               {showCompleted ? 'Show All' : 'Completed Schedules '}
             </Text>
+            <ScrollToTopButton />
 
             <SimpleGrid columns={{ base: 1, sm: 2, md: 1 }} spacing={8}>
               {filteredTask.length > 0 ? (
