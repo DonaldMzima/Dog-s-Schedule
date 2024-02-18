@@ -67,13 +67,21 @@ const HomePage = () => {
           )}
           <Center textAlign={'center'}>
             <Link href="/schedules">
-              <Button colorScheme="blue" size="lg" mr={4}>
+              <Button
+                bg={useColorModeValue('black', 'gray.600')}
+                color="white"
+                cursor="pointer"
+                size="lg"
+                mr={4}
+              >
                 Get Started
               </Button>
             </Link>
             <Link href="/learnMorePage">
               <Button
-                colorScheme="teal"
+                bg={useColorModeValue('black', 'gray.600')}
+                color="white"
+                cursor="pointer"
                 size="lg"
                 rightIcon={<MdArrowForward />}
               >

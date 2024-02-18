@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Box, IconButton } from '@chakra-ui/react'
+import { Box, IconButton, useColorModeValue } from '@chakra-ui/react'
 import { ChevronUpIcon } from '@chakra-ui/icons'
 import { Zoom } from '@material-ui/core'
 
@@ -33,7 +33,9 @@ const ScrollToTopButton = () => {
     <Zoom in={isVisible}>
       <Box position="fixed" bottom="4" right="4">
         <IconButton
-          backgroundColor="green.400"
+          bg={useColorModeValue('black', 'gray.600')}
+          color="white"
+          cursor="pointer"
           icon={<ChevronUpIcon />}
           size="lg"
           aria-label="Scroll to top"
