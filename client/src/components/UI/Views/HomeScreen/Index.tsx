@@ -70,8 +70,12 @@ const HomePage = () => {
               <Button
                 bg={useColorModeValue('black', 'gray.600')}
                 color="white"
+                _hover={{
+                  backgroundColor: useColorModeValue('#00611b', '#213488'),
+                }}
                 cursor="pointer"
                 size="lg"
+                width="150px" // Set a fixed width
                 mr={4}
               >
                 Get Started
@@ -79,11 +83,15 @@ const HomePage = () => {
             </Link>
             <Link href="/learnMorePage">
               <Button
-                bg={useColorModeValue('black', 'gray.600')}
+                bg={useColorModeValue('gray.500', 'gray.600')}
                 color="white"
                 cursor="pointer"
+                _hover={{
+                  backgroundColor: useColorModeValue('#00611b', '#213488'),
+                }}
                 size="lg"
                 rightIcon={<MdArrowForward />}
+                width="150px"
               >
                 Learn More
               </Button>
