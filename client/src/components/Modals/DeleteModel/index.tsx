@@ -57,7 +57,7 @@ const DeleteModal = () => {
         <ModalFooter pb={4} pt={2}>
           <Button
             color="white"
-            bg="red.600"
+            bg="#1f1f1a"
             mr={3}
             onClick={() => {
               if (scheduleDataUse) {
@@ -68,7 +68,7 @@ const DeleteModal = () => {
           >
             <Text fontSize={{ base: 'sm', md: 'md' }}>Yes</Text>
           </Button>
-          <Button type="submit" bg="#1f1f1a" color="white" onClick={onClose}>
+          <Button type="submit" bg="red.600" color="white" onClick={onClose}>
             <Text fontSize={{ base: 'sm', md: 'md' }}>NO</Text>
           </Button>
         </ModalFooter>

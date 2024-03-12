@@ -68,7 +68,7 @@ const HomePage = () => {
           <Center textAlign={'center'}>
             <Link href="/schedules">
               <Button
-                bg={useColorModeValue('black', 'gray.600')}
+                bg={useColorModeValue('black', 'black')}
                 color="white"
                 _hover={{
                   backgroundColor: useColorModeValue('#00611b', '#213488'),
