@@ -12,6 +12,7 @@ import {
   Text,
   useColorModeValue,
   Button,
+  Flex,
 } from '@chakra-ui/react'
 
 import Nav from '@/components/UI/NavBar/Index'
@@ -95,11 +96,11 @@ const Schedules = () => {
       >
         <FloatingButtons />
 
-        <Box
+        <Flex
           pos="fixed"
           zIndex={1}
           justifyContent="center"
-          mt={{ base: -70, sm: -70, md: -90, lg: -155 }}
+          mt={{ base: -70, sm: -70, md: 150, lg: -225 }}
           ml={{
             base: 'calc(50% - 85px)',
             sm: 'calc(50% - 85px)',
@@ -126,7 +127,7 @@ const Schedules = () => {
               <FaSearch />
             </InputLeftElement>
           </InputGroup>
-        </Box>
+        </Flex>
 
         <Sidebar />
         <Center>

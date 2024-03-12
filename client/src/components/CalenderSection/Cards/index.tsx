@@ -79,7 +79,6 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
           boxShadow="lg"
           p={4}
           position="relative"
-          onClick={openUdateModal}
           style={{ cursor: 'pointer' }}
         >
           <Flex alignItems="center" ml={15}>
@@ -87,11 +86,10 @@ const WalkScheduleCard: FC<WalkScheduleCardProps> = ({ walkSchedules }) => {
               isChecked={isCompleted}
               onChange={handleIsCompletedToggle}
               size="lg"
-              colorScheme="black"
-              isDisabled={true}
+              color={useColorModeValue('#000000', ' white')}
               border="black"
-              bg={'black'}
             />
+
             <Text
               ml={2}
               fontSize={{ base: 'sm', md: 'xl' }}

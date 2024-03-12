@@ -18,7 +18,7 @@ const FloatingButtons = () => {
           width={{ base: '100%', md: '180%' }}
           height={{ base: '100px', md: '250px' }}
         >
-          <Box zIndex={1} pos="fixed" right="0%">
+          <Box zIndex={1} right="0%" pos={'fixed'}>
             <AddModal />
           </Box>
         </Center>
@@ -34,14 +34,14 @@ const FloatingButtons = () => {
             bg={useColorModeValue('black', 'gray.900')}
           >
             <Box
-              pos="fixed"
               zIndex={1}
+              pos={'fixed'}
               right={{
                 base: '15%',
                 sm: '10%',
                 md: '2%',
                 lg: '20%',
-                xl: '32%',
+                xl: '22%',
               }}
             >
               <AddModal />

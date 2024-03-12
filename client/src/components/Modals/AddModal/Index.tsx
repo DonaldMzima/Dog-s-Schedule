@@ -158,7 +158,7 @@ export const AddModal = () => {
                       Add
                     </Button>
                     <Button
-                      bg="#1f1f1a"
+                      bg="red.600"
                       color="white"
                       onClick={onClose} // Close the modal without adding schedules
                     >

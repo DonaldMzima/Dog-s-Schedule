@@ -31,7 +31,7 @@ const LearnMorePage: React.FC = () => {
 
       <Box
         bgGradient={useColorModeValue(
-          ['linear(to-b, white, yellow)'],
+          ['linear(to-b, white, #ffff91)'],
           ['linear(to-b, #8f8e8e, #4e4e4e.900)'],
         )}
         minHeight="100vh"

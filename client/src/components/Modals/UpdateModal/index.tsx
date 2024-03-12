@@ -63,7 +63,7 @@ export const UpdateModal = (props: EditButtonType) => {
   return (
     <Box mt={{ base: '-26px', sm: '-26px', md: '-26px' }} marginLeft="208px">
       <Modal isOpen={isOpen} onClose={onClose} size={{ base: 'xs', md: 'sm' }}>
-        <ModalOverlay />
+        <ModalOverlay bg="blackAlpha.300" />
         <ModalContent
           color={useColorModeValue('#000000', ' white')}
           bg={useColorModeValue('white', ' gray.700')}
@@ -150,7 +150,7 @@ export const UpdateModal = (props: EditButtonType) => {
                   </Button>
                   <Button
                     type="submit"
-                    bg="#1f1f1a"
+                    bg="red.600"
                     color="white"
                     onClick={onClose}
                   >
