@@ -1,4 +1,4 @@
-import Schedules from '@/components/CalenderSection/Scheldules'
+import Schedules from '@/components/CalenderSection/Scheldules/Schedule_UI'
 import { Box } from '@chakra-ui/react'
 import { RedirectToSignIn, SignedIn, SignedOut } from '@clerk/nextjs'
 
