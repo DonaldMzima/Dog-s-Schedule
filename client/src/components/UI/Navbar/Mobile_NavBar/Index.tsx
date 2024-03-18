@@ -1,10 +1,7 @@
 import { DarkMode } from '@/components/DarkMode'
-import SettingDrawer from '@/components/Settings'
+
 import {
   Box,
-  Button,
-  Center,
-  Flex,
   Link,
   Stack,
   IconButton,
@@ -43,8 +40,6 @@ const NavBar = () => {
         right={0}
         justifyContent="center"
       >
-        {/* Logo */}
-
         <Stack
           direction="row"
           spacing={31}
