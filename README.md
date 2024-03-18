@@ -2,6 +2,9 @@
 
 Dog Walk Schedule is a web application built using Next.js, TypeScript, and Chakra UI that helps you manage and schedule dog walks. It utilizes GraphQL to store data in a database and provides a user-friendly interface to create and manage dog walk tasks. Each task includes information about the person responsible, the dog's name, and the scheduled date.
 
+#UI![dogschedule](https://github.com/DonaldMzima/Dog-s-Schedule/assets/90970069/1d75b80a-d3ce-4fdf-97ac-75d2f07dfc37)
+
+
 Table of Contents
 Installation
 Usage
@@ -126,4 +129,4 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 
 
-![dogschedule](https://github.com/DonaldMzima/Dog-s-Schedule/assets/90970069/4d0e8dd3-8145-488c-aa2d-3709c6ceac40)
+
