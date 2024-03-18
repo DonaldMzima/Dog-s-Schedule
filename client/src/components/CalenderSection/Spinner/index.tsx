@@ -7,8 +7,8 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react'
 import { CustomSpinnerType } from 'utilis/types'
-import Nav from '@/components/UI/NavBar/Index'
-import NavigationBar from '@/components/UI/2ndNavBar/Index'
+import Nav from '@/components/UI/Navbar/Mobile_NavBar/Index'
+import NavigationBar from '@/components/UI/Navbar/Desktop_NavBar/Index'
 
 const CustomSpinner = ({ text }: CustomSpinnerType) => {
   const [isMobile] = useMediaQuery('(max-width: 768px)')
