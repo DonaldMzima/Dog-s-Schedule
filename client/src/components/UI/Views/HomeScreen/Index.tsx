@@ -14,8 +14,8 @@ import {
 } from '@chakra-ui/react'
 import { MdArrowForward } from 'react-icons/md'
 import SvgComponent from '@/components/Svg/HomeSvg'
-import NavigationBar from '../../Navbar/Desktop_NavBar/Index'
 import Footer from '../../Footer'
+import NavigationBar from '../../Navbar/Desktop_NavBar/Index'
 
 const HomePage = () => {
   const [isMobile] = useMediaQuery('(max-width: 768px)')
