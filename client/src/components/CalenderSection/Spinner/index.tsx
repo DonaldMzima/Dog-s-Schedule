@@ -24,10 +24,7 @@ const CustomSpinner = ({ text }: CustomSpinnerType) => {
         display="flex"
         alignItems="center"
         justifyContent="center"
-        bgGradient={useColorModeValue(
-          ['linear(to-b, white, yellow)'],
-          ['linear(to-b, #928b8b, gray.900)'],
-        )}
+        bgGradient="cover+"
       >
         {!isMobile && <Nav />}
         <Stack

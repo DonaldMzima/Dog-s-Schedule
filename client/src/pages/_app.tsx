@@ -6,10 +6,10 @@ import type { AppProps } from 'next/app'
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client'
 import { NhostProvider, NhostClient } from '@nhost/nextjs'
 import { RecoilRoot } from 'recoil'
-import { UserProvider } from 'utilis/hooks/UserProvider'
 import { ClerkProvider } from '@clerk/nextjs'
 import Joyride, { STATUS } from 'react-joyride'
 import { useState } from 'react'
+import { UserProvider } from '@/hooks/UserProvider'
 
 export const client = new ApolloClient({
   uri: 'https://swfkedcclgqaeusybpxy.graphql.eu-central-1.nhost.run/v1',
