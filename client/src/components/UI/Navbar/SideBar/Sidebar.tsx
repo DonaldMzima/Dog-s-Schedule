@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   VStack,
   Text,
@@ -15,38 +15,25 @@ import { BiDotsVertical } from 'react-icons/bi'
 import { AiOutlineCheckSquare } from 'react-icons/ai'
 import { useRouter } from 'next/navigation'
 import { useRecoilState } from 'recoil'
-import { showCompletedState, openFeedbackModal } from '@/store/atoms'
-import { UserButton, useClerk } from '@clerk/nextjs'
+import { UserButton } from '@clerk/nextjs'
 
 import FeedbackModal from '@/components/Modals/FeedbackModal'
 import { FiMenu } from 'react-icons/fi'
+import useSidebar from '@/hooks/useSidebar'
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const [showCompleted, setShowCompleted] = useRecoilState(showCompletedState)
-  const [Feedback, setFeedbackModal] = useRecoilState(openFeedbackModal)
-
-  const [_, setIsProfileModalOpen] = useState(false)
-  const { signOut } = useClerk()
-  const router = useRouter()
-  const openProfileModal = () => {
-    setIsProfileModalOpen(true)
-  }
-
-  const { colorMode } = useColorMode()
-
-  const Completedtasks = () => {
-    setShowCompleted(!showCompleted)
-  }
-
-  const openFeedModal = () => {
-    setFeedbackModal(true)
-  }
-
-  const toggleSidebar = () => {
-    setIsOpen(!isOpen)
-  }
+  const {
+    isOpen,
+    showCompleted,
+    Feedback,
+    colorMode,
+    toggleSidebar,
+    openProfileModal,
+    Completedtasks,
+    openFeedModal,
+    handleSignOut,
+    setFeedbackModal,
+  } = useSidebar()
 
   return (
     <>
@@ -124,7 +111,7 @@ const Sidebar = () => {
               leftIcon={<Icon as={FaSignOutAlt} boxSize={5} />}
               variant="ghost"
               mt="200%"
-              onClick={() => signOut(() => router.push('/'))}
+              onClick={handleSignOut}
             >
               Sign out
             </Button>

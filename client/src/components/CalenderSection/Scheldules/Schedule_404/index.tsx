@@ -1,6 +1,6 @@
 import { Stack, Center, Text, Box } from '@chakra-ui/react'
 import React from 'react'
-import SvgComponent from '../../../Svg/CalenderSvg/Index'
+import SvgComponent from '../../../Svg/ScheduleSvg/Index'
 
 const NoSchedules = ({ query }: string | any) => {
   return (
