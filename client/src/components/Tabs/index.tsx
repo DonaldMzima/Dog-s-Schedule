@@ -97,11 +97,27 @@ export const JCTab: React.FC<JCTabProps> = ({
         index={tabs.findIndex((tab) => tab.name === activeTab)}
         onChange={handleTabChange}
         isFitted
+        size={{ base: "sm", md: "md" }}
       >
-        <TabList borderBottomWidth="1px" borderColor={borderColor}>
+        <TabList
+          borderBottomWidth="1px"
+          borderColor={borderColor}
+          overflowX="auto"
+          overflowY="hidden"
+          whiteSpace="nowrap"
+          css={{
+            scrollbarWidth: "none",
+            "::-webkit-scrollbar": {
+              display: "none",
+            },
+          }}
+        >
           {tabs.map((tab, index) => (
             <Tab
               key={index}
+              fontSize={{ base: "sm", md: "md" }}
+              py={{ base: 2, md: 3 }}
+              px={{ base: 3, md: 4 }}
               _selected={{
                 bg: selectedBg,
                 color: selectedColor,
@@ -120,7 +136,7 @@ export const JCTab: React.FC<JCTabProps> = ({
             <TabPanel
               key={index}
               bg={bgColor}
-              p={5}
+              p={{ base: 3, md: 5 }}
               roundedBottom="md"
               borderWidth="1px"
               borderTop="none"
