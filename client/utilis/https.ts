@@ -1,41 +1,43 @@
-import { client } from '@/pages/_app'
-import { ApolloQueryResult } from '@apollo/client'
-import { toast } from 'react-toastify'
+import { client } from "@/pages/_app";
+import { ApolloQueryResult } from "@apollo/client";
+import { toast } from "react-toastify";
 // import { client } from 'apolloClient'
-import gql from 'graphql-tag'
+import gql from "graphql-tag";
 // Define types for your data
 export interface Schedule {
-  isCompleted?: boolean
-  id: string
-  person: string
-  dog: string
-  date: string | any
-  createdAt?: string
-  publishedAt?: string
-  updatedAt?: string
+  isCompleted?: boolean;
+  id: string;
+  person: string;
+  dog: string;
+  date: string | any;
+  createdAt?: string;
+  publishedAt?: string;
+  updatedAt?: string;
+  time?: string;
+  email?: string;
 }
 
 export interface Feedback {
-  id: any
-  email: string
-  message: string
+  id: any;
+  email: string;
+  message: string;
 }
 
 interface UserDataTypes {
-  person: string
-  dog: string
-  date: string | Date
-  isCompleted?: boolean
+  person: string;
+  dog: string;
+  date: string | Date;
+  isCompleted?: boolean;
 }
 
 interface DeleteResult {
-  id: string
+  id: string;
 }
 
 export interface FeedbackDataTypes {
-  id?: string
-  email?: string
-  message?: string
+  id?: string;
+  email?: string;
+  message?: string;
 }
 
 export const GET_WALK_SCHEDULES = gql`
@@ -49,7 +51,7 @@ export const GET_WALK_SCHEDULES = gql`
       __typename
     }
   }
-`
+`;
 
 const CREATE_WALK_SCHEDULE = gql`
   mutation CreateWalkSchedule(
@@ -68,7 +70,7 @@ const CREATE_WALK_SCHEDULE = gql`
       email
     }
   }
-`
+`;
 
 const DELETE_SCHEDULE = gql`
   mutation DeleteSchedule($id: uuid!) {
@@ -76,7 +78,7 @@ const DELETE_SCHEDULE = gql`
       id
     }
   }
-`
+`;
 
 const EDIT_SCHEDULE = gql`
   mutation EditSchedule(
@@ -102,7 +104,7 @@ const EDIT_SCHEDULE = gql`
       isCompleted
     }
   }
-`
+`;
 
 const CREATE_FEED_BACK = gql`
   mutation CreateFeedback($email: String, $message: String!) {
@@ -112,37 +114,36 @@ const CREATE_FEED_BACK = gql`
       __typename
     }
   }
-`
+`;
 
 const WalkSchedules = async (): Promise<Schedule[]> => {
   try {
-    const {
-      data,
-    }: ApolloQueryResult<{ schedules: Schedule[] }> = await client.query({
-      query: GET_WALK_SCHEDULES,
-    })
-    return data.schedules
+    const { data }: ApolloQueryResult<{ schedules: Schedule[] }> =
+      await client.query({
+        query: GET_WALK_SCHEDULES,
+      });
+    return data.schedules;
   } catch (error) {
-    throw new Error(error as string)
+    throw new Error(error as string);
   }
-}
+};
 
 const CreateWalkSchedules = async (
-  userData: UserDataTypes,
+  userData: UserDataTypes
 ): Promise<Schedule> => {
   try {
     const { data }: Record<string, any> = await client.mutate({
       mutation: CREATE_WALK_SCHEDULE,
       variables: userData,
-    })
+    });
 
-    toast.success('Schedule created successfully') // Show success toast
-    return data.insert_schedules_one
+    toast.success("Schedule created successfully"); // Show success toast
+    return data.insert_schedules_one;
   } catch (error) {
-    toast.error('Failed to create schedule') // Show error toast
-    throw new Error(error as string)
+    toast.error("Failed to create schedule"); // Show error toast
+    throw new Error(error as string);
   }
-}
+};
 
 const DeleteSchedules = async (id: any): Promise<DeleteResult> => {
   try {
@@ -151,19 +152,19 @@ const DeleteSchedules = async (id: any): Promise<DeleteResult> => {
       variables: {
         id,
       },
-    })
+    });
 
-    toast.success('Schedule deleted successfully') // Show success toast
-    return data.delete_schedules_by_pk
+    toast.success("Schedule deleted successfully"); // Show success toast
+    return data.delete_schedules_by_pk;
   } catch (error) {
-    toast.error('Failed to delete schedule') // Show error toast
-    throw new Error(error as string)
+    toast.error("Failed to delete schedule"); // Show error toast
+    throw new Error(error as string);
   }
-}
+};
 
 const EditSchedules = async (
   userData: UserDataTypes,
-  id: string,
+  id: string
 ): Promise<Schedule> => {
   try {
     const { data }: Record<string, any> = await client.mutate({
@@ -175,32 +176,32 @@ const EditSchedules = async (
         date: userData.date,
         isCompleted: userData.isCompleted,
       },
-    })
+    });
 
-    toast.success('Schedule updated successfully') // Show success toast
-    return data.update_schedules_by_pk
+    toast.success("Schedule updated successfully"); // Show success toast
+    return data.update_schedules_by_pk;
   } catch (error) {
-    toast.error('Failed to update schedule') // Show error toast
-    throw new Error(error as string)
+    toast.error("Failed to update schedule"); // Show error toast
+    throw new Error(error as string);
   }
-}
+};
 
 const CreateFeedback = async (
-  userData: FeedbackDataTypes,
+  userData: FeedbackDataTypes
 ): Promise<Feedback> => {
   try {
     const { data }: Record<string, any> = await client.mutate({
       mutation: CREATE_FEED_BACK,
       variables: userData,
-    })
+    });
 
-    toast.success('Feedback created successfully')
-    return data.insert_feedback_one
+    toast.success("Feedback created successfully");
+    return data.insert_feedback_one;
   } catch (error) {
-    toast.error('Failed to create Feedback')
-    throw new Error(error as string)
+    toast.error("Failed to create Feedback");
+    throw new Error(error as string);
   }
-}
+};
 
 export {
   WalkSchedules,
@@ -208,4 +209,4 @@ export {
   DeleteSchedules,
   EditSchedules,
   CreateFeedback,
-}
+};
