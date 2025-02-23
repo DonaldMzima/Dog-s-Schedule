@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import React from 'react'
+import React from "react";
 import {
   Box,
   Heading,
@@ -12,11 +12,11 @@ import {
   Center,
   Button,
   useColorModeValue,
-} from '@chakra-ui/react'
-import { MdArrowBack } from 'react-icons/md'
-import Head from 'next/head'
-import Link from 'next/link'
-import Footer from '../UI/Footer'
+} from "@chakra-ui/react";
+import { MdArrowBack } from "react-icons/md";
+import Head from "next/head";
+import Link from "next/link";
+import Footer from "../UI/Footer";
 
 /**
  * LearnMorePage component displays information about the importance
@@ -31,8 +31,8 @@ const LearnMorePage: React.FC = () => {
 
       <Box
         bgGradient={useColorModeValue(
-          ['linear(to-b, white, #ffff91)'],
-          ['linear(to-b, #8f8e8e, #4e4e4e.900)'],
+          ["linear(to-b, white, #ffff91)"],
+          ["linear(to-b, #8f8e8e, #4e4e4e.900)"]
         )}
         minHeight="100vh"
         px={4}
@@ -44,7 +44,7 @@ const LearnMorePage: React.FC = () => {
             color="black"
             cursor="pointer"
             _hover={{
-              backgroundColor: useColorModeValue('#00611b', '#213488'),
+              backgroundColor: useColorModeValue("#00611b", "#213488"),
             }}
             leftIcon={<MdArrowBack />}
           >
@@ -54,7 +54,7 @@ const LearnMorePage: React.FC = () => {
         <br /> {/* Add background color only on the sides */}
         <Center>
           <Box p={4} maxWidth="1000px">
-            {' '}
+            {" "}
             {/* Limit content width */}
             <Center bg="white">
               <Box p={4}>
@@ -65,7 +65,7 @@ const LearnMorePage: React.FC = () => {
                   Daily Dog Schedules
                 </Heading>
                 <br />
-                <img src="/walking-guide.png" alt="Dog Image" />{' '}
+                <img src="/walking-guide.png" alt="Dog Image" />{" "}
                 {/* Add dog image here */}
                 <Text mt={2}>
                   it’s time to think about what your new life will look like
@@ -256,7 +256,7 @@ const LearnMorePage: React.FC = () => {
                   {/* stop=-=here */}
                   <Heading>Dog Walking Safety Tips</Heading>
                   <br />
-                  <img src="/safety-tips.webp" alt="Dog Image" />{' '}
+                  <img src="/safety-tips.webp" alt="Dog Image" />{" "}
                   {/* Add dog image here */}
                   <Text mt={2}>
                     As a dog owner living in New York City you might be asking
@@ -344,12 +344,12 @@ const LearnMorePage: React.FC = () => {
                       sure to also wash their paws after walks as the salt can
                       <br /> make dogs sick. Check the AQI as certain dogs with
                       medical conditions may not be able to stay outside for
-                      very long if the levels are too high. If there is a<br />{' '}
+                      very long if the levels are too high. If there is a<br />{" "}
                       thunderstorm in the forecast and your dog is afraid of
                       thunder then plan your walks around the storm. Many dogs
                       panic and get lost in these situations and it
                       <br /> can be a very traumatizing experience in general to
-                      be outside when the boomers strike.{' '}
+                      be outside when the boomers strike.{" "}
                     </AccordionPanel>
                   </AccordionItem>
                   <AccordionItem>
@@ -368,7 +368,7 @@ const LearnMorePage: React.FC = () => {
                       <br /> unmowed grass then you might need to check your dog
                       for fleas and ticks. Be respectful of the local wildlife
                       and do not let your dog off leash around
-                      <br /> wild animals.{' '}
+                      <br /> wild animals.{" "}
                     </AccordionPanel>
                   </AccordionItem>
                   <AccordionItem>
@@ -381,7 +381,7 @@ const LearnMorePage: React.FC = () => {
                       </AccordionButton>
                     </h2>
                     <AccordionPanel pb={4}>
-                      {' '}
+                      {" "}
                       If you and your pet travel to a new place it is best to do
                       some research ahead of time. Getting lost in a new place
                       can be scary! Make sure to <br />
@@ -478,7 +478,7 @@ const LearnMorePage: React.FC = () => {
                       at all times. Be careful with dog interactions as the pack
                       mentality can sometimes kick in. If a passing dog is
                       barking, be prepared to have your <br />
-                      whole pack barking too.{' '}
+                      whole pack barking too.{" "}
                     </AccordionPanel>
                   </AccordionItem>
                   <AccordionItem>
@@ -529,7 +529,7 @@ const LearnMorePage: React.FC = () => {
         <Footer />
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default LearnMorePage
+export default LearnMorePage;

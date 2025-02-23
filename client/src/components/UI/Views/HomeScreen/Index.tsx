@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
-import React from 'react'
+import React from "react";
 import {
   Heading,
   Container,
@@ -11,43 +11,43 @@ import {
   useMediaQuery,
   Button,
   Link,
-} from '@chakra-ui/react'
-import { MdArrowForward } from 'react-icons/md'
-import SvgComponent from '@/components/Svg/HomeSvg'
-import Footer from '../../Footer'
-import NavigationBar from '../../Navbar/Desktop_NavBar/Index'
+} from "@chakra-ui/react";
+import { MdArrowForward } from "react-icons/md";
+import SvgComponent from "@/components/Svg/HomeSvg";
+import Footer from "../../Footer";
+import NavigationBar from "../../Navbar/Desktop_NavBar/Index";
 
 const HomePage = () => {
-  const [isMobile] = useMediaQuery('(max-width: 768px)')
+  const [isMobile] = useMediaQuery("(max-width: 768px)");
   return (
     <>
       <Container
-        maxW={'100%'}
+        maxW={"100%"}
         minHeight="100vh"
         bgGradient={useColorModeValue(
-          ['linear(to-b, white, yellow)'],
-          ['linear(to-b, #8f8e8e, #4e4e4e.900)'],
+          ["linear(to-b, white, yellow)"],
+          ["linear(to-b, #8f8e8e, #4e4e4e.900)"]
         )}
       >
         {/* {!isMobile && <Nav />} */}
         <Stack
-          textAlign={'center'}
+          textAlign={"center"}
           spacing={{ base: 8, md: 14 }}
           py={{ base: 16, md: 24 }}
           marginTop={{ base: 0, md: 8 }}
-          color={useColorModeValue('#182d47', '#fafaf7')}
+          color={useColorModeValue("#182d47", "#fafaf7")}
         >
           <Heading
             fontWeight={600}
-            fontSize={{ base: '3xl', sm: '4xl', md: '6xl' }}
-            lineHeight={'110%'}
+            fontSize={{ base: "3xl", sm: "4xl", md: "6xl" }}
+            lineHeight={"110%"}
           >
             Dog's Walking <br />
-            <Text as={'span'} color={useColorModeValue('#20201c', '#f3f3e3')}>
+            <Text as={"span"} color={useColorModeValue("#20201c", "#f3f3e3")}>
               Schedule
             </Text>
           </Heading>
-          <Text fontSize={{ base: 'xl', sm: '2xl', md: '3xl' }}>Ruh roh</Text>
+          <Text fontSize={{ base: "xl", sm: "2xl", md: "3xl" }}>Ruh roh</Text>
           {isMobile ? (
             <Text>
               Regular exercise with your pet is <br />
@@ -65,13 +65,13 @@ const HomePage = () => {
               keep you motivated!
             </Text>
           )}
-          <Center textAlign={'center'}>
+          <Center textAlign={"center"}>
             <Link href="/schedules">
               <Button
-                bg={useColorModeValue('black', 'black')}
+                bg={useColorModeValue("black", "black")}
                 color="white"
                 _hover={{
-                  backgroundColor: useColorModeValue('#00611b', '#213488'),
+                  backgroundColor: useColorModeValue("#00611b", "#213488"),
                 }}
                 cursor="pointer"
                 size="lg"
@@ -83,11 +83,11 @@ const HomePage = () => {
             </Link>
             <Link href="/learnMorePage">
               <Button
-                bg={useColorModeValue('gray.500', 'gray.600')}
+                bg={useColorModeValue("gray.500", "gray.600")}
                 color="white"
                 cursor="pointer"
                 _hover={{
-                  backgroundColor: useColorModeValue('#00611b', '#213488'),
+                  backgroundColor: useColorModeValue("#00611b", "#213488"),
                 }}
                 size="lg"
                 rightIcon={<MdArrowForward />}
@@ -97,7 +97,7 @@ const HomePage = () => {
               </Button>
             </Link>
           </Center>
-          <Center textAlign={'center'}>
+          <Center textAlign={"center"}>
             <SvgComponent />
           </Center>
         </Stack>
@@ -105,7 +105,7 @@ const HomePage = () => {
         <Box mb={0}>{!isMobile && <Footer />}</Box>
       </Container>
     </>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
