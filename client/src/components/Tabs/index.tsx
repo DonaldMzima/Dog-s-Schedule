@@ -49,10 +49,9 @@ export const JCTab: React.FC<JCTabProps> = ({
 }) => {
   const router = useRouter();
   const bgColor = useColorModeValue("white", "gray.800");
-  const selectedBg = useColorModeValue("black.100", "black.900");
-  const selectedColor = useColorModeValue("white.800", "purple.100");
-  const hoverBg = useColorModeValue("purple.50", "purple.800");
-  const hoverColor = useColorModeValue("purple.700", "purple.200");
+  const selectedBg = "black";
+  const selectedColor = useColorModeValue("white", "white");
+
   const borderColor = useColorModeValue("gray.200", "gray.600");
 
   const activeTab = useMemo(() => {
@@ -91,7 +90,7 @@ export const JCTab: React.FC<JCTabProps> = ({
   };
 
   return (
-    <Box w="full" h="full">
+    <Box w="full" h="full" borderRadius="md" boxShadow="md">
       <Tabs
         variant="enclosed"
         index={tabs.findIndex((tab) => tab.name === activeTab)}
@@ -116,16 +115,20 @@ export const JCTab: React.FC<JCTabProps> = ({
             <Tab
               key={index}
               fontSize={{ base: "sm", md: "md" }}
-              py={{ base: 2, md: 3 }}
-              px={{ base: 3, md: 4 }}
+              py={{ base: 3, md: 4 }}
+              px={{ base: 4, md: 5 }}
+              borderRadius="md"
+              borderWidth="1px"
+              borderColor={activeTab === tab.name ? selectedBg : borderColor}
+              bg={activeTab === tab.name ? selectedBg : "transparent"}
+              color={activeTab === tab.name ? selectedColor : "gray.600"}
               _selected={{
                 bg: selectedBg,
                 color: selectedColor,
-                fontWeight: "semibold",
+                fontWeight: "bold",
                 borderBottom: "2px solid",
                 borderColor: "purple.600",
               }}
-              _hover={{ bg: hoverBg, color: hoverColor }}
             >
               {tab.name}
             </Tab>
@@ -135,8 +138,12 @@ export const JCTab: React.FC<JCTabProps> = ({
           {tabs.map((tab, index) => (
             <TabPanel
               key={index}
-              bg={bgColor}
-              p={{ base: 3, md: 5 }}
+              bg={
+                tab.name === "Cards" && activeTab === "Cards"
+                  ? "transparent"
+                  : bgColor
+              }
+              p={{ base: 4, md: 6 }}
               roundedBottom="md"
               borderWidth="1px"
               borderTop="none"

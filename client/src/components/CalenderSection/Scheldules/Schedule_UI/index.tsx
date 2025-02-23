@@ -48,7 +48,7 @@ import { DateClickArg } from "@fullcalendar/interaction";
 
 const Schedules = () => {
   const [query, updateQuery] = useState("");
-  const [selectedTab, setSelectedTab] = useState("Calendar");
+  const [selectedTab, setSelectedTab] = useState("Cards");
   const [showCompleted] = useRecoilState(showCompletedState);
   const { user } = useUser();
   const userEmail = user?.primaryEmailAddress?.emailAddress;
@@ -207,8 +207,8 @@ const Schedules = () => {
   );
 
   const tabs = [
-    { name: "Calendar", view: CalendarView },
     { name: "Cards", view: CardsView },
+    { name: "Calendar", view: CalendarView },
   ];
 
   return (
