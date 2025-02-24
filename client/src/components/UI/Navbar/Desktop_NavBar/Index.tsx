@@ -7,7 +7,6 @@ import {
   useColorModeValue,
   Button,
   Flex,
-  useColorMode,
 } from "@chakra-ui/react";
 import { RiHome4Fill } from "react-icons/ri";
 import { FaRegCalendarCheck } from "react-icons/fa";
@@ -16,7 +15,6 @@ import SettingDrawer from "@/components/Settings";
 
 const NavigationBar = () => {
   const router = useRouter();
-  const { colorMode, toggleColorMode } = useColorMode();
 
   const handleNavigation = (path: string) => {
     router.push(path);
@@ -31,7 +29,6 @@ const NavigationBar = () => {
           spacing={{ base: 20, sm: 155 }}
           ml={{ base: 25, sm: 50 }}
           mt={{ base: -150, sm: -150 }}
-          // bg={useColorModeValue(' yellow', 'transparent')}
         >
           <Link
             onClick={() => handleNavigation("/")}
@@ -51,11 +48,6 @@ const NavigationBar = () => {
               <FaRegCalendarCheck size={"3em"} />
             </Box>
           </Link>
-          <Button onClick={toggleColorMode} variant="outline">
-            {colorMode === "light"
-              ? "Switch to Dark Mode"
-              : "Switch to Light Mode"}
-          </Button>
           <SettingDrawer />
         </Stack>
       </Center>
